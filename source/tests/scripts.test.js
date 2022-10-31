@@ -1,5 +1,5 @@
 /* eslint-env jest */
-/* global test, describe, it, expect, jest */
+/* global test, expect */
 // scripts.test.js
 
 test('init() returns 0', () => {
