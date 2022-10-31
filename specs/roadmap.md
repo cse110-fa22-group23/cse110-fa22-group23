@@ -22,4 +22,3 @@
 - **Week 10 (end of Dec. 2)**
   - Finalize minimum viable product **(high priority)**
   - Project sprint reflection
-

@@ -28,3 +28,17 @@
   - Extract job openings/information from external sites
 - **Autofill Application**
   - Automatically fill out application fields from user data
+
+## Competitor Analysis
+
+- **Coda**
+  - Lots of user personalization
+  - Detailed UI
+
+- **Huntr**
+  - Tracks details extensively
+
+- **Teal's**
+  - Includes web extension
+
+Our website is unique in including many of the features that existing competitors have, and combining them seamlessly. We also have the potential to include extendable features in web scraping job postings and autofill for applications, which other sites do not include.
