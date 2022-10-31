@@ -43,5 +43,5 @@ jobs:
       - name: Run javascript linting/tests (standard, jest)
         run: |
           npm i standard jest jest-environment-jsdom
-          npx standard --fix
-          npm test
+          npx standard
+          npx jest --testEnvironment='jsdom'
