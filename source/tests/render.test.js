@@ -1,5 +1,5 @@
 /* eslint-env jest */
-/* global test, describe, it, expect, jest */
+/* global test, expect */
 // render.test.js
 
 test('Simple DOM test', () => {
