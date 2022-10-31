@@ -25,10 +25,22 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Run linting
+      - name: Run markdown linting
         run: |
-          npm i remark-cli remark-preset-lint-consistent standard htmlhint stylelint stylelint-config-standard
+          npm i remark-cli remark-preset-lint-consistent
           npx remark . --use remark-preset-lint-consistent --frail
+
+      - name: Run javascript linting (standard)
+        run: |
+          npm i standard
           npx standard --fix
+
+      - name: Run html linting (htmlhint)
+        run: |
+          npm i htmlhint
           npx htmlhint "**/*.html"
+
+      - name: Run css linting (stylelint)
+        run: |
+          npm i stylelint stylelint-config-standard
           npx stylelint "**/*.css"
