@@ -29,5 +29,5 @@ jobs:
         run: |
           npm i remark-cli remark-preset-lint-consistent standard stylelint stylelint-config-standard
           npx remark . --use remark-preset-lint-consistent --frail
-          npx standard
+          npx standard --fix
           npx stylelint "**/*.css"
