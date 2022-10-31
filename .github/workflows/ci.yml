@@ -44,3 +44,8 @@ jobs:
         run: |
           npm i stylelint stylelint-config-standard
           npx stylelint "**/*.css"
+      
+      - name: Run Jest tests
+        run: |
+          npm i jest jest-environment-jsdom
+          npm test
