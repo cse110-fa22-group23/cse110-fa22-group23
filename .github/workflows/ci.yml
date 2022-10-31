@@ -27,7 +27,8 @@ jobs:
 
       - name: Run linting
         run: |
-          npm i remark-cli remark-preset-lint-consistent standard stylelint stylelint-config-standard
+          npm i remark-cli remark-preset-lint-consistent standard htmlhint stylelint stylelint-config-standard
           npx remark . --use remark-preset-lint-consistent --frail
           npx standard --fix
+          npx htmlhint "**/*.html"
           npx stylelint "**/*.css"
