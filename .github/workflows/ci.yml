@@ -30,11 +30,6 @@ jobs:
           npm i remark-cli remark-preset-lint-consistent
           npx remark . --use remark-preset-lint-consistent --frail
 
-      - name: Run javascript linting (standard)
-        run: |
-          npm i standard
-          npx standard --fix
-
       - name: Run html linting (htmlhint)
         run: |
           npm i htmlhint
@@ -45,7 +40,8 @@ jobs:
           npm i stylelint stylelint-config-standard
           npx stylelint "**/*.css"
       
-      - name: Run Jest tests
+      - name: Run javascript linting/tests (standard, jest)
         run: |
-          npm i jest jest-environment-jsdom
+          npm i standard jest jest-environment-jsdom
+          npx standard --fix
           npm test
