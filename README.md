@@ -1,5 +1,9 @@
 # Team 23 - Project Repository
 
+## Usage
+
+Go to the [Application Page](https://cse110-fa22-group23.github.io/cse110-fa22-group23/source/index.html).
+
 ## Administrative Information
 
 - Team Name: SuuS
