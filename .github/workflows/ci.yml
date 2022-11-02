@@ -40,8 +40,8 @@ jobs:
           npm i stylelint stylelint-config-standard
           npx stylelint "**/*.css"
       
-      - name: Run javascript linting/tests (standard, jest)
+      - name: Run javascript linting/tests (eslint, jest)
         run: |
-          npm i standard jest jest-environment-jsdom
-          npx standard
+          npm i eslint jest jest-environment-jsdom
+          npx eslint .
           npx jest --testEnvironment='jsdom'
