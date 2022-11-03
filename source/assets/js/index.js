@@ -1,9 +1,9 @@
 
-window.addEventListener('DOMContentLoaded', init)
+window.addEventListener("DOMContentLoaded", init);
 
-function init () {
-  console.log('Window loaded')
-  return 0
+function init() {
+    console.log("Window loaded");
+    return 0;
 }
 
-module.exports = { init }
+module.exports = { init };
