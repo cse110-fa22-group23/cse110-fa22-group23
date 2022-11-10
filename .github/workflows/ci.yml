@@ -15,38 +15,39 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  lint:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
       - name: Run markdown linting
         run: |
           npm i remark-cli remark-preset-lint-consistent
-          echo '---------- RUNNING LINTER ----------'
           npx remark . --use remark-preset-lint-consistent --frail
 
       - name: Run html linting (htmlhint)
         run: |
           npm i htmlhint
-          echo '---------- RUNNING LINTER ----------'
           npx htmlhint "**/*.html"
 
       - name: Run css linting (stylelint)
         run: |
           npm i stylelint stylelint-config-standard
-          echo '---------- RUNNING LINTER ----------'
           npx stylelint "**/*.css"
       
-      - name: Run javascript linting/tests (eslint, jest)
+      - name: Run javascript linting (eslint)
         run: |
-          npm i eslint jest jest-environment-jsdom
-          echo '---------- RUNNING LINTER ----------'
+          npm i eslint
           npx eslint .
-          echo '---------- RUNNING TESTS  ----------'
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run javascript tests (jest)
+        run: |
+          npm i jest jest-environment-jsdom
           npx jest --testEnvironment='jsdom'
