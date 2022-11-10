@@ -1,13 +1,19 @@
 {
-  "dependencies": {
-    "jest": "^29.2.2",
-    "jest-environment-jsdom": "^29.2.2"
-  },
-  "scripts": {
-    "test": "jest --testEnvironment='jsdom'",
-    "lint": "eslint ."
-  },
-  "devDependencies": {
-    "eslint": "^8.26.0"
-  }
+    "dependencies": {
+        "jest": "^29.2.2",
+        "jest-environment-jsdom": "^29.2.2"
+    },
+    "scripts": {
+        "test": "jest --testEnvironment='jsdom'",
+        "lint": "eslint . && prettier --check ."
+    },
+    "devDependencies": {
+        "eslint": "^8.26.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "htmlhint": "^1.1.4",
+        "prettier": "^2.7.1",
+        "remark-cli": "^11.0.0",
+        "remark-preset-lint-consistent": "^5.1.1"
+    }
 }

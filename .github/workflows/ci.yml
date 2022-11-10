@@ -21,25 +21,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install packages
+        run: |
+          npm i --include=dev
+
       - name: Run markdown linting
         run: |
-          npm i remark-cli remark-preset-lint-consistent
           npx remark . --use remark-preset-lint-consistent --frail
 
       - name: Run html linting (htmlhint)
         run: |
-          npm i htmlhint
           npx htmlhint "**/*.html"
-
-      - name: Run css linting (stylelint)
-        run: |
-          npm i stylelint stylelint-config-standard
-          npx stylelint "**/*.css"
       
-      - name: Run javascript linting (eslint)
+      - name: Run javascript linting (eslint/prettier)
         run: |
-          npm i eslint
           npx eslint .
+          npx prettier --check .
 
   test:
     runs-on: ubuntu-latest
@@ -47,7 +44,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install packages
+        run: |
+          npm i
+
       - name: Run javascript tests (jest)
         run: |
-          npm i jest jest-environment-jsdom
           npx jest --testEnvironment='jsdom'
