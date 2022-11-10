@@ -22,18 +22,22 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install packages
+        working-directory: ./source
         run: |
           npm i --include=dev
 
       - name: Run markdown linting
+        working-directory: ./source
         run: |
           npx remark . --use remark-preset-lint-consistent --frail
 
       - name: Run html linting (htmlhint)
+        working-directory: ./source
         run: |
           npx htmlhint "**/*.html"
       
       - name: Run javascript linting (eslint/prettier)
+        working-directory: ./source
         run: |
           npx eslint .
           npx prettier --check .
@@ -45,9 +49,11 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install packages
+        working-directory: ./source
         run: |
           npm i
 
       - name: Run javascript tests (jest)
+        working-directory: ./source
         run: |
           npx jest --testEnvironment='jsdom'
