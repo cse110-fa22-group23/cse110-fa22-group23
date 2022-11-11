@@ -2,7 +2,37 @@
 
 ## Usage
 
+### View Application
+
 Go to the [Application Page](https://cse110-fa22-group23.github.io/cse110-fa22-group23/source/index.html).
+
+### For Development
+
+Before contributing, view our [Contribution Guidelines](docs/CONTRIBUTING.md).
+
+**Clone the repository:**
+```bash
+git clone https://github.com/cse110-fa22-group23/cse110-fa22-group23.git
+cd './cse110-fa22-group23'
+```
+
+**Run code formatter:**
+```bash
+cd './source'
+npm run format
+```
+
+**Run linting:**
+```bash
+cd './source'
+npm run lint
+```
+
+**Run tests:**
+```bash
+cd './source'
+npm run test
+```
 
 ## Administrative Information
 
@@ -16,3 +46,4 @@ Go to the [Application Page](https://cse110-fa22-group23.github.io/cse110-fa22-g
 
 - [Project Specifications](specs)
 - [Contribution Guidelines](docs/CONTRIBUTING.md)
+- 

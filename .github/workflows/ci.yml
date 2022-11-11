@@ -15,38 +15,45 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  lint:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Run markdown linting
+      - name: Install packages
+        working-directory: ./source
         run: |
-          npm i remark-cli remark-preset-lint-consistent
-          echo '---------- RUNNING LINTER ----------'
-          npx remark . --use remark-preset-lint-consistent --frail
+          npm i --include=dev
+
+      - name: Run markdown linting
+        working-directory: ./source
+        run: |
+          npm run lint:markdown
 
       - name: Run html linting (htmlhint)
+        working-directory: ./source
         run: |
-          npm i htmlhint
-          echo '---------- RUNNING LINTER ----------'
-          npx htmlhint "**/*.html"
-
-      - name: Run css linting (stylelint)
-        run: |
-          npm i stylelint stylelint-config-standard
-          echo '---------- RUNNING LINTER ----------'
-          npx stylelint "**/*.css"
+          npm run lint:html
       
-      - name: Run javascript linting/tests (eslint, jest)
+      - name: Run javascript linting (eslint/prettier)
+        working-directory: ./source
         run: |
-          npm i eslint jest jest-environment-jsdom
-          echo '---------- RUNNING LINTER ----------'
-          npx eslint .
-          echo '---------- RUNNING TESTS  ----------'
-          npx jest --testEnvironment='jsdom'
+          npm run lint:check
+          npm run format:check
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install packages
+        working-directory: ./source
+        run: |
+          npm i
+
+      - name: Run javascript tests (jest)
+        working-directory: ./source
+        run: |
+          npm run test
