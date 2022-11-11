@@ -16,22 +16,18 @@ git clone https://github.com/cse110-fa22-group23/cse110-fa22-group23.git
 cd './cse110-fa22-group23'
 ```
 
-**Run code formatter:**
+**Go to application souce and install packages:**
 ```bash
 cd './source'
-npm run format
+npm install
 ```
 
-**Run linting:**
+**Run scripts:**
 ```bash
-cd './source'
-npm run lint
-```
-
-**Run tests:**
-```bash
-cd './source'
-npm run test
+# in './source'
+npm run format     # run code formatting
+npm run lint       # run code linting
+npm run test       # run tests
 ```
 
 ## Administrative Information
@@ -46,4 +42,3 @@ npm run test
 
 - [Project Specifications](specs)
 - [Contribution Guidelines](docs/CONTRIBUTING.md)
-- 
