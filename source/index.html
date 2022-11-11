@@ -5,10 +5,67 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Team 23 Application</title>
 
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Sofia"
+        />
         <link rel="stylesheet" href="./assets/css/index.css" />
         <script src="./assets/js/index.js" type="module"></script>
     </head>
     <body>
-        <h1>Team 23 Application</h1>
+        <h1 id="teamHead">Team 23 Application</h1>
+        <div class="sideBtn">
+            <!--spreadsheet function buttons-->
+            <button type="button" id="editBtn">Edit Entry</button>
+            <button type="button" id="createBtn" onclick="openForm()">
+                Create Entry
+            </button>
+            <!--create entry form-->
+            <div class="form-popup" id="myEntry">
+                <form id="entryId">
+                    <label for="entryName"><b>Enter Company Name:</b></label>
+                    <input
+                        type="text"
+                        placeholder="Company Name"
+                        name="company"
+                        required
+                    />
+                    <label for="Position"><b>Enter Position:</b></label>
+                    <input
+                        type="text"
+                        placeholder="Position Name"
+                        name="position"
+                        required
+                    />
+                    <label for="entryName"><b>Choose Location:</b></label>
+                    <form>
+                        <input type="checkbox" id="CA" name="CA" value="" />
+                    </form>
+                    <button type="submit" class="btn">Submit</button>
+                    <button
+                        type="button"
+                        class="btn cancel"
+                        onclick="closeForm()"
+                    >
+                        Close
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!--main spreadsheet-->
+        <table id="spreadsheet" style="background-color: rgba(0, 0, 0, 0)">
+            <!--table header-->
+            <tr id="tableHead">
+                <th id="companyName">COMPANY NAME:</th>
+                <th id="Position">POSITION:</th>
+                <th id="Location">LOCATION:</th>
+                <th id="Industry">INDUSTRY:</th>
+                <th id="Status">STATUS:</th>
+                <th id="Ranking">RANKING:</th>
+                <th id="Deadline">DEADLINE:</th>
+            </tr>
+            <!-- javascript render here -->
+            <tr id="inputTable"></tr>
+        </table>
     </body>
 </html>

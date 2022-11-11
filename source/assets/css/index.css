@@ -2,3 +2,178 @@
     margin: 0;
     padding: 0;
 }
+#myEntry {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+#entryId {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+/* Table Styling */
+#spreadsheet {
+    border: 1px solid;
+    text-align: left;
+    position: relative;
+    background-color: #f6f6f6;
+    color: #697089;
+    margin-left: 75px;
+    width: 95%;
+}
+#companyName {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Position {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Location {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Industry {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Status {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Ranking {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Deadline {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+
+/* Button Styling*/
+.sideBtn.button {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+.sideBtn.button:hover {
+    left: 0;
+    background-color: #4caf50;
+    color: white;
+}
+
+#editBtn {
+    top: 20px;
+    display: inline-block;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10rem;
+    overflow: hidden;
+    background-color: #2d33df;
+    font-family: "Sofia", sans-serif;
+    z-index: 0;
+    transition: all 0.5s;
+}
+
+#editBtn::before {
+    transition: all 0.5s;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    z-index: -1;
+    position: absolute;
+}
+
+#editBtn::after {
+    background-color: #215477;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    position: absolute;
+}
+
+#editBtn:hover:after {
+    width: 100%;
+}
+
+#createBtn {
+    top: 80px;
+    background-color: rgb(228, 123, 78);
+    font-family: "Sofia", sans-serif;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+body {
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: "Roboto", sans-serif;
+}
+
+/* Font for table */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap");
+
+#teamHead {
+    font-family: "Sofia", sans-serif;
+    color: white;
+    text-align: center;
+}
