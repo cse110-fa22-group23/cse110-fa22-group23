@@ -19,7 +19,7 @@ cd './cse110-fa22-group23'
 **Run code formatter:**
 ```bash
 cd './source'
-npx prettier --write .
+npm run format
 ```
 
 **Run linting:**
@@ -46,3 +46,4 @@ npm run test
 
 - [Project Specifications](specs)
 - [Contribution Guidelines](docs/CONTRIBUTING.md)
+- 

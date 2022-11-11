@@ -4,8 +4,13 @@
         "jest-environment-jsdom": "^29.2.2"
     },
     "scripts": {
-        "test": "jest --testEnvironment='jsdom'",
-        "lint": "eslint . && prettier --check ."
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "lint": "eslint --fix .",
+        "lint:check": "eslint .",
+        "lint:html": "htmlhint '**/*.html'",
+        "lint:markdown": "remark . --use remark-preset-lint-consistent --frail",
+        "test": "jest --testEnvironment='jsdom'"
     },
     "devDependencies": {
         "eslint": "^8.26.0",
