@@ -1,15 +1,28 @@
 /* eslint-env jest */
 // render.test.js
 
-test("Simple DOM test", () => {
+test("Test openForm()", () => {
     document.body.innerHTML = `
-        <h1 id="title">Team 23 Application</h1>
+        <div id="myEntry"></div>
     `;
-    require("../assets/js/index");
+    const { openForm } = require("../assets/js/index");
 
-    const titleHeader = document.getElementById("title");
+    openForm();
 
-    titleHeader.value = "Value changed";
+    const myEntryEl = document.getElementById("myEntry");
 
-    expect(titleHeader.value).toBe("Value changed");
+    expect(myEntryEl.style.display).toBe("block");
+});
+
+test("Test openForm()", () => {
+    document.body.innerHTML = `
+        <div id="myEntry"></div>
+    `;
+    const { closeForm } = require("../assets/js/index");
+
+    closeForm();
+
+    const myEntryEl = document.getElementById("myEntry");
+
+    expect(myEntryEl.style.display).toBe("none");
 });
