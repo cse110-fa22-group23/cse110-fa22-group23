@@ -4,28 +4,18 @@
         "commonjs": true,
         "es2021": true
     },
-    "extends": "eslint:recommended",
-    "overrides": [
-    ],
+    "extends": ["eslint:recommended", "prettier"],
+    "plugins": ["prettier"],
+    "overrides": [],
     "parserOptions": {
         "ecmaVersion": "latest"
     },
     "rules": {
-        "indent": [
+        "prettier/prettier": [
             "error",
-            4
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
+            {
+                "endOfLine": "auto"
+            }
         ]
     }
 }
