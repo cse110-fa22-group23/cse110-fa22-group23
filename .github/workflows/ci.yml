@@ -40,7 +40,7 @@ jobs:
         working-directory: ./source
         run: |
           npm run lint:check
-          npn run format:check
+          npm run format:check
 
   test:
     runs-on: ubuntu-latest
