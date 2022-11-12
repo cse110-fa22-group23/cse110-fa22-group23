@@ -36,7 +36,7 @@ npm run test       # run tests
   - [Team Introduction](/admin/videos/teamintro.mp4)
   - [Team Information](/admin/team.md)
 - Group Contract ([.md](/admin/misc/rules.md), [.pdf](admin/misc/rules.pdf))
-- [Meeting Notes](/admin/meetings) ([latest](admin/meetings/110422-feature.md))
+- [Meeting Notes](/admin/meetings) ([latest](admin/meetings/111122-sprint-1-review.md))
 
 ## Documentation
 
