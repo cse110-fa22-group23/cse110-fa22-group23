@@ -17,4 +17,4 @@ function closeForm() {
 //document.getElementById("myEntry").onclick = openForm();
 //document.getElementById("myEntry").onclick = openForm()
 
-module.exports = { init, openForm, closeForm };
+//module.exports = { init, openForm, closeForm };
