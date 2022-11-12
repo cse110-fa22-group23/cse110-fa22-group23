@@ -10,7 +10,7 @@
             href="https://fonts.googleapis.com/css?family=Sofia"
         />
         <link rel="stylesheet" href="./assets/css/index.css" />
-        <script src="./assets/js/index.js" type="module"></script>
+        <script src="./assets/js/index.js" type="text/javascript"></script>
     </head>
     <body>
         <h1 id="teamHead">Team 23 Application</h1>
@@ -30,6 +30,7 @@
                         name="company"
                         required
                     />
+                    <br />
                     <label for="Position"><b>Enter Position:</b></label>
                     <input
                         type="text"
@@ -37,16 +38,50 @@
                         name="position"
                         required
                     />
+                    <br />
                     <label for="entryName"><b>Choose Location:</b></label>
-                    <form>
-                        <input type="checkbox" id="CA" name="CA" value="" />
-                    </form>
+                    <select name="States">
+                        <option>CA</option>
+                        <option>WA</option>
+                    </select>
+                    <br />
+                    <label for="Industry"><b>Enter Industry:</b></label>
+                    <input
+                        type="text"
+                        placeholder="Industry Name"
+                        name="industry"
+                        required
+                    />
+                    <br />
+                    <label for="Status"><b>Enter Status:</b></label>
+                    <select name="Status">
+                        <option>In Progress</option>
+                        <option>Applied</option>
+                        <option>Not Started Yet</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label for="Ranking"><b>Choose Ranking:</b></label>
+                    <select name="Ranking">
+                        <option>1 star</option>
+                        <option>2 stars</option>
+                        <option>3 stars</option>
+                        <option>4 stars</option>
+                        <option>5 stars</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label for="Deadline"><b>Enter Deadline:</b></label>
+                    <input
+                        type="date"
+                        id="start"
+                        name="deadline"
+                        min="2022-01-01"
+                        max="2023-12-31"
+                    />
+                    <br />
                     <button type="submit" class="btn">Submit</button>
-                    <button
-                        type="button"
-                        class="btn cancel"
-                        onclick="closeForm()"
-                    >
+                    <button type="button" class="cancel" onclick="closeForm()">
                         Close
                     </button>
                 </form>

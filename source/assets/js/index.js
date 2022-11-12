@@ -17,4 +17,5 @@ function closeForm() {
 //document.getElementById("myEntry").onclick = openForm();
 //document.getElementById("myEntry").onclick = openForm()
 
+// To be used in tests
 module.exports = { init, openForm, closeForm };
