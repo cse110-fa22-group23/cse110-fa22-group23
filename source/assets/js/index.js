@@ -1,11 +1,18 @@
 window.addEventListener("DOMContentLoaded", init);
 
 /**
+ * Function to print a message that the window is loaded.
+ */
+function logMessage () {
+    console.log('Window loaded.')
+}
+
+/**
  * Callback function to run when DOM is loaded.
  * @return 0 (int)
  */
 function init() {
-    console.log("Window loaded");
+    logMessage()
 
     return 0;
 }
