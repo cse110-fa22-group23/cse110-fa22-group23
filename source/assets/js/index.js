@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", init);
+//window.addEventListener("DOMContentLoaded", init);
 
 function init() {
     console.log("Window loaded");
@@ -22,16 +22,17 @@ function AddRow() {
     var industry1 = row.insertCell(3);
     var status1 = row.insertCell(4);
     var ranking1 = row.insertCell(5);
-    //  var deadline1 = row.insertCell(6);
+    var deadline1 = row.insertCell(6);
     company1.innerHTML = document.getElementById("company").value;
     position1.innerHTML = document.getElementById("position").value;
     location1.innerHTML = document.getElementById("location").value;
     industry1.innerHTML = document.getElementById("industry").value;
     status1.innerHTML = document.getElementById("status").value;
     ranking1.innerHTML = document.getElementById("ranking").value;
+    deadline1.innerHTML = document.getElementById("start").value;
+    closeForm();
 }
 //document.getElementById("myEntry").onclick = openForm();
 //document.getElementById("myEntry").onclick = openForm()
-
 // To be used in tests
 module.exports = { init, openForm, closeForm, AddRow };
