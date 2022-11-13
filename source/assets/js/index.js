@@ -3,8 +3,8 @@ window.addEventListener("DOMContentLoaded", init);
 /**
  * Function to print a message that the window is loaded.
  */
-function logMessage () {
-    console.log('Window loaded.')
+function logMessage() {
+    console.log("Window loaded.");
 }
 
 /**
@@ -12,7 +12,7 @@ function logMessage () {
  * @return 0 (int)
  */
 function init() {
-    logMessage()
+    logMessage();
 
     return 0;
 }
