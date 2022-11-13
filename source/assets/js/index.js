@@ -24,6 +24,9 @@ function closeForm() {
     document.getElementById("myEntry").style.display = "none";
 }
 
+/**
+ * Appends form data (from the modal) to a corresponding entry in the table.
+ */
 function AddRow() {
     var table = document.getElementById("spreadsheet");
     var row = table.insertRow(1);
