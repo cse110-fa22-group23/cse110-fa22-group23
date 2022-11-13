@@ -28,6 +28,7 @@ npm install
 npm run format     # run code formatting
 npm run lint       # run code linting
 npm run test       # run tests
+npm run docs       # run doc generation on js files
 ```
 
 ## Administrative Information

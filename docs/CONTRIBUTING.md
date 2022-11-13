@@ -10,6 +10,8 @@ Check out our `README.md` and clone the repository to get started:
 git clone https://github.com/cse110-fa22-group23/cse110-fa22-group23.git
 ```
 
+Follow documentation guidelines as outlined by [JSDoc](https://jsdoc.app/about-getting-started.html) for any JavaScript files you develop to maintain our documentation. Feel free to install extensions such as _Add jsdoc comments_ on VSCode to help generate docs for functions, classes, etc. 
+
 ### Issues
 
 Create [Github issues](https://github.com/cse110-fa22-group23/cse110-fa22-group23/issues) as necessary.
