@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,46 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: index.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>window.addEventListener("DOMContentLoaded", init);
 
+/**
+ * Callback function to run when DOM is loaded.
+ * @return 0 (int)
+ */
+function init() {
+    console.log("Window loaded");
 
-    <h3> </h3>
+    return 0;
+}
 
+/**
+ * Makes the form modal visible on the page.
+ */
+function openForm() {
+    document.getElementById("myEntry").style.display = "block";
+}
 
+/**
+ * Makes the form modal no longer visible on the page.
+ */
+function closeForm() {
+    document.getElementById("myEntry").style.display = "none";
+}
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+// To be used in tests
+module.exports = { init, openForm, closeForm };
+</code></pre>
+        </article>
+    </section>
 
 
 
