@@ -11,7 +11,8 @@
         "lint:html": "htmlhint '**/*.html'",
         "lint:markdown": "remark . --use remark-preset-lint-consistent --frail",
         "test": "jest --testEnvironment='jsdom'",
-        "prepare": "cd .. && husky install .config/.husky"
+        "prepare": "cd .. && husky install .config/.husky",
+        "docs": "jsdoc -r ./assets/js && git add ./out"
     },
     "devDependencies": {
         "eslint": "^8.26.0",
@@ -19,6 +20,7 @@
         "eslint-plugin-prettier": "^4.2.1",
         "htmlhint": "^1.1.4",
         "husky": "^8.0.2",
+        "jsdoc": "^4.0.0",
         "prettier": "^2.7.1",
         "remark-cli": "^11.0.0",
         "remark-preset-lint-consistent": "^5.1.1"
