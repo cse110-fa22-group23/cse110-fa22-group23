@@ -1,6 +1,6 @@
 /* Styling for Buttons */
 
-.sideBtn.button {
+/* .sideBtn.button {
     position: absolute;
     left: -80px;
     transition: 0.3s;
@@ -13,15 +13,15 @@
     font-family: 'Noto Sans', sans-serif;
     cursor: pointer;
     box-shadow: -1px 3px 3px 0 rgba(80, 80, 80, .2);
-    margin: 0 10px 40px;
-    flex: 0 0 auto;
-}
+    margin-left: auto;
+    margin-right: 0;
+} */
 
-.sideBtn.button:hover {
+/* .sideBtn.button:hover {
     left: 0;
     background-color: #4caf50;
     color: white;
-}
+} */
 
 #editBtn {
     font-family: 'Montserrat', Helvetica, sans-serif;
@@ -33,6 +33,7 @@
     font-size: 1em;
     transition: all 0.16s ease-in;
     cursor: pointer;
+    float: right; 
 }
 
 #editBtn:hover {
@@ -51,7 +52,7 @@
     font-size: 1em;
     transition: all 0.16s ease-in;
     cursor: pointer;
-    text-align: right;
+    float: right;
 }
 
 #createBtn:hover {
