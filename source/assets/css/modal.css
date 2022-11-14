@@ -36,6 +36,7 @@
 /* Add a red background color to the cancel button */
 #entryId .cancel {
     background-color: red;
+    cursor: pointer;
 }
 
 /* Add some hover effects to buttons */
