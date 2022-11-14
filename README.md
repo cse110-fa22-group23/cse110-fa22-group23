@@ -1,5 +1,9 @@
 # Team 23 - Project Repository
 
+[![build-deployment](https://github.com/cse110-fa22-group23/cse110-fa22-group23/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/cse110-fa22-group23/cse110-fa22-group23/actions/workflows/pages/pages-build-deployment)
+[![issues](https://img.shields.io/github/issues/cse110-fa22-group23/cse110-fa22-group23)](https://github.com/cse110-fa22-group23/cse110-fa22-group23/issues)
+[![Maintainability](https://api.codeclimate.com/v1/badges/6e47e201498803a0483d/maintainability)](https://codeclimate.com/github/cse110-fa22-group23/cse110-fa22-group23/maintainability)
+
 ## Usage
 
 ### View Application
