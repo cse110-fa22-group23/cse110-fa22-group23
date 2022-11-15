@@ -12,15 +12,21 @@ function init() {
  * Makes the form modal visible on the page.
  */
 function openForm() {
-    document.getElementById("myEntry").style.display = "block";
+    document.getElementById("form-modal").style.display = "block";
 }
 
 /**
  * Makes the form modal no longer visible on the page.
  */
 function closeForm() {
-    document.getElementById("myEntry").style.display = "none";
+    document.getElementById("form-modal").style.display = "none";
 }
+
+window.addEventListener("click", function (e) {
+    if (e.target == document.getElementById("form-modal")) {
+        closeForm();
+    }
+});
 
 /**
  * Appends form data (from the modal) to a corresponding entry in the table.
