@@ -47,7 +47,7 @@ function AddRow() {
     industry1.innerHTML = document.getElementById("industry").value;
     status1.innerHTML = document.getElementById("status").value;
     ranking1.innerHTML = document.getElementById("ranking").value;
-    deadline1.innerHTML = document.getElementById("start").value;
+    deadline1.innerHTML = document.getElementById("deadline").value;
     closeForm();
 }
 

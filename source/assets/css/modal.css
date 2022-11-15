@@ -1,6 +1,6 @@
 /* Modal box and content */
 .modal {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -16,9 +16,9 @@
     position: relative;
     background-color: #eeeeee;
     margin: auto; /* 15% from the top and centered */
-    padding: 30px 20px;
+    padding: 40px 30px;
     border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Could be more or less, depending on screen size */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -49,22 +49,24 @@
 }
 
 /* Form content */
-#entryId div {
-    margin-bottom: 20px;
+#entry-form div {
+    margin-bottom: 30px;
 }
 
-#entryId div label {
-    font-family: 'Inter';
+#entry-form div label {
+    font-family: "Inter";
     font-style: normal;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
     color: #303651;
     display: inline-block;
-    width: 300px;
+    width: 40%;
 }
-.input-field[type="text"], textarea {
-    font-family: 'Inter';
+
+#entry-form div input:not([type="submit"]),
+#entry-form div textarea {
+    font-family: "Inter";
     font-style: normal;
     font-size: 14px;
     font-weight: 400;
@@ -73,39 +75,74 @@
     border-radius: 8px;
     border: none;
     padding: 15px;
+    width: auto;
 }
 
-/* #entryId {
-    max-width: 500px;
-    height: 400px;
-    padding: 10px;
+#entry-form div input:not([type="submit"]):focus,
+#entry-form div textarea:focus {
+    outline: none;
+    font-weight: 600;
 }
-#entryId input[type="text"],
-#entryId input[type="password"] {
-    width: 30%;
+
+#entry-form div select,
+#entry-form div textarea {
+    font-family: "Inter";
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    background: #d9d9d9;
+    border-radius: 8px;
+    border: none;
     padding: 15px;
-    margin: 5px 0 22px 0;
+    width: auto;
+}
+
+#entry-form div select:focus,
+#entry-form div textarea:focus {
+    outline: none;
+    font-weight: 600;
+}
+
+#entry-form div.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#entry-form div.form-buttons input,
+#entry-form div.form-buttons button {
     border: none;
-    background: #f1f1f1;
+    background: #86a8ee;
+    border-radius: 999px;
+    width: 40%;
+    height: 30px;
+    font-family: "Inter";
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1em;
 }
 
-#entryId .btn {
-    background-color: #04aa6d;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 30%;
-    margin-bottom: 10px;
-    opacity: 0.8;
+#entry-form div.form-buttons input:hover,
+#entry-form div.form-buttons button:hover {
+    background: rgb(109, 152, 238);
 }
 
-#entryId .cancel {
-    background-color: red;
-    cursor: pointer;
+#entry-form div.form-buttons input:active,
+#entry-form div.form-buttons button:active {
+    background: rgba(109, 152, 238, 0.6);
 }
 
-#entryId .btn:hover,
-.open-button:hover {
-    opacity: 1;
-} */
+#entry-form div.form-buttons input.caution,
+#entry-form div.form-buttons button.caution {
+    background: #e57878;
+}
+
+#entry-form div.form-buttons input.caution:hover,
+#entry-form div.form-buttons button.caution:hover {
+    background: rgb(231, 100, 100);
+}
+
+#entry-form div.form-buttons input.caution:active,
+#entry-form div.form-buttons button.caution:active {
+    background: rgba(231, 100, 100, 0.6);
+}
