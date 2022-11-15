@@ -1,0 +1,65 @@
+/* Styling for Buttons */
+
+#editBtn {
+    font-family: "Montserrat", Helvetica, sans-serif;
+    background: #76b3fa;
+    border-radius: 100px;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    transition: all 0.16s ease-in;
+    cursor: pointer;
+    float: right;
+    margin: 0 auto;
+}
+
+#editBtn:hover {
+    background-color: #e5e5e5;
+    color: #76b3fa;
+    box-shadow: 0 0 0 1px rgba(80, 80, 80, 0.5);
+}
+
+#editBtn:active {
+    box-shadow: none;
+}
+
+#createBtn {
+    font-family: "Montserrat", Helvetica, sans-serif;
+    background: #76b3fa;
+    border-radius: 100px;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    transition: all 0.16s ease-in;
+    cursor: pointer;
+    float: right;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+#createBtn:hover {
+    background-color: #e5e5e5;
+    color: #76b3fa;
+    box-shadow: 0 0 0 1px rgba(80, 80, 80, 0.5);
+}
+
+#createBtn:active {
+    box-shadow: none;
+}
+
+#deleteBtn {
+    font-family: "Montserrat", Helvetica, sans-serif;
+    background: #e57878;
+    border-radius: 100px;
+    padding: 10px 30px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    transition: all 0.16s ease-in;
+    cursor: pointer;
+    float: right;
+    margin: 0 auto;
+}

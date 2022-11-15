@@ -1,12 +1,11 @@
-//window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("DOMContentLoaded", init);
 var data = [];
+
 /**
  * Callback function to run when DOM is loaded.
  * @return 0 (int)
  */
 function init() {
-    console.log("Window loaded");
-
     return 0;
 }
 
