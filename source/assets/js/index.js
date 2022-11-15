@@ -45,14 +45,13 @@ function AddRow() {
     status1.innerHTML = document.getElementById("status").value;
     ranking1.innerHTML = document.getElementById("ranking").value;
     deadline1.innerHTML = document.getElementById("start").value;
-    // closeForm();
+    closeForm();
     save_data();
 }
 
 /**
  * Saves form data (from the modal) to local storage.
  */
-
 function save_data() {
     data.push({
         company1: document.getElementById("company").value,
