@@ -1,12 +1,10 @@
-//window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("DOMContentLoaded", init);
 
 /**
  * Callback function to run when DOM is loaded.
  * @return 0 (int)
  */
 function init() {
-    console.log("Window loaded");
-
     return 0;
 }
 
@@ -46,9 +44,6 @@ function AddRow() {
     deadline1.innerHTML = document.getElementById("start").value;
     closeForm();
 }
-
-//document.getElementById("myEntry").onclick = openForm();
-//document.getElementById("myEntry").onclick = openForm()
 
 // To be used in tests
 module.exports = { init, openForm, closeForm, AddRow };

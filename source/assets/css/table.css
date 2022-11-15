@@ -1,0 +1,87 @@
+/* Styling for Table */
+#spreadsheet {
+    border: 1px solid;
+    text-align: left;
+    position: relative;
+    background-color: #f6f6f6;
+    color: #697089;
+    margin-left: 75px;
+    width: 95%;
+}
+#companyName {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Position {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Location {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Industry {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Status {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Ranking {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
+#Deadline {
+    border: 1px solid;
+    border-color: white;
+    border-collapse: collapse;
+    text-align: left;
+    position: relative;
+    /* background-color: #f6f6f6; */
+    /* font-weight: 600; */
+    color: #697089;
+    width: 15%;
+}
