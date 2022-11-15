@@ -34,76 +34,86 @@
         </div>
 
         <!-- Entry Modal -->
-        <div class="form-popup" id="myEntry">
-            <form id="entryId">
-                <label for="entryName"><b>Enter Company Name:</b></label>
-                <input
-                    type="text"
-                    placeholder="Company Name"
-                    name="company"
-                    id="company"
-                    required
-                />
-                <br />
-                <label for="Position"><b>Enter Position:</b></label>
-                <input
-                    type="text"
-                    placeholder="Position Name"
-                    name="position"
-                    id="position"
-                    required
-                />
-                <br />
-                <label for="entryName"><b>Choose Location:</b></label>
-                <select name="States" id="location">
-                    <option value="">Please choose a location</option>
-                    <option value="CA">CA</option>
-                    <option value="WA">WA</option>
-                </select>
-                <br />
-                <label for="Industry"><b>Enter Industry:</b></label>
-                <input
-                    type="text"
-                    placeholder="Industry Name"
-                    name="industry"
-                    id="industry"
-                    required
-                />
-                <br />
-                <label for="Status"><b>Enter Status:</b></label>
-                <select name="Status" id="status">
-                    <option value="In Progress">In Progress</option>
-                    <option value="Applied">Applied</option>
-                    <option value="Not Started">Not Started Yet</option>
-                </select>
-                <br />
-                <br />
-                <label for="Ranking"><b>Choose Ranking:</b></label>
-                <select name="Ranking" id="ranking">
-                    <option value="1 star">1 star</option>
-                    <option value="2 stars">2 stars</option>
-                    <option value="3 stars">3 stars</option>
-                    <option value="4 stars">4 stars</option>
-                    <option value="5 stars">5 stars</option>
-                </select>
-                <br />
-                <br />
-                <label for="Deadline"><b>Enter Deadline:</b></label>
-                <input
-                    type="date"
-                    id="start"
-                    name="deadline"
-                    min="2022-01-01"
-                    max="2023-12-31"
-                />
-                <br />
-                <button type="submit" class="btn" onclick="AddRow()">
-                    Submit
-                </button>
-                <button type="button" class="cancel" onclick="closeForm()">
-                    Close
-                </button>
-            </form>
+        <div id="form-modal" class="modal">
+            <div class="modal-content">
+                <form id="entry-form">
+                    <div>
+                        <label for="company">Enter Company Name:</label>
+                        <input
+                            type="text"
+                            placeholder="Company Name"
+                            name="company"
+                            id="company"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="position">Enter Position Title:</label>
+                        <input
+                            type="text"
+                            placeholder="Position Name"
+                            name="position"
+                            id="position"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="location">Enter Location:</label>
+                        <select name="location" id="location">
+                            <option value="">Choose location</option>
+                            <option value="CA">CA</option>
+                            <option value="WA">WA</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="industry">Enter Industry:</label>
+                        <input
+                            type="text"
+                            placeholder="Industry Name"
+                            name="industry"
+                            id="industry"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="status">Enter Status:</label>
+                        <select name="status" id="status">
+                            <option value="In Progress">In Progress</option>
+                            <option value="Applied">Applied</option>
+                            <option value="Not Started">Not Started Yet</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="ranking">Choose Ranking:</label>
+                        <select name="ranking" id="ranking">
+                            <option value="1 star">1 star</option>
+                            <option value="2 stars">2 stars</option>
+                            <option value="3 stars">3 stars</option>
+                            <option value="4 stars">4 stars</option>
+                            <option value="5 stars">5 stars</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="deadline">Enter Deadline:</label>
+                        <input
+                            type="date"
+                            id="deadline"
+                            name="deadline"
+                            min="2022-01-01"
+                            max="2023-12-31"
+                        />
+                    </div>
+                    <br />
+                    <div class="form-buttons">
+                        <button class="caution">Delete Entry</button>
+                        <input
+                            type="submit"
+                            value="Create Entry"
+                            onclick="AddRow()"
+                        />
+                    </div>
+                </form>
+            </div>
         </div>
 
         <!-- Main Spreadsheet -->
