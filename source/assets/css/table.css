@@ -85,3 +85,29 @@
     color: #697089;
     width: 15%;
 }
+/* all sortable table heads */
+th.sortable {
+    position: relative;
+    cursor: pointer;
+  }
+  
+th.sortable::after {
+font-family: FontAwesome;
+content: "\25c6";
+position: absolute;
+right: 8px;
+color: #999;
+}
+
+/* table heads in ascending order */
+th.sortable.asc::after {
+content: "\25b2";
+}
+/* table heads in descending order */
+th.sortable.desc::after {
+content: "\25bc";
+}
+/* table icon when hover */
+th.sortable:hover::after {
+color: #333;
+}
