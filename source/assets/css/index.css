@@ -34,7 +34,32 @@
     --l-olive-bg: #88C06C;
 
 /* Dark Mode */
-    --dark-bg: black;
+    /* basic */
+    --l-bg: #002337; /* background color */
+    --l-tx: #E6E8F0; /* text color */
+    --l-s: #D9D9D9; /* color for shadow */
+
+    /* star for rating*/
+    --l-star-s: #989EB3; /* shadow color for star */
+    --l-star-c: #ffe600; /* star color */
+
+    /* gary */
+    --l-gary-tx: #C7CBD8; /* color for lable's text */
+    --l-gary-bg: #4A516D; /* color for lable */
+    /* red */
+    --l-red-tx: #FEE5EE; 
+    --l-red-bg: #9C083E; 
+    /* green */
+    --l-green-tx: #278500; 
+    --l-green-bg: #EEF6E9; 
+    /* orange */
+    --l-orange-tx: #FFF3E8; 
+    --l-orange-bg: #D86900; 
+
+    /* buttom */
+    --l-buttom-tx: #1C2035; /* color for buttom's text */
+    --l-light-bg: #C7CBD8; /* color for buttom */
+    --l-dark-bg: #303651;
 }
 
 * {
