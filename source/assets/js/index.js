@@ -26,7 +26,7 @@ function closeForm() {
 /**
  * Appends form data (from the modal) to a corresponding entry in the table.
  */
- function AddRow() {
+function AddRow() {
     event.preventDefault();
     var table = document.getElementById("spreadsheet");
     var row = table.insertRow(1);
@@ -49,13 +49,11 @@ function closeForm() {
     location1.innerHTML = document.getElementById("location").value;
     industry1.innerHTML = document.getElementById("industry").value;
     status1.innerHTML = document.getElementById("status").value;
-    if(status1.innerHTML == "Applied") {
+    if (status1.innerHTML == "Applied") {
         status1.setAttribute("class", "applied");
-    }
-    else if(status1.innerHTML == "In Progress") {
+    } else if (status1.innerHTML == "In Progress") {
         status1.setAttribute("class", "in_progress");
-    }
-    else if(status1.innerHTML == "Not Started") {
+    } else if (status1.innerHTML == "Not Started") {
         status1.setAttribute("class", "not_started");
     }
     ranking1.innerHTML = document.getElementById("ranking").value;
