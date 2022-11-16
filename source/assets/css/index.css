@@ -3,62 +3,63 @@
 /* Font for table */
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap");
 
-:root {    /* Color Pallette : Use as var(var_name) */
-/* Light Mode */
-    
+:root {
+    /* Color Pallette : Use as var(var_name) */
+    /* Light Mode */
+
     /* basic */
     --l-bg: white; /* background color */
     --l-tx: #697089; /* text color */
-    --l-s: #D9D9D9; /* color for shadow */
+    --l-s: #d9d9d9; /* color for shadow */
 
     /* star for rating*/
-    --l-star-s: #D1D5DB; /* shadow color for star */
-    --l-star-c: #F69B12; /* star color */
+    --l-star-s: #d1d5db; /* shadow color for star */
+    --l-star-c: #f69b12; /* star color */
 
     /* gary */
     --l-gary-tx: #303651; /* color for lable's text */
-    --l-gary-bg: #F4F6F9; /* color for lable */
+    --l-gary-bg: #f4f6f9; /* color for lable */
     /* red */
-    --l-red-tx: #D30B53; 
-    --l-red-bg: #FEE5EE; 
+    --l-red-tx: #d30b53;
+    --l-red-bg: #fee5ee;
     /* green */
-    --l-green-tx: #278500; 
-    --l-green-bg: #EEF6E9; 
+    --l-green-tx: #278500;
+    --l-green-bg: #eef6e9;
     /* orange */
-    --l-orange-tx: #B94F00; 
-    --l-orange-bg: #FFF3E8; 
+    --l-orange-tx: #b94f00;
+    --l-orange-bg: #fff3e8;
 
     /* buttom */
     --l-buttom-tx: #303651; /* color for buttom's text */
-    --l-blue-bg: #86A8EE; /* color for buttom */
-    --l-olive-bg: #88C06C;
+    --l-blue-bg: #86a8ee; /* color for buttom */
+    --l-olive-bg: #88c06c;
 
-/* Dark Mode */
+    /* Dark Mode */
     /* basic */
     --l-bg: #002337; /* background color */
-    --l-tx: #E6E8F0; /* text color */
-    --l-s: #D9D9D9; /* color for shadow */
+    --l-tx: #e6e8f0; /* text color */
+    --l-s: #d9d9d9; /* color for shadow */
 
     /* star for rating*/
-    --l-star-s: #989EB3; /* shadow color for star */
+    --l-star-s: #989eb3; /* shadow color for star */
     --l-star-c: #ffe600; /* star color */
 
     /* gary */
-    --l-gary-tx: #C7CBD8; /* color for lable's text */
-    --l-gary-bg: #4A516D; /* color for lable */
+    --l-gary-tx: #c7cbd8; /* color for lable's text */
+    --l-gary-bg: #4a516d; /* color for lable */
     /* red */
-    --l-red-tx: #FEE5EE; 
-    --l-red-bg: #9C083E; 
+    --l-red-tx: #fee5ee;
+    --l-red-bg: #9c083e;
     /* green */
-    --l-green-tx: #278500; 
-    --l-green-bg: #EEF6E9; 
+    --l-green-tx: #278500;
+    --l-green-bg: #eef6e9;
     /* orange */
-    --l-orange-tx: #FFF3E8; 
-    --l-orange-bg: #D86900; 
+    --l-orange-tx: #fff3e8;
+    --l-orange-bg: #d86900;
 
     /* buttom */
-    --l-buttom-tx: #1C2035; /* color for buttom's text */
-    --l-light-bg: #C7CBD8; /* color for buttom */
+    --l-buttom-tx: #1c2035; /* color for buttom's text */
+    --l-light-bg: #c7cbd8; /* color for buttom */
     --l-dark-bg: #303651;
 }
 
