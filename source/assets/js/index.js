@@ -6,6 +6,30 @@ var data = [];
  * @return 0 (int)
  */
 function init() {
+    var oldData = window.localStorage.getItem("SpreadSheet");
+    oldData = JSON.parse(oldData);
+    for (var i = 0; i < oldData.length; i++) {
+        // addRow(data[i]);
+        const item = oldData[i];
+        var table = document.getElementById("spreadsheet");
+        var row = table.insertRow(1);
+        var company1 = row.insertCell(0);
+        var position1 = row.insertCell(1);
+        var location1 = row.insertCell(2);
+        var industry1 = row.insertCell(3);
+        var status1 = row.insertCell(4);
+        var ranking1 = row.insertCell(5);
+        var deadline1 = row.insertCell(6);
+        company1.innerHTML = item["company1"];
+        position1.innerHTML = item["position1"];
+        location1.innerHTML = item["location1"];
+        industry1.innerHTML = item["industry1"];
+        status1.innerHTML = item["status1"];
+        ranking1.innerHTML = item["ranking1"];
+        deadline1.innerHTML = item["deadline1"];
+        data.push(item);
+    }
+    console.log(oldData);
     return 0;
 }
 
@@ -32,7 +56,7 @@ window.addEventListener("click", function (e) {
 /**
  * Appends form data (from the modal) to a corresponding entry in the table.
  */
-function AddRow() {
+function addRow() {
     event.preventDefault();
     var table = document.getElementById("spreadsheet");
     var row = table.insertRow(1);
@@ -65,7 +89,7 @@ function save_data() {
         industry1: document.getElementById("industry").value,
         status1: document.getElementById("status").value,
         ranking1: document.getElementById("ranking").value,
-        deadline1: document.getElementById("start").value,
+        deadline1: document.getElementById("deadline").value,
     });
     window.localStorage.setItem("SpreadSheet", JSON.stringify(data));
     //  show_data(data);
@@ -107,4 +131,4 @@ function get_data(data){
 //document.getElementById("myEntry").onclick = openForm()
 
 // To be used in tests
-module.exports = { init, openForm, closeForm, AddRow, save_data };
+module.exports = { init, openForm, closeForm, addRow, save_data };
