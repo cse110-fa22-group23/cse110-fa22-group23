@@ -9,13 +9,14 @@
 }
 
 body {
-    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-    background: linear-gradient(to right, #25c481, #25b7c4);
+    /* background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4); */
+    background-color: whitesmoke;
     font-family: "Roboto", sans-serif;
 }
 
 #teamHead {
     font-family: "Sofia", sans-serif;
-    color: white;
+    color: gray;
     text-align: center;
 }
