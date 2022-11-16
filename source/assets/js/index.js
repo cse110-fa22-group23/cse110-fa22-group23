@@ -37,17 +37,31 @@ function AddRow() {
     var table = document.getElementById("spreadsheet");
     var row = table.insertRow(1);
     var company1 = row.insertCell(0);
+    company1.setAttribute("class", "company_name");
     var position1 = row.insertCell(1);
+    position1.setAttribute("class", "position_name");
     var location1 = row.insertCell(2);
+    location1.setAttribute("class", "location_name");
     var industry1 = row.insertCell(3);
+    industry1.setAttribute("class", "industry_name");
     var status1 = row.insertCell(4);
+    status1.setAttribute("class", "status_name");
     var ranking1 = row.insertCell(5);
+    ranking1.setAttribute("class", "ranking_value");
     var deadline1 = row.insertCell(6);
+    deadline1.setAttribute("class", "deadline_date");
     company1.innerHTML = document.getElementById("company").value;
     position1.innerHTML = document.getElementById("position").value;
     location1.innerHTML = document.getElementById("location").value;
     industry1.innerHTML = document.getElementById("industry").value;
     status1.innerHTML = document.getElementById("status").value;
+    if (status1.innerHTML == "Applied") {
+        status1.setAttribute("class", "applied");
+    } else if (status1.innerHTML == "In Progress") {
+        status1.setAttribute("class", "in_progress");
+    } else if (status1.innerHTML == "Not Started") {
+        status1.setAttribute("class", "not_started");
+    }
     ranking1.innerHTML = document.getElementById("ranking").value;
     deadline1.innerHTML = document.getElementById("deadline").value;
     closeForm();
