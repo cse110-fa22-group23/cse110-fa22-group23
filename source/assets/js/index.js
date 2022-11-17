@@ -2,10 +2,19 @@ window.addEventListener("DOMContentLoaded", init);
 var data = [];
 
 /**
- * Callback function to run when DOM is loaded.
+ * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
  * @return 0 (int)
  */
 function init() {
+    // load data from localStorage if it exists
+    if (!(localStorage.getItem("SpreadSheet") === null)) {
+        var loadedData = window.localStorage.getItem("SpreadSheet");
+        loadedData = JSON.parse(loadedData);
+        loadedData.forEach(addEntry);
+
+        data = loadedData;
+        console.log(loadedData);
+    }
     return 0;
 }
 
@@ -32,7 +41,7 @@ window.addEventListener("click", function (e) {
 /**
  * Appends form data (from the modal) to a corresponding entry in the table.
  */
-function AddRow() {
+function addRow() {
     event.preventDefault();
     var table = document.getElementById("spreadsheet");
     var row = table.insertRow(1);
@@ -69,6 +78,29 @@ function AddRow() {
 }
 
 /**
+ * Appends form data (from the modal) to a corresponding entry in the table.
+ * @param entry a dictionary of a job application data
+ */
+function addEntry(entry) {
+    var table = document.getElementById("spreadsheet");
+    var row = table.insertRow(1);
+    var company1 = row.insertCell(0);
+    var position1 = row.insertCell(1);
+    var location1 = row.insertCell(2);
+    var industry1 = row.insertCell(3);
+    var status1 = row.insertCell(4);
+    var ranking1 = row.insertCell(5);
+    var deadline1 = row.insertCell(6);
+    company1.innerHTML = entry["company1"];
+    position1.innerHTML = entry["position1"];
+    location1.innerHTML = entry["location1"];
+    industry1.innerHTML = entry["industry1"];
+    status1.innerHTML = entry["status1"];
+    ranking1.innerHTML = entry["ranking1"];
+    deadline1.innerHTML = entry["deadline1"];
+}
+
+/**
  * Saves form data (from the modal) to local storage.
  */
 function save_data() {
@@ -79,7 +111,7 @@ function save_data() {
         industry1: document.getElementById("industry").value,
         status1: document.getElementById("status").value,
         ranking1: document.getElementById("ranking").value,
-        deadline1: document.getElementById("start").value,
+        deadline1: document.getElementById("deadline").value,
     });
     window.localStorage.setItem("SpreadSheet", JSON.stringify(data));
     //  show_data(data);
@@ -121,4 +153,4 @@ function get_data(data){
 //document.getElementById("myEntry").onclick = openForm()
 
 // To be used in tests
-module.exports = { init, openForm, closeForm, AddRow, save_data };
+module.exports = { init, openForm, closeForm, addRow, save_data, addEntry };
