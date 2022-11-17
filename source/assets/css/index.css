@@ -69,14 +69,14 @@
 }
 
 body {
-    /* background: -webkit-linear-gradient(left, #25c481, #25b7c4);
-    background: linear-gradient(to right, #25c481, #25b7c4); */
-    background-color: whitesmoke;
+    /* dark mode */
+    /* background-color: var(--l-bg); */
+    background-color: var(--l-s);
     font-family: "Roboto", sans-serif;
 }
 
 #teamHead {
     font-family: "Sofia", sans-serif;
-    color: gray;
+    color: var(--l-gary-bg);
     text-align: center;
 }
