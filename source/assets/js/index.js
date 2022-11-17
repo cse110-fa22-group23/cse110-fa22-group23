@@ -2,34 +2,22 @@ window.addEventListener("DOMContentLoaded", init);
 var data = [];
 
 /**
- * Callback function to run when DOM is loaded.
+ * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
  * @return 0 (int)
  */
 function init() {
-    var oldData = window.localStorage.getItem("SpreadSheet");
-    oldData = JSON.parse(oldData);
-    for (var i = 0; i < oldData.length; i++) {
-        // addRow(data[i]);
-        const item = oldData[i];
-        var table = document.getElementById("spreadsheet");
-        var row = table.insertRow(1);
-        var company1 = row.insertCell(0);
-        var position1 = row.insertCell(1);
-        var location1 = row.insertCell(2);
-        var industry1 = row.insertCell(3);
-        var status1 = row.insertCell(4);
-        var ranking1 = row.insertCell(5);
-        var deadline1 = row.insertCell(6);
-        company1.innerHTML = item["company1"];
-        position1.innerHTML = item["position1"];
-        location1.innerHTML = item["location1"];
-        industry1.innerHTML = item["industry1"];
-        status1.innerHTML = item["status1"];
-        ranking1.innerHTML = item["ranking1"];
-        deadline1.innerHTML = item["deadline1"];
-        data.push(item);
+    // load data from localStorage if it exists
+    if (!(localStorage.getItem("SpreadSheet") === null)) {
+        var loadedData = window.localStorage.getItem("SpreadSheet");
+        loadedData = JSON.parse(loadedData);
+        for (var i = 0; i < loadedData.length; i++) {
+            const entry = loadedData[i];
+            addEntry(entry);
+            // data.push(entry);
+        }
+        data = loadedData;
+        console.log(loadedData);
     }
-    console.log(oldData);
     return 0;
 }
 
@@ -76,6 +64,29 @@ function addRow() {
     deadline1.innerHTML = document.getElementById("deadline").value;
     closeForm();
     save_data();
+}
+
+/**
+ * Appends form data (from the modal) to a corresponding entry in the table.
+ * @param entry a dictionary of a job application data
+ */
+function addEntry(entry) {
+    var table = document.getElementById("spreadsheet");
+    var row = table.insertRow(1);
+    var company1 = row.insertCell(0);
+    var position1 = row.insertCell(1);
+    var location1 = row.insertCell(2);
+    var industry1 = row.insertCell(3);
+    var status1 = row.insertCell(4);
+    var ranking1 = row.insertCell(5);
+    var deadline1 = row.insertCell(6);
+    company1.innerHTML = entry["company1"];
+    position1.innerHTML = entry["position1"];
+    location1.innerHTML = entry["location1"];
+    industry1.innerHTML = entry["industry1"];
+    status1.innerHTML = entry["status1"];
+    ranking1.innerHTML = entry["ranking1"];
+    deadline1.innerHTML = entry["deadline1"];
 }
 
 /**
