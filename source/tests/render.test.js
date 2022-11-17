@@ -26,3 +26,21 @@ test("Test openForm()", () => {
 
     expect(myEntryEl.style.display).toBe("none");
 });
+
+test("Test addEntry()", () => {
+    document.body.innerHTML = `
+        <table id="spreadsheet"><tr></tr></table>
+    `;
+    const entry = JSON.parse(
+        '{"company1":"","position1":"","location1":"","industry1":"","status1":"In Progress","ranking1":"1 star","deadline1":""}'
+    );
+    const table = document.getElementById("spreadsheet");
+    const { addEntry } = require("../assets/js/index");
+
+    // assert row is added every time
+    for (let count = 1; count < 10; count++) {
+        addEntry(entry);
+        var x = table.rows.length;
+        expect(x).toBe(count + 1);
+    }
+});
