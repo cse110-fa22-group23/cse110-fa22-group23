@@ -118,16 +118,20 @@
         </div>
 
         <!-- Main Spreadsheet -->
-        <table id="spreadsheet" style="background-color: rgba(0, 0, 0, 0)">
+        <table
+            id="spreadsheet"
+            style="background-color: rgba(0, 0, 0, 0)"
+            class="table table-bordered table-hover"
+        >
             <!--table header-->
             <tr>
-                <th id="companyName">COMPANY NAME:</th>
-                <th id="Position">POSITION:</th>
-                <th id="Location">LOCATION:</th>
-                <th id="Industry">INDUSTRY:</th>
-                <th id="Status">STATUS:</th>
-                <th id="Ranking">RANKING:</th>
-                <th id="Deadline">DEADLINE:</th>
+                <th class="sortable asc" id="companyName">COMPANY NAME:</th>
+                <th class="sortable desc" id="Position">POSITION:</th>
+                <th class="sortable asc" id="Location">LOCATION:</th>
+                <th class="sortable asc" id="Industry">INDUSTRY:</th>
+                <th class="sortable asc" id="Status">STATUS:</th>
+                <th class="sortable asc" id="Ranking">RANKING:</th>
+                <th class="sortable asc" id="Deadline">DEADLINE:</th>
             </tr>
             <!-- javascript render here -->
             <tr id="inputTable"></tr>
