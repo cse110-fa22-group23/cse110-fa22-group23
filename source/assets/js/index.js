@@ -10,11 +10,8 @@ function init() {
     if (!(localStorage.getItem("SpreadSheet") === null)) {
         var loadedData = window.localStorage.getItem("SpreadSheet");
         loadedData = JSON.parse(loadedData);
-        for (var i = 0; i < loadedData.length; i++) {
-            const entry = loadedData[i];
-            addEntry(entry);
-            // data.push(entry);
-        }
+        loadedData.forEach(addEntry);
+
         data = loadedData;
         console.log(loadedData);
     }
@@ -142,4 +139,4 @@ function get_data(data){
 //document.getElementById("myEntry").onclick = openForm()
 
 // To be used in tests
-module.exports = { init, openForm, closeForm, addRow, save_data };
+module.exports = { init, openForm, closeForm, addRow, save_data, addEntry };
