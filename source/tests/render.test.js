@@ -32,7 +32,7 @@ test("Test addEntry()", () => {
         <table id="spreadsheet"><tr></tr></table>
     `;
     const entry = JSON.parse(
-        '{"company1":"","position1":"","location1":"","industry1":"","status1":"In Progress","ranking1":"1 star","deadline1":""}'
+        '{"company":"","position":"","location":"","industry":"","status":"In Progress","ranking":"1 star","deadline":""}'
     );
     const table = document.getElementById("spreadsheet");
     const { addEntry } = require("../assets/js/index");
