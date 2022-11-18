@@ -10,7 +10,7 @@ function init() {
     if (!(localStorage.getItem("SpreadSheet") === null)) {
         var loadedData = window.localStorage.getItem("SpreadSheet");
         loadedData = JSON.parse(loadedData);
-        loadedData.forEach(addEntry);
+        addEntrys(loadedData);
 
         data = loadedData;
         console.log(loadedData);
@@ -43,38 +43,50 @@ window.addEventListener("click", function (e) {
  */
 function addRow() {
     event.preventDefault();
-    var table = document.getElementById("spreadsheet");
-    var row = table.insertRow(1);
-    var company1 = row.insertCell(0);
-    company1.setAttribute("class", "company_name");
-    var position1 = row.insertCell(1);
-    position1.setAttribute("class", "position_name");
-    var location1 = row.insertCell(2);
-    location1.setAttribute("class", "location_name");
-    var industry1 = row.insertCell(3);
-    industry1.setAttribute("class", "industry_name");
-    var status1 = row.insertCell(4);
-    status1.setAttribute("class", "status_name");
-    var ranking1 = row.insertCell(5);
-    ranking1.setAttribute("class", "ranking_value");
-    var deadline1 = row.insertCell(6);
-    deadline1.setAttribute("class", "deadline_date");
-    company1.innerHTML = document.getElementById("company").value;
-    position1.innerHTML = document.getElementById("position").value;
-    location1.innerHTML = document.getElementById("location").value;
-    industry1.innerHTML = document.getElementById("industry").value;
-    status1.innerHTML = document.getElementById("status").value;
-    if (status1.innerHTML == "Applied") {
-        status1.setAttribute("class", "applied");
-    } else if (status1.innerHTML == "In Progress") {
-        status1.setAttribute("class", "in_progress");
-    } else if (status1.innerHTML == "Not Started") {
-        status1.setAttribute("class", "not_started");
-    }
-    ranking1.innerHTML = document.getElementById("ranking").value;
-    deadline1.innerHTML = document.getElementById("deadline").value;
+
+    const formData = {
+        company: document.getElementById("company").value,
+        position: document.getElementById("position").value,
+        location: document.getElementById("location").value,
+        industry: document.getElementById("industry").value,
+        status: document.getElementById("status").value,
+        ranking: document.getElementById("ranking").value,
+        deadline: document.getElementById("deadline").value,
+    };
+
+    addEntry(formData);
     closeForm();
     save_data();
+}
+
+/**
+ * Edit the row given a reference to its data. Opens edit modal.
+ * @param td item table data
+ */
+function editButton(item) {
+    const row = item.closest("tr");
+    console.log(row, item)
+    document.getElementById("form-modal").style.display = "block";
+    return 0;
+}
+
+/**
+ * Deletes the row given a reference to its data.
+ * @param td item table data
+ */
+function deleteButton(item) {
+    const row = item.closest("tr");
+    document.getElementById("spreadsheet").deleteRow(row.rowIndex);
+}
+
+/**
+ * Add multiple entrys to the table.
+ * @param entrys array of entrys
+ */
+function addEntrys(entrys) {
+    entrys.forEach((entry) => {
+        addEntry(entry);
+    });
 }
 
 /**
@@ -84,20 +96,38 @@ function addRow() {
 function addEntry(entry) {
     var table = document.getElementById("spreadsheet");
     var row = table.insertRow(1);
-    var company1 = row.insertCell(0);
-    var position1 = row.insertCell(1);
-    var location1 = row.insertCell(2);
-    var industry1 = row.insertCell(3);
-    var status1 = row.insertCell(4);
-    var ranking1 = row.insertCell(5);
-    var deadline1 = row.insertCell(6);
-    company1.innerHTML = entry["company1"];
-    position1.innerHTML = entry["position1"];
-    location1.innerHTML = entry["location1"];
-    industry1.innerHTML = entry["industry1"];
-    status1.innerHTML = entry["status1"];
-    ranking1.innerHTML = entry["ranking1"];
-    deadline1.innerHTML = entry["deadline1"];
+    var company = row.insertCell(0);
+    company.setAttribute("class", "company_name");
+    var position = row.insertCell(1);
+    position.setAttribute("class", "position_name");
+    var location = row.insertCell(2);
+    location.setAttribute("class", "location_name");
+    var industry = row.insertCell(3);
+    industry.setAttribute("class", "industry_name");
+    var status = row.insertCell(4);
+    status.setAttribute("class", "status_name");
+    var ranking = row.insertCell(5);
+    ranking.setAttribute("class", "ranking_value");
+    var deadline = row.insertCell(6);
+    deadline.setAttribute("class", "deadline_date");
+    var editButton = row.insertCell(7);
+    var deleteButton = row.insertCell(8);
+    company.innerHTML = entry["company"];
+    position.innerHTML = entry["position"];
+    location.innerHTML = entry["location"];
+    industry.innerHTML = entry["industry"];
+    status.innerHTML = entry["status"];
+    if (status.innerHTML == "Applied") {
+        status.setAttribute("class", "applied");
+    } else if (status.innerHTML == "In Progress") {
+        status.setAttribute("class", "in_progress");
+    } else if (status.innerHTML == "Not Started") {
+        status.setAttribute("class", "not_started");
+    }
+    ranking.innerHTML = `<img src="/source/assets/images/stars/${entry["ranking"]}-star.svg" alt="${entry["ranking"]} stars"></img>`;
+    deadline.innerHTML = entry["deadline"];
+    editButton.innerHTML = `<button type="button" id="createBtn" onclick="editButton(this)">Edit</button>`;
+    deleteButton.innerHTML = `<button type="button" id="createBtn" onclick="deleteButton(this)">Delete</button>`;
 }
 
 /**
@@ -105,52 +135,25 @@ function addEntry(entry) {
  */
 function save_data() {
     data.push({
-        company1: document.getElementById("company").value,
-        position1: document.getElementById("position").value,
-        location1: document.getElementById("location").value,
-        industry1: document.getElementById("industry").value,
-        status1: document.getElementById("status").value,
-        ranking1: document.getElementById("ranking").value,
-        deadline1: document.getElementById("deadline").value,
+        company: document.getElementById("company").value,
+        position: document.getElementById("position").value,
+        location: document.getElementById("location").value,
+        industry: document.getElementById("industry").value,
+        status: document.getElementById("status").value,
+        ranking: document.getElementById("ranking").value,
+        deadline: document.getElementById("deadline").value,
     });
     window.localStorage.setItem("SpreadSheet", JSON.stringify(data));
-    //  show_data(data);
 }
-/**
-function show_data(data){
-    var arr = data;
-    get_data(arr);
-    var table = document.getElementById("spreadsheet");
-    for(i = 0; i <= arr.length; i++){
-
-        var row = table.insertRow(1);
-        var company1 = row.insertCell(0);
-        var position1 = row.insertCell(1);
-        var location1 = row.insertCell(2);
-        var industry1 = row.insertCell(3);
-        var status1 = row.insertCell(4);
-        var ranking1 = row.insertCell(5);
-        var deadline1 = row.insertCell(6);
-        company1.innerHTML = arr[i].company1;
-        position1.innerHTML = arr[i].position1;
-        location1.innerHTML = arr[i].location1;
-        industry1.innerHTML = arr[i].industry1;
-        status1.innerHTML = arr[i].status1;
-        ranking1.innerHTML = arr[i].ranking1;
-        deadline1.innerHTML = arr[i].deadline1;
-    }
-
-}
-
-function get_data(data){
-    var str = localStorage.getItem("SpreadSheet");
-    if(str != null){
-        data = JSON.parse(str);
-    }
-}
-*/
-//document.getElementById("myEntry").onclick = openForm();
-//document.getElementById("myEntry").onclick = openForm()
 
 // To be used in tests
-module.exports = { init, openForm, closeForm, addRow, save_data, addEntry };
+module.exports = {
+    init,
+    openForm,
+    closeForm,
+    addRow,
+    save_data,
+    addEntry,
+    deleteButton,
+    editButton,
+};
