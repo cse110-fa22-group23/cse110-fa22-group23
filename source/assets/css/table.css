@@ -64,6 +64,7 @@
     color: #697089;
     width: 15%;
 }
+
 /* all sortable table heads */
 th.sortable {
     position: relative;
@@ -89,6 +90,7 @@ th.sortable.desc::after {
 th.sortable:hover::after {
     color: #333;
 }
+
 .company_name {
     font-weight: bold;
     color: #303651;
