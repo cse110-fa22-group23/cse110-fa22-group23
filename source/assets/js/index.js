@@ -183,7 +183,7 @@ function addEntry(entry, id, rowIndex = 1) {
     } else if (status.innerHTML == "Not Started") {
         status.setAttribute("class", "not_started");
     }
-    ranking.innerHTML = `<img src="/source/assets/images/stars/${entry["ranking"]}-star.svg" alt="${entry["ranking"]} stars"></img>`;
+    ranking.innerHTML = `<img src="/cse110-fa22-group23/admin/source/assets/images/stars/${entry["ranking"]}-star.svg" alt="${entry["ranking"]} stars"></img>`;
     deadline.innerHTML = entry["deadline"];
     editButton.innerHTML = `<button type="button" id="createBtn" onclick="editButton(this)">Edit</button>`;
     deleteButton.innerHTML = `<button type="button" id="createBtn" onclick="deleteButton(this)">Delete</button>`;
