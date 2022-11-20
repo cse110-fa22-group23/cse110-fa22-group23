@@ -1,220 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Team 23 Application</title>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Sofia"
-        />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team 23 Application</title>
 
-        <link rel="stylesheet" href="./assets/css/index.css" />
-        <link rel="stylesheet" href="./assets/css/modal.css" />
-        <link rel="stylesheet" href="./assets/css/table.css" />
-        <link rel="stylesheet" href="./assets/css/button.css" />
-        <script src="./assets/js/index.js" type="text/javascript"></script>
-    </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia" />
 
-    <body>
-        <h1 id="teamHead">Team 23 Application</h1>
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <link rel="stylesheet" href="./assets/css/modal.css" />
+    <link rel="stylesheet" href="./assets/css/table.css" />
+    <link rel="stylesheet" href="./assets/css/button.css" />
+    <script src="./assets/js/index.js" type="text/javascript"></script>
+</head>
 
-        <!-- Function Buttons -->
-        <div class="sideBtn">
-            <button type="button" id="createBtn" onclick="openForm()">
-                Create Entry
-            </button>
+<body>
+    <h1 id="teamHead">Team 23 Application</h1>
+
+    <!-- Function Buttons -->
+    <div class="sideBtn">
+        <button type="button" id="createBtn" onclick="openForm()">
+            Create Entry
+        </button>
+    </div>
+
+    <!-- Entry Modal -->
+    <div id="form-modal" class="modal">
+        <div class="modal-content">
+            <form id="entry-form">
+                <div>
+                    <label for="company">Enter Company Name:</label>
+                    <input type="text" placeholder="Company Name" name="company" id="company"
+                        required />
+                </div>
+                <div>
+                    <label for="position">Enter Position Title:</label>
+                    <input type="text" placeholder="Position Name" name="position" id="position"
+                        required />
+                </div>
+                <div>
+                    <label for="location">Enter Location:</label>
+                    <select name="location" id="location">
+                        <option value="">Choose location</option>
+                        <option value="CA">CA</option>
+                        <option value="WA">WA</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="industry">Enter Industry:</label>
+                    <input type="text" placeholder="Industry Name" name="industry" id="industry"
+                        required />
+                </div>
+                <div>
+                    <label for="status">Enter Status:</label>
+                    <select name="status" id="status">
+                        <option value="In Progress">In Progress</option>
+                        <option value="Applied">Applied</option>
+                        <option value="Not Started">Not Started Yet</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="ranking">Choose Ranking:</label>
+                    <select name="ranking" id="ranking">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="deadline">Enter Deadline:</label>
+                    <input type="date" id="deadline" name="deadline" min="2022-01-01"
+                        max="2023-12-31" />
+                </div>
+                <br />
+                <div class="form-buttons">
+                    <button class="caution">Delete Entry</button>
+                    <input type="submit" value="Create Entry" onclick="addRow()" />
+                </div>
+            </form>
         </div>
-
-        <!-- Entry Modal -->
-        <div id="form-modal" class="modal">
-            <div class="modal-content">
-                <form id="entry-form">
-                    <div>
-                        <label for="company">Enter Company Name:</label>
-                        <input
-                            type="text"
-                            placeholder="Company Name"
-                            name="company"
-                            id="company"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label for="position">Enter Position Title:</label>
-                        <input
-                            type="text"
-                            placeholder="Position Name"
-                            name="position"
-                            id="position"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label for="location">Enter Location:</label>
-                        <select name="location" id="location">
-                            <option value="">Choose location</option>
-                            <option value="CA">CA</option>
-                            <option value="WA">WA</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="industry">Enter Industry:</label>
-                        <input
-                            type="text"
-                            placeholder="Industry Name"
-                            name="industry"
-                            id="industry"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label for="status">Enter Status:</label>
-                        <select name="status" id="status">
-                            <option value="In Progress">In Progress</option>
-                            <option value="Applied">Applied</option>
-                            <option value="Not Started">Not Started Yet</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="ranking">Choose Ranking:</label>
-                        <select name="ranking" id="ranking">
-                            <option value="1">1 star</option>
-                            <option value="2">2 stars</option>
-                            <option value="3">3 stars</option>
-                            <option value="4">4 stars</option>
-                            <option value="5">5 stars</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="deadline">Enter Deadline:</label>
-                        <input
-                            type="date"
-                            id="deadline"
-                            name="deadline"
-                            min="2022-01-01"
-                            max="2023-12-31"
-                        />
-                    </div>
-                    <br />
-                    <div class="form-buttons">
-                        <button class="caution">Delete Entry</button>
-                        <input
-                            type="submit"
-                            value="Create Entry"
-                            onclick="addRow()"
-                        />
-                    </div>
-                </form>
-            </div>
+    </div>
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <form id="edit-form">
+                <div>
+                    <label for="company">Enter Company Name:</label>
+                    <input type="text" placeholder="Company Name" name="company" id="companyEdit"
+                        required />
+                </div>
+                <div>
+                    <label for="position">Enter Position Title:</label>
+                    <input type="text" placeholder="Position Name" name="position" id="positionEdit"
+                        required />
+                </div>
+                <div>
+                    <label for="location">Enter Location:</label>
+                    <select name="location" id="locationEdit">
+                        <option value="">Choose location</option>
+                        <option value="CA">CA</option>
+                        <option value="WA">WA</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="industry">Enter Industry:</label>
+                    <input type="text" placeholder="Industry Name" name="industry" id="industryEdit"
+                        required />
+                </div>
+                <div>
+                    <label for="status">Enter Status:</label>
+                    <select name="status" id="statusEdit">
+                        <option value="In Progress">In Progress</option>
+                        <option value="Applied">Applied</option>
+                        <option value="Not Started">Not Started Yet</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="ranking">Choose Ranking:</label>
+                    <select name="ranking" id="rankingEdit">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="deadline">Enter Deadline:</label>
+                    <input type="date" id="deadlineEdit" name="deadline" min="2022-01-01"
+                        max="2023-12-31" />
+                </div>
+                <br />
+                <div class="form-buttons">
+                    <input type="submit" value="Edit Entry" onclick="editRow()" />
+                </div>
+            </form>
         </div>
-        <!-- Edit Modal -->
-        <div id="edit-modal" class="modal">
-            <div class="modal-content">
-                <form id="entry-form">
-                    <div>
-                        <label for="company">Enter Company Name:</label>
-                        <input
-                            type="text"
-                            placeholder="Company Name"
-                            name="company"
-                            id="companyEdit"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label for="position">Enter Position Title:</label>
-                        <input
-                            type="text"
-                            placeholder="Position Name"
-                            name="position"
-                            id="positionEdit"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label for="location">Enter Location:</label>
-                        <select name="location" id="locationEdit">
-                            <option value="">Choose location</option>
-                            <option value="CA">CA</option>
-                            <option value="WA">WA</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="industry">Enter Industry:</label>
-                        <input
-                            type="text"
-                            placeholder="Industry Name"
-                            name="industry"
-                            id="industryEdit"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label for="status">Enter Status:</label>
-                        <select name="status" id="statusEdit">
-                            <option value="In Progress">In Progress</option>
-                            <option value="Applied">Applied</option>
-                            <option value="Not Started">Not Started Yet</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="ranking">Choose Ranking:</label>
-                        <select name="ranking" id="rankingEdit">
-                            <option value="1">1 star</option>
-                            <option value="2">2 stars</option>
-                            <option value="3">3 stars</option>
-                            <option value="4">4 stars</option>
-                            <option value="5">5 stars</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="deadline">Enter Deadline:</label>
-                        <input
-                            type="date"
-                            id="deadlineEdit"
-                            name="deadline"
-                            min="2022-01-01"
-                            max="2023-12-31"
-                        />
-                    </div>
-                    <br />
-                    <div class="form-buttons">
-                        <input
-                            type="submit"
-                            value="Edit Entry"
-                            onclick="editRow()"
-                        />
-                    </div>
-                </form>
-            </div>
-        </div>
+    </div>
 
-        <!-- Main Spreadsheet -->
-        <table
-            id="spreadsheet"
-            style="background-color: rgba(0, 0, 0, 0)"
-            class="table table-bordered table-hover"
-        >
-            <!--table header-->
-            <tr>
-                <th class="sortable asc" id="companyName">COMPANY NAME:</th>
-                <th class="sortable desc" id="Position">POSITION:</th>
-                <th class="sortable asc" id="Location">LOCATION:</th>
-                <th class="sortable asc" id="Industry">INDUSTRY:</th>
-                <th class="sortable asc" id="Status">STATUS:</th>
-                <th class="sortable asc" id="Ranking">RANKING:</th>
-                <th class="sortable asc" id="Deadline">DEADLINE:</th>
-            </tr>
-            <!-- javascript render here -->
-            <tr id="inputTable"></tr>
-        </table>
-    </body>
+    <!-- Main Spreadsheet -->
+    <table id="spreadsheet" style="background-color: rgba(0, 0, 0, 0)"
+        class="table table-bordered table-hover">
+        <!--table header-->
+        <tr>
+            <th class="sortable asc" id="companyName">COMPANY NAME:</th>
+            <th class="sortable desc" id="Position">POSITION:</th>
+            <th class="sortable asc" id="Location">LOCATION:</th>
+            <th class="sortable asc" id="Industry">INDUSTRY:</th>
+            <th class="sortable asc" id="Status">STATUS:</th>
+            <th class="sortable asc" id="Ranking">RANKING:</th>
+            <th class="sortable asc" id="Deadline">DEADLINE:</th>
+        </tr>
+        <!-- javascript render here -->
+        <tr id="inputTable"></tr>
+    </table>
+</body>
+
 </html>
