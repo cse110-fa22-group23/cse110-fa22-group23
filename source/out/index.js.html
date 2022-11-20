@@ -27,7 +27,10 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>window.addEventListener("DOMContentLoaded", init);
-var data = [];
+var data = {};
+var count = 1;
+var currRow;
+//var currMax = [];
 
 /**
  * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
@@ -42,6 +45,10 @@ function init() {
 
         data = loadedData;
         console.log(loadedData);
+    }
+    if (!(localStorage.getItem("counter") === null)) {
+        var counter = window.localStorage.getItem("counter");
+        count = JSON.parse(counter);
     }
     return 0;
 }
@@ -58,6 +65,20 @@ function openForm() {
  */
 function closeForm() {
     document.getElementById("form-modal").style.display = "none";
+}
+
+/**
+ * Makes the form modal visible on the page.
+ */
+function openEditForm() {
+    document.getElementById("edit-modal").style.display = "block";
+}
+
+/**
+ * Makes the form modal no longer visible on the page.
+ */
+function closeEditForm() {
+    document.getElementById("edit-modal").style.display = "none";
 }
 
 window.addEventListener("click", function (e) {
@@ -82,9 +103,10 @@ function addRow() {
         deadline: document.getElementById("deadline").value,
     };
 
-    addEntry(formData);
+    let rowId = count;
+    addEntry(formData, rowId);
     closeForm();
-    save_data();
+    save_data(rowId, formData);
 }
 
 /**
@@ -93,9 +115,39 @@ function addRow() {
  */
 function editButton(item) {
     const row = item.closest("tr");
-    console.log(row, item);
-    document.getElementById("form-modal").style.display = "block";
-    return 0;
+    currRow = row;
+    const rowData = data[row.id];
+    console.log(rowData["company"]);
+    document.getElementById("companyEdit").value = rowData["company"];
+    document.getElementById("positionEdit").value = rowData["position"];
+    document.getElementById("locationEdit").value = rowData["location"];
+    document.getElementById("industryEdit").value = rowData["industry"];
+    document.getElementById("statusEdit").value = rowData["status"];
+    document.getElementById("rankingEdit").value = rowData["ranking"];
+    document.getElementById("deadlineEdit").value = rowData["deadline"];
+
+    openEditForm();
+}
+
+/**
+ *  Edit row from the data in the modal.
+ */
+function editRow() {
+    event.preventDefault();
+    const row = currRow;
+    const formData = {
+        company: document.getElementById("companyEdit").value,
+        position: document.getElementById("positionEdit").value,
+        location: document.getElementById("locationEdit").value,
+        industry: document.getElementById("industryEdit").value,
+        status: document.getElementById("statusEdit").value,
+        ranking: document.getElementById("rankingEdit").value,
+        deadline: document.getElementById("deadlineEdit").value,
+    };
+    deleteButton(row);
+    addEntry(formData, row.id, row.rowIndex);
+    closeEditForm();
+    save_data(row.id, formData);
 }
 
 /**
@@ -104,7 +156,12 @@ function editButton(item) {
  */
 function deleteButton(item) {
     const row = item.closest("tr");
+    // delete from HTML
     document.getElementById("spreadsheet").deleteRow(row.rowIndex);
+    // delete from local storage
+    console.log(data[row.id]);
+    delete data[row.id];
+    save_localstorage();
 }
 
 /**
@@ -112,18 +169,20 @@ function deleteButton(item) {
  * @param entrys array of entrys
  */
 function addEntrys(entrys) {
-    entrys.forEach((entry) => {
-        addEntry(entry);
-    });
+    console.log("addEntrys");
+    for (var key in entrys) {
+        addEntry(entrys[key], key);
+    }
 }
 
 /**
  * Appends form data (from the modal) to a corresponding entry in the table.
  * @param entry a dictionary of a job application data
  */
-function addEntry(entry) {
+function addEntry(entry, id, rowIndex = 1) {
     var table = document.getElementById("spreadsheet");
-    var row = table.insertRow(1);
+    var row = table.insertRow(rowIndex);
+    row.id = id;
     var company = row.insertCell(0);
     company.setAttribute("class", "company_name");
     var position = row.insertCell(1);
@@ -156,22 +215,21 @@ function addEntry(entry) {
     deadline.innerHTML = entry["deadline"];
     editButton.innerHTML = `&lt;button type="button" id="createBtn" onclick="editButton(this)">Edit&lt;/button>`;
     deleteButton.innerHTML = `&lt;button type="button" id="createBtn" onclick="deleteButton(this)">Delete&lt;/button>`;
+    count++;
 }
 
 /**
  * Saves form data (from the modal) to local storage.
  */
-function save_data() {
-    data.push({
-        company: document.getElementById("company").value,
-        position: document.getElementById("position").value,
-        location: document.getElementById("location").value,
-        industry: document.getElementById("industry").value,
-        status: document.getElementById("status").value,
-        ranking: document.getElementById("ranking").value,
-        deadline: document.getElementById("deadline").value,
-    });
+function save_data(id, formData) {
+    data[id.toString()] = formData;
+
+    save_localstorage();
+}
+
+function save_localstorage() {
     window.localStorage.setItem("SpreadSheet", JSON.stringify(data));
+    window.localStorage.setItem("counter", JSON.stringify(count));
 }
 
 // To be used in tests
@@ -184,6 +242,7 @@ module.exports = {
     addEntry,
     deleteButton,
     editButton,
+    editRow,
 };
 </code></pre>
         </article>
@@ -195,13 +254,13 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addEntry">addEntry</a></li><li><a href="global.html#addEntrys">addEntrys</a></li><li><a href="global.html#addRow">addRow</a></li><li><a href="global.html#closeForm">closeForm</a></li><li><a href="global.html#deleteButton">deleteButton</a></li><li><a href="global.html#editButton">editButton</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#openForm">openForm</a></li><li><a href="global.html#save_data">save_data</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addEntry">addEntry</a></li><li><a href="global.html#addEntrys">addEntrys</a></li><li><a href="global.html#addRow">addRow</a></li><li><a href="global.html#closeEditForm">closeEditForm</a></li><li><a href="global.html#closeForm">closeForm</a></li><li><a href="global.html#deleteButton">deleteButton</a></li><li><a href="global.html#editButton">editButton</a></li><li><a href="global.html#editRow">editRow</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#openEditForm">openEditForm</a></li><li><a href="global.html#openForm">openForm</a></li><li><a href="global.html#save_data">save_data</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Nov 17 2022 18:34:26 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sat Nov 19 2022 19:42:59 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

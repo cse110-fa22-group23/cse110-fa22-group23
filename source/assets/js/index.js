@@ -1,5 +1,8 @@
 window.addEventListener("DOMContentLoaded", init);
-var data = [];
+var data = {};
+var count = 1;
+var currRow;
+//var currMax = [];
 
 /**
  * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
@@ -14,6 +17,10 @@ function init() {
 
         data = loadedData;
         console.log(loadedData);
+    }
+    if (!(localStorage.getItem("counter") === null)) {
+        var counter = window.localStorage.getItem("counter");
+        count = JSON.parse(counter);
     }
     return 0;
 }
@@ -30,6 +37,20 @@ function openForm() {
  */
 function closeForm() {
     document.getElementById("form-modal").style.display = "none";
+}
+
+/**
+ * Makes the form modal visible on the page.
+ */
+function openEditForm() {
+    document.getElementById("edit-modal").style.display = "block";
+}
+
+/**
+ * Makes the form modal no longer visible on the page.
+ */
+function closeEditForm() {
+    document.getElementById("edit-modal").style.display = "none";
 }
 
 window.addEventListener("click", function (e) {
@@ -54,9 +75,10 @@ function addRow() {
         deadline: document.getElementById("deadline").value,
     };
 
-    addEntry(formData);
+    let rowId = count;
+    addEntry(formData, rowId);
     closeForm();
-    save_data();
+    save_data(rowId, formData);
 }
 
 /**
@@ -65,9 +87,39 @@ function addRow() {
  */
 function editButton(item) {
     const row = item.closest("tr");
-    console.log(row, item)
-    document.getElementById("form-modal").style.display = "block";
-    return 0;
+    currRow = row;
+    const rowData = data[row.id];
+    console.log(rowData["company"]);
+    document.getElementById("companyEdit").value = rowData["company"];
+    document.getElementById("positionEdit").value = rowData["position"];
+    document.getElementById("locationEdit").value = rowData["location"];
+    document.getElementById("industryEdit").value = rowData["industry"];
+    document.getElementById("statusEdit").value = rowData["status"];
+    document.getElementById("rankingEdit").value = rowData["ranking"];
+    document.getElementById("deadlineEdit").value = rowData["deadline"];
+
+    openEditForm();
+}
+
+/**
+ *  Edit row from the data in the modal.
+ */
+function editRow() {
+    event.preventDefault();
+    const row = currRow;
+    const formData = {
+        company: document.getElementById("companyEdit").value,
+        position: document.getElementById("positionEdit").value,
+        location: document.getElementById("locationEdit").value,
+        industry: document.getElementById("industryEdit").value,
+        status: document.getElementById("statusEdit").value,
+        ranking: document.getElementById("rankingEdit").value,
+        deadline: document.getElementById("deadlineEdit").value,
+    };
+    deleteButton(row);
+    addEntry(formData, row.id, row.rowIndex);
+    closeEditForm();
+    save_data(row.id, formData);
 }
 
 /**
@@ -76,7 +128,12 @@ function editButton(item) {
  */
 function deleteButton(item) {
     const row = item.closest("tr");
+    // delete from HTML
     document.getElementById("spreadsheet").deleteRow(row.rowIndex);
+    // delete from local storage
+    console.log(data[row.id]);
+    delete data[row.id];
+    save_localstorage();
 }
 
 /**
@@ -84,18 +141,20 @@ function deleteButton(item) {
  * @param entrys array of entrys
  */
 function addEntrys(entrys) {
-    entrys.forEach((entry) => {
-        addEntry(entry);
-    });
+    console.log("addEntrys");
+    for (var key in entrys) {
+        addEntry(entrys[key], key);
+    }
 }
 
 /**
  * Appends form data (from the modal) to a corresponding entry in the table.
  * @param entry a dictionary of a job application data
  */
-function addEntry(entry) {
+function addEntry(entry, id, rowIndex = 1) {
     var table = document.getElementById("spreadsheet");
-    var row = table.insertRow(1);
+    var row = table.insertRow(rowIndex);
+    row.id = id;
     var company = row.insertCell(0);
     company.setAttribute("class", "company_name");
     var position = row.insertCell(1);
@@ -128,22 +187,21 @@ function addEntry(entry) {
     deadline.innerHTML = entry["deadline"];
     editButton.innerHTML = `<button type="button" id="createBtn" onclick="editButton(this)">Edit</button>`;
     deleteButton.innerHTML = `<button type="button" id="createBtn" onclick="deleteButton(this)">Delete</button>`;
+    count++;
 }
 
 /**
  * Saves form data (from the modal) to local storage.
  */
-function save_data() {
-    data.push({
-        company: document.getElementById("company").value,
-        position: document.getElementById("position").value,
-        location: document.getElementById("location").value,
-        industry: document.getElementById("industry").value,
-        status: document.getElementById("status").value,
-        ranking: document.getElementById("ranking").value,
-        deadline: document.getElementById("deadline").value,
-    });
+function save_data(id, formData) {
+    data[id.toString()] = formData;
+
+    save_localstorage();
+}
+
+function save_localstorage() {
     window.localStorage.setItem("SpreadSheet", JSON.stringify(data));
+    window.localStorage.setItem("counter", JSON.stringify(count));
 }
 
 // To be used in tests
@@ -156,4 +214,5 @@ module.exports = {
     addEntry,
     deleteButton,
     editButton,
+    editRow,
 };

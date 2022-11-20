@@ -115,6 +115,87 @@
                 </form>
             </div>
         </div>
+        <!-- Edit Modal -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <form id="entry-form">
+                    <div>
+                        <label for="company">Enter Company Name:</label>
+                        <input
+                            type="text"
+                            placeholder="Company Name"
+                            name="company"
+                            id="companyEdit"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="position">Enter Position Title:</label>
+                        <input
+                            type="text"
+                            placeholder="Position Name"
+                            name="position"
+                            id="positionEdit"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="location">Enter Location:</label>
+                        <select name="location" id="locationEdit">
+                            <option value="">Choose location</option>
+                            <option value="CA">CA</option>
+                            <option value="WA">WA</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="industry">Enter Industry:</label>
+                        <input
+                            type="text"
+                            placeholder="Industry Name"
+                            name="industry"
+                            id="industryEdit"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label for="status">Enter Status:</label>
+                        <select name="status" id="statusEdit">
+                            <option value="In Progress">In Progress</option>
+                            <option value="Applied">Applied</option>
+                            <option value="Not Started">Not Started Yet</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="ranking">Choose Ranking:</label>
+                        <select name="ranking" id="rankingEdit">
+                            <option value="1">1 star</option>
+                            <option value="2">2 stars</option>
+                            <option value="3">3 stars</option>
+                            <option value="4">4 stars</option>
+                            <option value="5">5 stars</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="deadline">Enter Deadline:</label>
+                        <input
+                            type="date"
+                            id="deadlineEdit"
+                            name="deadline"
+                            min="2022-01-01"
+                            max="2023-12-31"
+                        />
+                    </div>
+                    <br />
+                    <div class="form-buttons">
+                        <input
+                            type="submit"
+                            value="Edit Entry"
+                            onclick="editRow()"
+                        />
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <!-- Main Spreadsheet -->
         <table
