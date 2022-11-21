@@ -8,7 +8,7 @@
         "format:check": "prettier --check .",
         "lint": "eslint --fix .",
         "lint:check": "eslint .",
-        "lint:html": "htmlhint '**/*.html'",
+        "lint:html": "htmlhint '**/*.html' --ignore='**/out/**'",
         "lint:markdown": "remark . --use remark-preset-lint-consistent --frail",
         "test": "jest --testEnvironment='jsdom'",
         "prepare": "cd .. && husky install .config/.husky",
