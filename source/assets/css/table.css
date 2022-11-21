@@ -149,8 +149,12 @@ th, td {
     th {
         width: 100%;
     }
+    tr {
+        width: 100%;
+    }
     body {
         margin: 0;
         padding: 0;
+        width: 100%;
     }
 }
