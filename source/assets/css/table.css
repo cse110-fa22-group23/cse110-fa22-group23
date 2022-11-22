@@ -1,136 +1,225 @@
 /* Styling for Table */
 #spreadsheet {
-    border: 1px solid;
-    text-align: left;
-    position: relative;
-    background-color: #f6f6f6;
-    color: #697089;
-    margin-left: 75px;
-    width: 95%;
+  border: 1px solid;
+  text-align: left;
+  position: relative;
+  background-color: #f6f6f6;
+  color: #697089;
+  margin-left: 75px;
+  width: 95%;
 }
 #companyName {
-    text-align: left;
-    position: relative;
-    /* background-color: #f6f6f6; */
-    /* font-weight: 600; */
-    color: #697089;
-    width: 15%;
+  text-align: left;
+  position: relative;
+  /* background-color: #f6f6f6; */
+  /* font-weight: 600; */
+  color: #697089;
+  width: 15%;
 }
 #Position {
-    text-align: left;
-    position: relative;
-    /* background-color: #f6f6f6; */
-    /* font-weight: 600; */
-    color: #697089;
-    width: 15%;
+  text-align: left;
+  position: relative;
+  /* background-color: #f6f6f6; */
+  /* font-weight: 600; */
+  color: #697089;
+  width: 15%;
 }
 #Location {
-    text-align: left;
-    position: relative;
-    /* background-color: #f6f6f6; */
-    /* font-weight: 600; */
-    color: #697089;
-    width: 15%;
+  text-align: left;
+  position: relative;
+  /* background-color: #f6f6f6; */
+  /* font-weight: 600; */
+  color: #697089;
+  width: 15%;
 }
 #Industry {
-    text-align: left;
-    position: relative;
-    /* background-color: #f6f6f6; */
-    /* font-weight: 600; */
-    color: #697089;
-    width: 15%;
+  text-align: left;
+  position: relative;
+  /* background-color: #f6f6f6; */
+  /* font-weight: 600; */
+  color: #697089;
+  width: 15%;
 }
 #Status {
-    text-align: left;
-    position: relative;
-    /* background-color: #f6f6f6; */
-    /* font-weight: 600; */
-    color: #697089;
-    width: 15%;
+  text-align: left;
+  position: relative;
+  /* background-color: #f6f6f6; */
+  /* font-weight: 600; */
+  color: #697089;
+  width: 15%;
 }
 #Ranking {
-    text-align: left;
-    position: relative;
-    /* background-color: #f6f6f6; */
-    /* font-weight: 600; */
-    color: #697089;
-    width: 15%;
+  text-align: left;
+  position: relative;
+  /* background-color: #f6f6f6; */
+  /* font-weight: 600; */
+  color: #697089;
+  width: 15%;
 }
 #Deadline {
-    text-align: left;
-    position: relative;
-    /* background-color: #f6f6f6; */
-    /* font-weight: 600; */
-    color: #697089;
-    width: 15%;
+  text-align: left;
+  position: relative;
+  /* background-color: #f6f6f6; */
+  /* font-weight: 600; */
+  color: #697089;
+  width: 15%;
 }
 
 /* all sortable table heads */
 th.sortable {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
 
 th.sortable::after {
-    content: "\25c6";
-    position: absolute;
-    right: 8px;
-    color: #999;
+  content: "\25c6";
+  position: absolute;
+  right: 8px;
+  color: #999;
 }
 
 /* table heads in ascending order */
 th.sortable.asc::after {
-    content: "\25b2";
+  content: "\25b2";
 }
 /* table heads in descending order */
 th.sortable.desc::after {
-    content: "\25bc";
+  content: "\25bc";
 }
 /* table icon when hover */
 th.sortable:hover::after {
-    color: #333;
+  color: #333;
 }
 
 .company_name {
-    font-weight: bold;
-    color: #303651;
+  font-weight: bold;
+  color: #303651;
 }
 .position_name {
-    color: #303651;
+  color: #303651;
 }
-.location_name,
+.location_name {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 10px;
+
+  width: 25px;
+  height: 16px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  font-weight: bold;
+  border-radius: 10px 10px 10px 10px;
+
+  background: var(--l-gary-bg);
+  color: var(--l-gary-tx);
+}
 .industry_name {
-    font-weight: bold;
-    text-align: center;
-    color: #303651;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  font-weight: bold;
+  border-radius: 10px 10px 10px 10px;
+
+  color: var(--l-gary-tx);
 }
 .ranking_value {
-    color: #303651;
+  color: #303651;
 }
 .deadline_date {
-    color: #303651;
+  color: #303651;
 }
 .applied {
-    word-wrap: normal;
-    border-radius: 50%;
-    font-weight: bold;
-    background: #eef6e9;
-    color: #278500;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 10px;
+
+  width: 55px;
+  height: 16px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  font-weight: bold;
+  border-radius: 10px 10px 10px 10px;
+
+  background: var(--l-green-bg);
+  color: var(--l-green-tx);
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 .in_progress {
-    word-wrap: normal;
-    border-radius: 50%;
-    font-weight: bold;
-    color: #b94f00;
-    background: #fff3e8;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 10px;
+
+  width: 76px;
+  height: 16px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  font-weight: bold;
+  border-radius: 10px 10px 10px 10px;
+
+  background: var(--l-orange-bg);
+  color: var(--l-orange-tx);
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 .not_started {
-    word-wrap: normal;
-    border-radius: 50%;
-    font-weight: bold;
-    color: #d30b53;
-    background: #fee5ee;
-    text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 10px;
+
+  width: 86px;
+  height: 16px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+
+  font-weight: bold;
+  border-radius: 10px 10px 10px 10px;
+
+  background: var(--l-red-bg);
+  color: var(--l-red-tx);
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
