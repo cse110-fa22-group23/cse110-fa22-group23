@@ -105,6 +105,7 @@ th.sortable:hover::after {
   align-items: center;
   padding: 4px 8px;
   gap: 10px;
+  margin-top: 20px;
 
   width: 25px;
   height: 16px;
@@ -144,11 +145,12 @@ th.sortable:hover::after {
 }
 .applied {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 4px 8px;
   gap: 10px;
+  text-align: center;
 
   width: 55px;
   height: 16px;
@@ -171,11 +173,12 @@ th.sortable:hover::after {
 }
 .in_progress {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 4px 8px;
   gap: 10px;
+  text-align: center;
 
   width: 76px;
   height: 16px;
@@ -198,11 +201,12 @@ th.sortable:hover::after {
 }
 .not_started {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 4px 8px;
   gap: 10px;
+  text-align: center;
 
   width: 86px;
   height: 16px;
