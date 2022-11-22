@@ -12,7 +12,7 @@
         "lint:markdown": "remark . --use remark-preset-lint-consistent --frail",
         "test": "jest --testEnvironment='jsdom'",
         "prepare": "cd .. && husky install .config/.husky",
-        "docs": "jsdoc -r ./assets/js && git add ./out"
+        "docs": "jsdoc -r ./assets/js -c ../.config/jsdoc.conf.json && git add ./out"
     },
     "devDependencies": {
         "eslint": "^8.26.0",
