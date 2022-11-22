@@ -30,7 +30,6 @@
 var data = {};
 var count = 1;
 var currRow;
-//var currMax = [];
 
 /**
  * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
@@ -38,16 +37,17 @@ var currRow;
  */
 function init() {
     // load data from localStorage if it exists
-    if (!(localStorage.getItem("SpreadSheet") === null)) {
-        var loadedData = window.localStorage.getItem("SpreadSheet");
+    var loadedData = window.localStorage.getItem("SpreadSheet");
+    if (!(loadedData === null)) {
         loadedData = JSON.parse(loadedData);
         addEntrys(loadedData);
 
         data = loadedData;
         console.log(loadedData);
     }
-    if (!(localStorage.getItem("counter") === null)) {
-        var counter = window.localStorage.getItem("counter");
+
+    var counter = window.localStorage.getItem("counter");
+    if (!(counter === null)) {
         count = JSON.parse(counter);
     }
     return 0;
@@ -157,7 +157,7 @@ function getFormData(postfix) {
 }
 /**
  * Deletes the row given a reference to its data.
- * @param td item table data
+ * @param item td table data
  */
 function deleteButton(item) {
     const row = item.closest("tr");
