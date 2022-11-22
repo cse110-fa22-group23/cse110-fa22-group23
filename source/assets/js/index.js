@@ -208,19 +208,7 @@ function save_localstorage() {
     window.localStorage.setItem("counter", JSON.stringify(count));
 }
 
-
-// To be used in tests
-// module.exports = {
-//     init,
-//     openForm,
-//     closeForm,
-//     addRow,
-//     save_data,
-//     addEntry,
-//     deleteButton,
-//     editButton,
-//     editRow,
-// };
+/////////////////////////SORT TABLE////////////////////////////////////////////////////////
 
 let cPrev = -1; // global var saves the previous c, used to
             // determine if the same column is clicked again
@@ -279,3 +267,16 @@ function sortBy(c) {
     }
 
 }
+//////////////////////////END OF SORT TABLE//////////////////////////////////////////
+// To be used in tests
+// module.exports = {
+//     init,
+//     openForm,
+//     closeForm,
+//     addRow,
+//     save_data,
+//     addEntry,
+//     deleteButton,
+//     editButton,
+//     editRow,
+// };

@@ -72,7 +72,7 @@ th.sortable {
 }
 
 th.sortable::after {
-    content: "\25c6";
+    content: "\25bc";
     position: absolute;
     right: 8px;
     color: #999;
