@@ -65,15 +65,7 @@ window.addEventListener("click", function (e) {
 function addRow() {
     event.preventDefault();
 
-    const formData = {
-        company: document.getElementById("company").value,
-        position: document.getElementById("position").value,
-        location: document.getElementById("location").value,
-        industry: document.getElementById("industry").value,
-        status: document.getElementById("status").value,
-        ranking: document.getElementById("ranking").value,
-        deadline: document.getElementById("deadline").value,
-    };
+    const formData = getFormData("");
 
     let rowId = count;
     addEntry(formData, rowId);
@@ -90,6 +82,7 @@ function editButton(item) {
     currRow = row;
     const rowData = data[row.id];
     console.log(rowData["company"]);
+    // prefill form with row data
     document.getElementById("companyEdit").value = rowData["company"];
     document.getElementById("positionEdit").value = rowData["position"];
     document.getElementById("locationEdit").value = rowData["location"];
@@ -107,21 +100,33 @@ function editButton(item) {
 function editRow() {
     event.preventDefault();
     const row = currRow;
-    const formData = {
-        company: document.getElementById("companyEdit").value,
-        position: document.getElementById("positionEdit").value,
-        location: document.getElementById("locationEdit").value,
-        industry: document.getElementById("industryEdit").value,
-        status: document.getElementById("statusEdit").value,
-        ranking: document.getElementById("rankingEdit").value,
-        deadline: document.getElementById("deadlineEdit").value,
-    };
-    deleteButton(row);
+    const formData = getFormData("Edit");
     addEntry(formData, row.id, row.rowIndex);
+    deleteButton(row);
     closeEditForm();
     save_data(row.id, formData);
 }
 
+/**
+ * Get the data inside the edit form.
+ * @param postfix to add to the 'id' because all ids must be unique
+ *  * @example <caption>Example usage of to get edit form data.</caption>
+ * // returns the edit form data
+ * getEditFormData("Edit");
+ * @returns formData object of form fields
+ */
+function getFormData(postfix) {
+    const formData = {
+        company: document.getElementById(`company${postfix}`).value,
+        position: document.getElementById(`position${postfix}`).value,
+        location: document.getElementById(`location${postfix}`).value,
+        industry: document.getElementById(`industry${postfix}`).value,
+        status: document.getElementById(`status${postfix}`).value,
+        ranking: document.getElementById(`ranking${postfix}`).value,
+        deadline: document.getElementById(`deadline${postfix}`).value,
+    };
+    return formData;
+}
 /**
  * Deletes the row given a reference to its data.
  * @param td item table data
@@ -141,7 +146,6 @@ function deleteButton(item) {
  * @param entrys array of entrys
  */
 function addEntrys(entrys) {
-    console.log("addEntrys");
     for (var key in entrys) {
         addEntry(entrys[key], key);
     }
