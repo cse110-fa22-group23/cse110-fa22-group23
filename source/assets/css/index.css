@@ -4,79 +4,79 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap");
 
 :root {
-    /* Color Pallette : Use as var(var_name) */
-    /* Light Mode */
+  /* Color Pallette : Use as var(var_name) */
+  /* Light Mode */
 
-    /* basic */
-    --l-bg: white; /* background color */
-    --l-tx: #697089; /* text color */
-    --l-s: #d9d9d9; /* color for shadow */
+  /* basic */
+  --l-bg: white; /* background color */
+  --l-tx: #697089; /* text color */
+  --l-s: #d9d9d9; /* color for shadow */
 
-    /* star for rating*/
-    --l-star-s: #d1d5db; /* shadow color for star */
-    --l-star-c: #f69b12; /* star color */
+  /* star for rating*/
+  --l-star-s: #d1d5db; /* shadow color for star */
+  --l-star-c: #f69b12; /* star color */
 
-    /* gary */
-    --l-gary-tx: #303651; /* color for lable's text */
-    --l-gary-bg: #f4f6f9; /* color for lable */
-    /* red */
-    --l-red-tx: #d30b53;
-    --l-red-bg: #fee5ee;
-    /* green */
-    --l-green-tx: #278500;
-    --l-green-bg: #eef6e9;
-    /* orange */
-    --l-orange-tx: #b94f00;
-    --l-orange-bg: #fff3e8;
+  /* gary */
+  --l-gary-tx: #303651; /* color for lable's text */
+  --l-gary-bg: #f4f6f9; /* color for lable */
+  /* red */
+  --l-red-tx: #d30b53;
+  --l-red-bg: #fee5ee;
+  /* green */
+  --l-green-tx: #278500;
+  --l-green-bg: #eef6e9;
+  /* orange */
+  --l-orange-tx: #b94f00;
+  --l-orange-bg: #fff3e8;
 
-    /* buttom */
-    --l-buttom-tx: #303651; /* color for buttom's text */
-    --l-blue-bg: #86a8ee; /* color for buttom */
-    --l-olive-bg: #88c06c;
+  /* buttom */
+  --l-buttom-tx: #303651; /* color for buttom's text */
+  --l-blue-bg: #86a8ee; /* color for buttom */
+  --l-olive-bg: #88c06c;
 
-    /* Dark Mode */
-    /* basic */
-    --d-bg: #002337; /* background color */
-    --d-tx: #e6e8f0; /* text color */
-    --d-s: #d9d9d9; /* color for shadow */
+  /* Dark Mode */
+  /* basic */
+  --d-bg: #002337; /* background color */
+  --d-tx: #e6e8f0; /* text color */
+  --d-s: #d9d9d9; /* color for shadow */
 
-    /* star for rating*/
-    --d-star-s: #989eb3; /* shadow color for star */
-    --d-star-c: #ffe600; /* star color */
+  /* star for rating*/
+  --d-star-s: #989eb3; /* shadow color for star */
+  --d-star-c: #ffe600; /* star color */
 
-    /* gary */
-    --d-gary-tx: #c7cbd8; /* color for lable's text */
-    --d-gary-bg: #4a516d; /* color for lable */
-    /* red */
-    --d-red-tx: #fee5ee;
-    --d-red-bg: #9c083e;
-    /* green */
-    --d-green-tx: #278500;
-    --d-green-bg: #eef6e9;
-    /* orange */
-    --d-orange-tx: #fff3e8;
-    --d-orange-bg: #d86900;
+  /* gary */
+  --d-gary-tx: #c7cbd8; /* color for lable's text */
+  --d-gary-bg: #4a516d; /* color for lable */
+  /* red */
+  --d-red-tx: #fee5ee;
+  --d-red-bg: #9c083e;
+  /* green */
+  --d-green-tx: #278500;
+  --d-green-bg: #eef6e9;
+  /* orange */
+  --d-orange-tx: #fff3e8;
+  --d-orange-bg: #d86900;
 
-    /* buttom */
-    --d-buttom-tx: #1c2035; /* color for buttom's text */
-    --d-light-bg: #c7cbd8; /* color for buttom */
-    --d-dark-bg: #303651;
+  /* buttom */
+  --d-buttom-tx: #1c2035; /* color for buttom's text */
+  --d-light-bg: #c7cbd8; /* color for buttom */
+  --d-dark-bg: #303651;
 }
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    /* dark mode */
-    /* background-color: var(--d-bg); */
-    background-color: var(--l-bg);
-    font-family: "Roboto", sans-serif;
+  /* dark mode */
+  /* background-color: var(--d-bg); */
+  background-color: var(--l-bg);
+  font-family: "Roboto", sans-serif;
 }
 
 #teamHead {
-    font-family: "Sofia", sans-serif;
-    color: var(--l-gary-bg);
-    text-align: center;
+  font-family: "Sofia", sans-serif;
+  color: var(--l-gary-bg);
+  text-align: center;
 }
