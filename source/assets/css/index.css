@@ -70,7 +70,7 @@
 
 body {
     /* dark mode */
-    /* background-color: var(--l-bg); */
+    /* background-color: var(--d-bg); */
     background-color: var(--l-bg);
     font-family: "Roboto", sans-serif;
 }
