@@ -269,14 +269,14 @@ function sortBy(c) {
 };
 //////////////////////////END OF SORT TABLE//////////////////////////////////////////
 // To be used in tests
-// module.exports = {
-//     init,
-//     openForm,
-//     closeForm,
-//     addRow,
-//     save_data,
-//     addEntry,
-//     deleteButton,
-//     editButton,
-//     editRow,
-// };
+module.exports = {
+    init,
+    openForm,
+    closeForm,
+    addRow,
+    save_data,
+    addEntry,
+    deleteButton,
+    editButton,
+    editRow,
+};
