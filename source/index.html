@@ -205,13 +205,13 @@
         >
             <!--table header-->
             <tr>
-                <th class="sortable asc" id="companyName">COMPANY NAME:</th>
-                <th class="sortable desc" id="Position">POSITION:</th>
-                <th class="sortable asc" id="Location">LOCATION:</th>
-                <th class="sortable asc" id="Industry">INDUSTRY:</th>
-                <th class="sortable asc" id="Status">STATUS:</th>
-                <th class="sortable asc" id="Ranking">RANKING:</th>
-                <th class="sortable asc" id="Deadline">DEADLINE:</th>
+                <th class="sortable asc" id="companyName" onclick="sortBy(0)">COMPANY NAME:</th>
+                <th class="sortable desc" id="Position" onclick="sortBy(1)">POSITION:</th>
+                <th class="sortable asc" id="Location" onclick="sortBy(2)">LOCATION:</th>
+                <th class="sortable asc" id="Industry" onclick="sortBy(3)">INDUSTRY:</th>
+                <th class="sortable asc" id="Status" onclick="sortBy(4)">STATUS:</th>
+                <th class="sortable asc" id="Ranking" onclick="sortBy(5)">RANKING:</th>
+                <th class="sortable asc" id="Deadline" onclick="sortBy(6)">DEADLINE:</th>
             </tr>
             <!-- javascript render here -->
             <tr id="inputTable"></tr>
