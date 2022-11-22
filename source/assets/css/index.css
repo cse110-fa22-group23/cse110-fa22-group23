@@ -36,31 +36,31 @@
 
     /* Dark Mode */
     /* basic */
-    --l-bg: #002337; /* background color */
-    --l-tx: #e6e8f0; /* text color */
-    --l-s: #d9d9d9; /* color for shadow */
+    --d-bg: #002337; /* background color */
+    --d-tx: #e6e8f0; /* text color */
+    --d-s: #d9d9d9; /* color for shadow */
 
     /* star for rating*/
-    --l-star-s: #989eb3; /* shadow color for star */
-    --l-star-c: #ffe600; /* star color */
+    --d-star-s: #989eb3; /* shadow color for star */
+    --d-star-c: #ffe600; /* star color */
 
     /* gary */
-    --l-gary-tx: #c7cbd8; /* color for lable's text */
-    --l-gary-bg: #4a516d; /* color for lable */
+    --d-gary-tx: #c7cbd8; /* color for lable's text */
+    --d-gary-bg: #4a516d; /* color for lable */
     /* red */
-    --l-red-tx: #fee5ee;
-    --l-red-bg: #9c083e;
+    --d-red-tx: #fee5ee;
+    --d-red-bg: #9c083e;
     /* green */
-    --l-green-tx: #278500;
-    --l-green-bg: #eef6e9;
+    --d-green-tx: #278500;
+    --d-green-bg: #eef6e9;
     /* orange */
-    --l-orange-tx: #fff3e8;
-    --l-orange-bg: #d86900;
+    --d-orange-tx: #fff3e8;
+    --d-orange-bg: #d86900;
 
     /* buttom */
-    --l-buttom-tx: #1c2035; /* color for buttom's text */
-    --l-light-bg: #c7cbd8; /* color for buttom */
-    --l-dark-bg: #303651;
+    --d-buttom-tx: #1c2035; /* color for buttom's text */
+    --d-light-bg: #c7cbd8; /* color for buttom */
+    --d-dark-bg: #303651;
 }
 
 * {
@@ -71,7 +71,7 @@
 body {
     /* dark mode */
     /* background-color: var(--l-bg); */
-    background-color: var(--l-s);
+    background-color: var(--l-bg);
     font-family: "Roboto", sans-serif;
 }
 
