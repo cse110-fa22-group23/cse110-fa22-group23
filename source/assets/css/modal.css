@@ -146,3 +146,102 @@
 #entry-form div.form-buttons button.caution:active {
     background: rgba(231, 100, 100, 0.6);
 }
+
+/* Edit form content */
+#edit-form div {
+    margin-bottom: 30px;
+}
+
+#edit-form div label {
+    font-family: "Inter";
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #303651;
+    display: inline-block;
+    width: 40%;
+}
+
+#edit-form div input:not([type="submit"]),
+#edit-form div textarea {
+    font-family: "Inter";
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    background: #d9d9d9;
+    border-radius: 8px;
+    border: none;
+    padding: 15px;
+    width: auto;
+}
+
+#edit-form div input:not([type="submit"]):focus,
+#edit-form div textarea:focus {
+    outline: none;
+    font-weight: 600;
+}
+
+#edit-form div select,
+#edit-form div textarea {
+    font-family: "Inter";
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    background: #d9d9d9;
+    border-radius: 8px;
+    border: none;
+    padding: 15px;
+    width: auto;
+}
+
+#edit-form div select:focus,
+#edit-form div textarea:focus {
+    outline: none;
+    font-weight: 600;
+}
+
+#edit-form div.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#edit-form div.form-buttons input,
+#edit-form div.form-buttons button {
+    border: none;
+    background: #86a8ee;
+    border-radius: 999px;
+    width: 40%;
+    height: 30px;
+    font-family: "Inter";
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+#edit-form div.form-buttons input:hover,
+#edit-form div.form-buttons button:hover {
+    background: rgb(109, 152, 238);
+}
+
+#edit-form div.form-buttons input:active,
+#edit-form div.form-buttons button:active {
+    background: rgba(109, 152, 238, 0.6);
+}
+
+#edit-form div.form-buttons input.caution,
+#edit-form div.form-buttons button.caution {
+    background: #e57878;
+}
+
+#edit-form div.form-buttons input.caution:hover,
+#edit-form div.form-buttons button.caution:hover {
+    background: rgb(231, 100, 100);
+}
+
+#edit-form div.form-buttons input.caution:active,
+#edit-form div.form-buttons button.caution:active {
+    background: rgba(231, 100, 100, 0.6);
+}
