@@ -2,7 +2,6 @@ window.addEventListener("DOMContentLoaded", init);
 var data = {};
 var count = 1;
 var currRow;
-//var currMax = [];
 
 /**
  * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
@@ -10,16 +9,17 @@ var currRow;
  */
 function init() {
     // load data from localStorage if it exists
-    if (!(localStorage.getItem("SpreadSheet") === null)) {
-        var loadedData = window.localStorage.getItem("SpreadSheet");
+    var loadedData = window.localStorage.getItem("SpreadSheet");
+    if (!(loadedData === null)) {
         loadedData = JSON.parse(loadedData);
         addEntrys(loadedData);
 
         data = loadedData;
         console.log(loadedData);
     }
-    if (!(localStorage.getItem("counter") === null)) {
-        var counter = window.localStorage.getItem("counter");
+
+    var counter = window.localStorage.getItem("counter");
+    if (!(counter === null)) {
         count = JSON.parse(counter);
     }
     return 0;
@@ -65,15 +65,7 @@ window.addEventListener("click", function (e) {
 function addRow() {
     event.preventDefault();
 
-    const formData = {
-        company: document.getElementById("company").value,
-        position: document.getElementById("position").value,
-        location: document.getElementById("location").value,
-        industry: document.getElementById("industry").value,
-        status: document.getElementById("status").value,
-        ranking: document.getElementById("ranking").value,
-        deadline: document.getElementById("deadline").value,
-    };
+    const formData = getFormData("");
 
     let rowId = count;
     addEntry(formData, rowId);
@@ -90,6 +82,7 @@ function editButton(item) {
     currRow = row;
     const rowData = data[row.id];
     console.log(rowData["company"]);
+    // prefill form with row data
     document.getElementById("companyEdit").value = rowData["company"];
     document.getElementById("positionEdit").value = rowData["position"];
     document.getElementById("locationEdit").value = rowData["location"];
@@ -107,24 +100,36 @@ function editButton(item) {
 function editRow() {
     event.preventDefault();
     const row = currRow;
-    const formData = {
-        company: document.getElementById("companyEdit").value,
-        position: document.getElementById("positionEdit").value,
-        location: document.getElementById("locationEdit").value,
-        industry: document.getElementById("industryEdit").value,
-        status: document.getElementById("statusEdit").value,
-        ranking: document.getElementById("rankingEdit").value,
-        deadline: document.getElementById("deadlineEdit").value,
-    };
-    deleteButton(row);
+    const formData = getFormData("Edit");
     addEntry(formData, row.id, row.rowIndex);
+    deleteButton(row);
     closeEditForm();
     save_data(row.id, formData);
 }
 
 /**
+ * Get the data inside the edit form.
+ * @param postfix to add to the 'id' because all ids must be unique
+ *  * @example <caption>Example usage of to get edit form data.</caption>
+ * // returns the edit form data
+ * getEditFormData("Edit");
+ * @returns formData object of form fields
+ */
+function getFormData(postfix) {
+    const formData = {
+        company: document.getElementById(`company${postfix}`).value,
+        position: document.getElementById(`position${postfix}`).value,
+        location: document.getElementById(`location${postfix}`).value,
+        industry: document.getElementById(`industry${postfix}`).value,
+        status: document.getElementById(`status${postfix}`).value,
+        ranking: document.getElementById(`ranking${postfix}`).value,
+        deadline: document.getElementById(`deadline${postfix}`).value,
+    };
+    return formData;
+}
+/**
  * Deletes the row given a reference to its data.
- * @param td item table data
+ * @param item td table data
  */
 function deleteButton(item) {
     const row = item.closest("tr");
@@ -141,7 +146,6 @@ function deleteButton(item) {
  * @param entrys array of entrys
  */
 function addEntrys(entrys) {
-    console.log("addEntrys");
     for (var key in entrys) {
         addEntry(entrys[key], key);
     }
@@ -204,6 +208,77 @@ function save_localstorage() {
     window.localStorage.setItem("counter", JSON.stringify(count));
 }
 
+/////////////////////////SORT TABLE////////////////////////////////////////////////////////
+
+// determine if the same column is clicked again
+
+function sortBy(c) {
+    let rows = document.getElementById("spreadsheet").rows.length - 1; // num of rows
+    // console.log(rows)
+    let columns = document.getElementById("spreadsheet").rows[0].cells.length; // num of columns
+    // console.log(columns)
+    let arrTable = [...Array(rows)].map(() => Array(columns)); // create an empty 2d array
+    // console.log(arrTable)
+
+    for (let ro = 0; ro < rows; ro++) {
+        // cycle through rows
+        for (let co = 0; co < columns; co++) {
+            // cycle through columns
+            // assign the value in each row-column to a 2d array by row-column
+            arrTable[ro][co] =
+                document.getElementById("spreadsheet").rows[ro].cells[
+                    co
+                ].innerHTML;
+        }
+    }
+
+    let th = arrTable.shift(); // remove the header row from the array, and save it
+
+    // if the same column is clicked then reverse the array
+
+    arrTable.sort((a, b) => {
+        if (a[c] === b[c]) {
+            return 0;
+        } else {
+            return a[c] < b[c] ? -1 : 1;
+        }
+    });
+    if (
+        document.getElementById("spreadsheet").rows[0].cells[c].className ==
+        "sortable asc"
+    ) {
+        arrTable.reverse();
+    }
+
+    arrTable.unshift(th); // put the header back in to the array
+
+    // cycle through rows-columns placing values from the array back into the html table
+    for (let ro = 0; ro < rows; ro++) {
+        for (let co = 0; co < columns; co++) {
+            if (ro === 0) {
+                if (co == c) {
+                    let chosen =
+                        document.getElementById("spreadsheet").rows[ro].cells[
+                            co
+                        ];
+                    if (chosen.className == "sortable asc") {
+                        chosen.className = "sortable dsc";
+                    } else {
+                        chosen.className = "sortable asc";
+                    }
+                }
+            }
+            document.getElementById("spreadsheet").rows[ro].cells[
+                co
+            ].innerHTML = arrTable[ro][co];
+        }
+    }
+}
+let a = 0;
+if (a === 1) {
+    sortBy(0); // eliminate lint error
+}
+//////////////////////////END OF SORT TABLE//////////////////////////////////////////
 // To be used in tests
 module.exports = {
     init,
