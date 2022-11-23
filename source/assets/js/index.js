@@ -246,7 +246,17 @@ function sortBy(c) {
         });
     } else {
         // if the same column is clicked then reverse the array
-        arrTable.reverse();
+
+        arrTable.sort((a, b) => {
+            if (a[c] === b[c]) {
+                return 0;
+            } else {
+                return a[c] < b[c] ? -1 : 1;
+            }
+        });
+        if (document.getElementById("spreadsheet").rows[0].cells[c].className == "sortable asc"){
+            
+        }else{arrTable.reverse();}
     }
 
     cPrev = c; // save in previous c
