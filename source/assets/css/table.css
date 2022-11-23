@@ -138,16 +138,4 @@ th.sortable:hover::after {
     text-align: center;
 }
 
-@media only screen and (max-width: 425px) {
-    #spreadsheet {
-        border: 1px solid;
-        position: relative;
-        background-color: #f6f6f6;
-        color: #697089;   
-        width: 100%; 
-    }
-    .tablesheet{
-        float: left;
-    }
-}
 
