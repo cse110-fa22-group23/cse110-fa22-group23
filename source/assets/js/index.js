@@ -234,25 +234,21 @@ function sortBy(c) {
 
     let th = arrTable.shift(); // remove the header row from the array, and save it
 
+    // if the same column is clicked then reverse the array
 
-        // if the same column is clicked then reverse the array
-
-        arrTable.sort((a, b) => {
-            if (a[c] === b[c]) {
-                return 0;
-            } else {
-                return a[c] < b[c] ? -1 : 1;
-            }
-        });
-        if (
-            document.getElementById("spreadsheet").rows[0].cells[c].className ==
-            "sortable asc"
-        ) {
-            arrTable.reverse();
+    arrTable.sort((a, b) => {
+        if (a[c] === b[c]) {
+            return 0;
+        } else {
+            return a[c] < b[c] ? -1 : 1;
         }
-
-
-
+    });
+    if (
+        document.getElementById("spreadsheet").rows[0].cells[c].className ==
+        "sortable asc"
+    ) {
+        arrTable.reverse();
+    }
 
     arrTable.unshift(th); // put the header back in to the array
 
