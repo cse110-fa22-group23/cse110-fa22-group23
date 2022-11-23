@@ -254,9 +254,12 @@ function sortBy(c) {
                 return a[c] < b[c] ? -1 : 1;
             }
         });
-        if (document.getElementById("spreadsheet").rows[0].cells[c].className == "sortable asc"){
-            
-        }else{arrTable.reverse();}
+        if (
+            document.getElementById("spreadsheet").rows[0].cells[c].className ==
+            "sortable dsc"
+        ) {
+            arrTable.reverse();
+        }
     }
 
     cPrev = c; // save in previous c
