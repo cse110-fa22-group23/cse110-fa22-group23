@@ -256,7 +256,7 @@ function sortBy(c) {
         });
         if (
             document.getElementById("spreadsheet").rows[0].cells[c].className ==
-            "sortable dsc"
+            "sortable asc"
         ) {
             arrTable.reverse();
         }
