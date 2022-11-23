@@ -210,7 +210,6 @@ function save_localstorage() {
 
 /////////////////////////SORT TABLE////////////////////////////////////////////////////////
 
-let cPrev = -1; // global var saves the previous c, used to
 // determine if the same column is clicked again
 
 function sortBy(c) {
@@ -235,21 +234,21 @@ function sortBy(c) {
 
     let th = arrTable.shift(); // remove the header row from the array, and save it
 
-    if (c !== cPrev) {
-        // different column is clicked, so sort by the new column
-        arrTable.sort((a, b) => {
-            if (a[c] === b[c]) {
-                return 0;
-            } else {
-                return a[c] < b[c] ? -1 : 1;
-            }
-        });
-    } else {
-        // if the same column is clicked then reverse the array
+    // if the same column is clicked then reverse the array
+
+    arrTable.sort((a, b) => {
+        if (a[c] === b[c]) {
+            return 0;
+        } else {
+            return a[c] < b[c] ? -1 : 1;
+        }
+    });
+    if (
+        document.getElementById("spreadsheet").rows[0].cells[c].className ==
+        "sortable asc"
+    ) {
         arrTable.reverse();
     }
-
-    cPrev = c; // save in previous c
 
     arrTable.unshift(th); // put the header back in to the array
 
