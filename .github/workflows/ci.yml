@@ -58,9 +58,6 @@ jobs:
         run: |
           npm run test
           
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
       - name: branch-deploy
         uses: github/branch-deploy@v3.0.3
 

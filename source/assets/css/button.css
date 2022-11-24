@@ -50,7 +50,7 @@
     box-shadow: none;
 }
 
-#tableBtn {
+.tableBtn {
     background: #76b3fa;
     border-radius: 100px;
     padding: 10px 10px;
@@ -59,13 +59,13 @@
     text-align: center;
 }
 
-#tableBtn:hover {
+.tableBtn:hover {
     background-color: #e5e5e5;
     color: #76b3fa;
     box-shadow: 0 0 0 1px rgba(80, 80, 80, 0.5);
 }
 
-#tableBtn:active {
+.tableBtn:active {
     box-shadow: none;
 }
 
