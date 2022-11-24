@@ -156,50 +156,63 @@ function addEntrys(entrys) {
 }
 
 /**
+ * Initializes a newly created row with corresponding fields.
+ * @param row the row to initialize
+ * @param rowId the id to be assigned to the row
+ */
+function initializeRow(table, id, rowIndex) {
+    var row = table.insertRow(rowIndex);
+    var rowCells = {};
+    row.id = id;
+    count++;
+    rowCells.company = row.insertCell(0);
+    rowCells.company.setAttribute("class", "company_name");
+    rowCells.position = row.insertCell(1);
+    rowCells.position.setAttribute("class", "position_name");
+    rowCells.location = row.insertCell(2);
+    rowCells.location.setAttribute("class", "location_name");
+    rowCells.industry = row.insertCell(3);
+    rowCells.industry.setAttribute("class", "industry_name");
+    rowCells.status = row.insertCell(4);
+    rowCells.status.setAttribute("class", "status_name");
+    rowCells.ranking = row.insertCell(5);
+    rowCells.ranking.setAttribute("class", "ranking_value");
+    rowCells.deadline = row.insertCell(6);
+    rowCells.deadline.setAttribute("class", "deadline_date");
+    rowCells.editButton = row.insertCell(7);
+    rowCells.deleteButton = row.insertCell(8);
+
+    return rowCells;
+}
+
+/**
  * Appends form data (from the modal) to a corresponding entry in the table.
  * @param entry a dictionary of a job application data
  */
 function addEntry(entry, id, rowIndex = 1) {
     var table = document.getElementById("spreadsheet");
-    var row = table.insertRow(rowIndex);
-    row.id = id;
-    var company = row.insertCell(0);
-    company.setAttribute("class", "company_name");
-    var position = row.insertCell(1);
-    position.setAttribute("class", "position_name");
-    var location = row.insertCell(2);
-    location.setAttribute("class", "location_name");
-    var industry = row.insertCell(3);
-    industry.setAttribute("class", "industry_name");
-    var status = row.insertCell(4);
-    status.setAttribute("class", "status_name");
-    var ranking = row.insertCell(5);
-    ranking.setAttribute("class", "ranking_value");
-    var deadline = row.insertCell(6);
-    deadline.setAttribute("class", "deadline_date");
-    var editButton = row.insertCell(7);
-    var deleteButton = row.insertCell(8);
-    company.innerHTML = entry["company"];
+    var rowCells = initializeRow(table, id, rowIndex);
+
+    rowCells.company.innerHTML = entry["company"];
     if (entry["link"]) {
-        position.innerHTML = `<a class="positionLink" href="${entry["link"]}" target="_blank">${entry["position"]} </a>`;
+        rowCells.position.innerHTML = `<a class="positionLink" href="${entry["link"]}" target="_blank">${entry["position"]} </a>`;
     } else {
-        position.innerHTML = entry["position"];
+        rowCells.position.innerHTML = entry["position"];
     }
-    location.innerHTML = entry["location"];
-    industry.innerHTML = entry["industry"];
-    status.innerHTML = entry["status"];
-    if (status.innerHTML == "Applied") {
-        status.setAttribute("class", "applied");
-    } else if (status.innerHTML == "In Progress") {
-        status.setAttribute("class", "in_progress");
-    } else if (status.innerHTML == "Not Started") {
-        status.setAttribute("class", "not_started");
+    rowCells.location.innerHTML = entry["location"];
+    rowCells.industry.innerHTML = entry["industry"];
+    rowCells.status.innerHTML = entry["status"];
+    if (rowCells.status.innerHTML == "Applied") {
+        rowCells.status.setAttribute("class", "applied");
+    } else if (rowCells.status.innerHTML == "In Progress") {
+        rowCells.status.setAttribute("class", "in_progress");
+    } else if (rowCells.status.innerHTML == "Not Started") {
+        rowCells.status.setAttribute("class", "not_started");
     }
-    ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}-star.svg" alt="${entry["ranking"]} stars"></img>`;
-    deadline.innerHTML = entry["deadline"];
-    editButton.innerHTML = `<button type="button" id="createBtn" onclick="editButton(this)">Edit</button>`;
-    deleteButton.innerHTML = `<button type="button" id="createBtn" onclick="deleteButton(this)">Delete</button>`;
-    count++;
+    rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}-star.svg" alt="${entry["ranking"]} stars"></img>`;
+    rowCells.deadline.innerHTML = entry["deadline"];
+    rowCells.editButton.innerHTML = `<button type="button" id="createBtn" onclick="editButton(this)">Edit</button>`;
+    rowCells.deleteButton.innerHTML = `<button type="button" id="createBtn" onclick="deleteButton(this)">Delete</button>`;
 }
 
 /**
@@ -260,17 +273,13 @@ function sortBy(c) {
     // cycle through rows-columns placing values from the array back into the html table
     for (let ro = 0; ro < rows; ro++) {
         for (let co = 0; co < columns; co++) {
-            if (ro === 0) {
-                if (co == c) {
-                    let chosen =
-                        document.getElementById("spreadsheet").rows[ro].cells[
-                            co
-                        ];
-                    if (chosen.className == "sortable asc") {
-                        chosen.className = "sortable dsc";
-                    } else {
-                        chosen.className = "sortable asc";
-                    }
+            if (ro === 0 && co === c) {
+                let chosen =
+                    document.getElementById("spreadsheet").rows[ro].cells[co];
+                if (chosen.className == "sortable asc") {
+                    chosen.className = "sortable dsc";
+                } else {
+                    chosen.className = "sortable asc";
                 }
             }
             document.getElementById("spreadsheet").rows[ro].cells[
