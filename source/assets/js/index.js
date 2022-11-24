@@ -15,7 +15,6 @@ function init() {
         addEntrys(loadedData);
 
         data = loadedData;
-        console.log(loadedData);
     }
 
     var counter = window.localStorage.getItem("counter");
@@ -85,7 +84,7 @@ function editButton(item) {
     const row = item.closest("tr");
     currRow = row;
     const rowData = data[row.id];
-    console.log(rowData["company"]);
+
     // prefill form with row data
     document.getElementById("companyEdit").value = rowData["company"];
     document.getElementById("positionEdit").value = rowData["position"];
@@ -142,7 +141,6 @@ function deleteButton(item) {
     // delete from HTML
     document.getElementById("spreadsheet").deleteRow(row.rowIndex);
     // delete from local storage
-    console.log(data[row.id]);
     delete data[row.id];
     save_localstorage();
 }
@@ -224,11 +222,8 @@ function save_localstorage() {
 
 function sortBy(c) {
     let rows = document.getElementById("spreadsheet").rows.length - 1; // num of rows
-    // console.log(rows)
     let columns = document.getElementById("spreadsheet").rows[0].cells.length; // num of columns
-    // console.log(columns)
     let arrTable = [...Array(rows)].map(() => Array(columns)); // create an empty 2d array
-    // console.log(arrTable)
 
     for (let ro = 0; ro < rows; ro++) {
         // cycle through rows
