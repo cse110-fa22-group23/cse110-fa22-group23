@@ -94,6 +94,7 @@ function editButton(item) {
     document.getElementById("statusEdit").value = rowData["status"];
     document.getElementById("rankingEdit").value = rowData["ranking"];
     document.getElementById("deadlineEdit").value = rowData["deadline"];
+    document.getElementById("linkEdit").value = rowData["link"];
 
     openEditForm();
 }
@@ -128,6 +129,7 @@ function getFormData(postfix) {
         status: document.getElementById(`status${postfix}`).value,
         ranking: document.getElementById(`ranking${postfix}`).value,
         deadline: document.getElementById(`deadline${postfix}`).value,
+        link: document.getElementById(`link${postfix}`).value,
     };
     return formData;
 }
@@ -180,7 +182,11 @@ function addEntry(entry, id, rowIndex = 1) {
     var editButton = row.insertCell(7);
     var deleteButton = row.insertCell(8);
     company.innerHTML = entry["company"];
-    position.innerHTML = entry["position"];
+    if (entry["link"]) {
+        position.innerHTML = `<a class="positionLink" href="${entry["link"]}" target="_blank">${entry["position"]} </a>`;
+    } else {
+        position.innerHTML = entry["position"];
+    }
     location.innerHTML = entry["location"];
     industry.innerHTML = entry["industry"];
     status.innerHTML = entry["status"];
