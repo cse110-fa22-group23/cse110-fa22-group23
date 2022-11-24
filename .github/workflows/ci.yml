@@ -57,7 +57,3 @@ jobs:
         working-directory: ./source
         run: |
           npm run test
-          
-      - name: branch-deploy
-        uses: github/branch-deploy@v3.0.3
-

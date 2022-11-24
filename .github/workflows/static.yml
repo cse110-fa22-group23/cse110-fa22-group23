@@ -1,42 +1,43 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: "branch deploy demo"
 
+# The workflow to execute on is comments that are newly created
 on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+  issue_comment:
+    types: [created]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# Permissions needed for reacting and adding comments for IssueOps commands
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+  pull-requests: write
+  deployments: write
+  contents: write
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  demo:
+    if: ${{ github.event.issue.pull_request }} # only run on pull request comments
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      # Execute IssueOps branch deployment logic, hooray!
+      # This will be used to "gate" all future steps below and conditionally trigger steps/deployments
+      - uses: github/branch-deploy@vX.X.X
+        id: branch-deploy
         with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          trigger: ".deploy"
+
+      # Run your deployment logic for your project here - examples seen below
+
+      # Checkout your projects repository based on the ref provided by the branch-deploy step
+      - uses: actions/checkout@3.0.2
+        with:
+          ref: ${{ steps.branch-deploy.outputs.ref }}
+
+      # Do some fake "noop" deployment logic here
+      # conditionally run a noop deployment
+      - name: fake noop deploy
+        if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop == 'true' }}
+        run: echo "I am doing a fake noop deploy"
+
+      # Do some fake "regular" deployment logic here
+      # conditionally run a regular deployment
+      - name: fake regular deploy
+        if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
+        run: echo "I am doing a fake regular deploy"
