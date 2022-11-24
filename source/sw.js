@@ -1,7 +1,8 @@
 const cacheName = "jobtracker-v1";
 const appShellFiles = [
     "/",
-    "/source",
+    "/index.html",
+    "/source/",
     "/source/index.html",
     "/source/assets/css/button.css",
     "/source/assets/css/index.css",

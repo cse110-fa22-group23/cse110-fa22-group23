@@ -30,12 +30,9 @@
         <h1 id="teamHead">AmoungSus Job Tracker</h1>
 
         <!-- Function Buttons -->
-        <div class="sideBtn">
-            <button type="button" id="createBtn" onclick="openForm()">
-                Create Entry
-            </button>
-        </div>
-
+        <button type="button" id="createBtn" onclick="openForm()">
+            Create Entry
+        </button>
         <!-- Entry Modal -->
         <div id="form-modal" class="modal">
             <div class="modal-content">
@@ -64,8 +61,12 @@
                         <label for="location">Enter Location:</label>
                         <select name="location" id="location">
                             <option value="">Choose location</option>
-                            <option value="CA">CA</option>
-                            <option value="WA">WA</option>
+                            <option value="Remote">Remote</option>
+                            <option value="Northeast">Northeast</option>
+                            <option value="Southwest">Southwest</option>
+                            <option value="West">West</option>
+                            <option value="Southeast">Southeast</option>
+                            <option value="Midwest">Midwest</option>
                         </select>
                     </div>
                     <div>
@@ -104,16 +105,6 @@
                             name="deadline"
                             min="2022-01-01"
                             max="2023-12-31"
-                        />
-                    </div>
-                    <div>
-                        <label for="link">Enter Application Link:</label>
-                        <input
-                            type="text"
-                            placeholder="https://example.com"
-                            name="link"
-                            id="link"
-                            required
                         />
                     </div>
                     <br />
@@ -158,8 +149,12 @@
                         <label for="location">Enter Location:</label>
                         <select name="location" id="locationEdit">
                             <option value="">Choose location</option>
-                            <option value="CA">CA</option>
-                            <option value="WA">WA</option>
+                            <option value="Remote">Remote</option>
+                            <option value="Northeast">Northeast</option>
+                            <option value="Southwest">Southwest</option>
+                            <option value="West">West</option>
+                            <option value="Southeast">Southeast</option>
+                            <option value="Midwest">Midwest</option>
                         </select>
                     </div>
                     <div>
@@ -200,16 +195,6 @@
                             max="2023-12-31"
                         />
                     </div>
-                    <div>
-                        <label for="link">Enter Application Link:</label>
-                        <input
-                            type="text"
-                            placeholder="https://example.com"
-                            name="link"
-                            id="linkEdit"
-                            required
-                        />
-                    </div>
                     <br />
                     <div class="form-buttons">
                         <button class="caution" onclick="closeEditForm()">
@@ -225,16 +210,28 @@
             </div>
         </div>
 
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-modal">
+            <h1>Delete Entry</h1>
+            <p>Are you sure you want to delete this entry?</p>
+            <div class="form-buttons">
+                <button id="tableBtn" onclick="closeDelete()">Cancel</button>
+                <button id="tableBtn" class="caution" onclick="deleteButton()">
+                    Delete
+                </button>
+            </div>
+        </div>
+
         <!-- Main Spreadsheet -->
         <table
             id="spreadsheet"
+            class="hovTable"
             style="background-color: rgba(0, 0, 0, 0)"
-            class="table table-bordered table-hover"
         >
             <!--table header-->
             <tr>
                 <th class="sortable" id="companyName" onclick="sortBy(0)">
-                    COMPANY NAME:
+                    COMPANY:
                 </th>
                 <th class="sortable" id="Position" onclick="sortBy(1)">
                     POSITION:

@@ -8,7 +8,6 @@
     color: #fff;
     text-decoration: none;
     font-size: 1em;
-    transition: all 0.16s ease-in;
     cursor: pointer;
     float: right;
     margin: 0 auto;
@@ -32,12 +31,13 @@
     color: #fff;
     text-decoration: none;
     font-size: 1em;
-    transition: all 0.16s ease-in;
     cursor: pointer;
     float: right;
-    margin: 0 auto;
+    margin: 10px;
     text-align: center;
-    position: relative;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 
 #createBtn:hover {
@@ -50,6 +50,25 @@
     box-shadow: none;
 }
 
+#tableBtn {
+    background: #76b3fa;
+    border-radius: 100px;
+    padding: 10px 10px;
+    text-decoration: none;
+    margin: 5px;
+    text-align: center;
+}
+
+#tableBtn:hover {
+    background-color: #e5e5e5;
+    color: #76b3fa;
+    box-shadow: 0 0 0 1px rgba(80, 80, 80, 0.5);
+}
+
+#tableBtn:active {
+    box-shadow: none;
+}
+
 #deleteBtn {
     font-family: "Montserrat", Helvetica, sans-serif;
     background: #e57878;
@@ -58,7 +77,6 @@
     color: #fff;
     text-decoration: none;
     font-size: 1em;
-    transition: all 0.16s ease-in;
     cursor: pointer;
     float: right;
     margin: 0 auto;
