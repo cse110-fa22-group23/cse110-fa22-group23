@@ -57,6 +57,10 @@ window.addEventListener("click", function (e) {
     if (e.target == document.getElementById("form-modal")) {
         closeForm();
     }
+
+    if (e.target == document.getElementById("edit-modal")) {
+        closeEditForm();
+    }
 });
 
 /**
