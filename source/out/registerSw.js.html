@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: registerSw.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,43 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: registerSw.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Registers a service worker for the current page.
+ */
+const registerServiceWorker = async () => {
+    try {
+        const registration = await navigator.serviceWorker.register("./sw.js", {
+            scope: "./sw.js",
+        });
+        if (registration.installing) {
+            console.log("Service worker installing");
+        } else if (registration.waiting) {
+            console.log("Service worker installed");
+        } else if (registration.active) {
+            console.log("Service worker active");
+        }
+    } catch (error) {
+        console.error(`Registration failed with ${error}`);
+    }
+};
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+window.addEventListener("load", () => {
+    if ("serviceWorker" in navigator) {
+        registerServiceWorker();
+    }
+});
+</code></pre>
+        </article>
+    </section>
 
 
 
