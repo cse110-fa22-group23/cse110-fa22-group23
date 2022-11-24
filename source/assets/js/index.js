@@ -78,7 +78,7 @@ function addRow() {
 
 /**
  * Edit the row given a reference to its data. Opens edit modal.
- * @param td item table data
+ * @param item (td) table data
  */
 function editButton(item) {
     const row = item.closest("tr");
@@ -134,7 +134,7 @@ function getFormData(postfix) {
 }
 /**
  * Deletes the row given a reference to its data.
- * @param item td table data
+ * @param item (td) table data
  */
 function deleteButton(item) {
     const row = item.closest("tr");
@@ -157,8 +157,10 @@ function addEntrys(entrys) {
 
 /**
  * Initializes a newly created row with corresponding fields.
- * @param row the row to initialize
- * @param rowId the id to be assigned to the row
+ * @param table the table to add the row to
+ * @param id the id to be assigned to the row
+ * @param rowIndex the index of the row to be added
+ * @returns an object containing the cells of the newly created row
  */
 function initializeRow(table, id, rowIndex) {
     var row = table.insertRow(rowIndex);
@@ -188,6 +190,8 @@ function initializeRow(table, id, rowIndex) {
 /**
  * Appends form data (from the modal) to a corresponding entry in the table.
  * @param entry a dictionary of a job application data
+ * @param id the id to be assigned to the row
+ * @param rowIndex the index of the row to be added
  */
 function addEntry(entry, id, rowIndex = 1) {
     var table = document.getElementById("spreadsheet");
@@ -217,6 +221,8 @@ function addEntry(entry, id, rowIndex = 1) {
 
 /**
  * Saves form data (from the modal) to local storage.
+ * @param id TODO
+ * @param formData TODO
  */
 function save_data(id, formData) {
     data[id.toString()] = formData;
@@ -224,6 +230,9 @@ function save_data(id, formData) {
     save_localstorage();
 }
 
+/**
+ * Saves local storage.
+ */
 function save_localstorage() {
     window.localStorage.setItem("SpreadSheet", JSON.stringify(data));
     window.localStorage.setItem("counter", JSON.stringify(count));
@@ -233,6 +242,10 @@ function save_localstorage() {
 
 // determine if the same column is clicked again
 
+/**
+ * Sorts the table by the column clicked.
+ * @param c TODO
+ */
 function sortBy(c) {
     let rows = document.getElementById("spreadsheet").rows.length - 1; // num of rows
     let columns = document.getElementById("spreadsheet").rows[0].cells.length; // num of columns
@@ -288,10 +301,7 @@ function sortBy(c) {
         }
     }
 }
-let a = 0;
-if (a === 1) {
-    sortBy(0); // eliminate lint error
-}
+
 //////////////////////////END OF SORT TABLE//////////////////////////////////////////
 // To be used in tests
 module.exports = {
@@ -304,4 +314,5 @@ module.exports = {
     deleteButton,
     editButton,
     editRow,
+    sortBy,
 };

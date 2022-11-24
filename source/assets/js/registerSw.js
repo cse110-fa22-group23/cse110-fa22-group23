@@ -1,3 +1,6 @@
+/**
+ * Registers a service worker for the current page.
+ */
 const registerServiceWorker = async () => {
     if ("serviceWorker" in navigator) {
         try {
