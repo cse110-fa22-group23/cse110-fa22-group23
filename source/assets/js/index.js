@@ -213,7 +213,7 @@ function addEntry(entry, id, rowIndex = 1) {
     } else if (rowCells.status.innerHTML == "Not Started") {
         rowCells.status.setAttribute("class", "not_started");
     }
-    rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}-star.svg" alt="${entry["ranking"]} stars"></img>`;
+    rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" height=15px></img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
     rowCells.editButton.innerHTML = `<button type="button" id="createBtn" onclick="editButton(this)">Edit</button>`;
     rowCells.deleteButton.innerHTML = `<button type="button" id="createBtn" onclick="deleteButton(this)">Delete</button>`;
