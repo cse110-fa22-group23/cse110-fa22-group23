@@ -219,7 +219,7 @@ function addEntry(entry, id, rowIndex = 1) {
     } else if (status.innerHTML == "Not Started") {
         status.setAttribute("class", "not_started");
     }
-    ranking.innerHTML = `&lt;img src="/cse110-fa22-group23/admin/source/assets/images/stars/${entry["ranking"]}-star.svg" alt="${entry["ranking"]} stars">&lt;/img>`;
+    ranking.innerHTML = `&lt;img src="./assets/images/stars/${entry["ranking"]}-star.svg" alt="${entry["ranking"]} stars">&lt;/img>`;
     deadline.innerHTML = entry["deadline"];
     editButton.innerHTML = `&lt;button type="button" id="createBtn" onclick="editButton(this)">Edit&lt;/button>`;
     deleteButton.innerHTML = `&lt;button type="button" id="createBtn" onclick="deleteButton(this)">Delete&lt;/button>`;
