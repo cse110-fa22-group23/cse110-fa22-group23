@@ -301,15 +301,14 @@ function sortBy(c) {
         }
     }
     //fix status color bubble
-    for (let ro = 1; ro < rows; ro++){
-        let chosen =
-        document.getElementById("spreadsheet").rows[ro].cells[4];
+    for (let ro = 1; ro < rows; ro++) {
+        let chosen = document.getElementById("spreadsheet").rows[ro].cells[4];
         if (chosen.innerHTML == "Applied") {
             chosen.className = "applied";
         } else if (chosen.innerHTML == "In Progress") {
-            chosen.className =  "in_progress";
+            chosen.className = "in_progress";
         } else if (chosen.innerHTML == "Not Started") {
-            chosen.className ="not_started";
+            chosen.className = "not_started";
         }
     }
 }
