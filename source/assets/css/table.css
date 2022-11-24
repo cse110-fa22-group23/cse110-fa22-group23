@@ -138,4 +138,9 @@ th.sortable:hover::after {
     text-align: center;
 }
 
-
+a.positionLink,
+a.positionLink:active,
+a.positionLink:hover {
+    text-decoration: underline;
+    color: #303651;
+}
