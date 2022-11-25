@@ -23,7 +23,18 @@ function init() {
     }
     return 0;
 }
-
+/**
+ * Makes the delete confirmation modal visible on the page.
+ */
+function deleteConfirm() {
+    document.getElementById("delete-modal").style.display = "block";
+}
+/**
+ * Makes the delete confirmation modal no longer visible on the page.
+ */
+function closeDelete() {
+    document.getElementById("delete-modal").style.display = "none";
+}
 /**
  * Makes the form modal visible on the page.
  */
@@ -93,7 +104,6 @@ function editButton(item) {
     document.getElementById("statusEdit").value = rowData["status"];
     document.getElementById("rankingEdit").value = rowData["ranking"];
     document.getElementById("deadlineEdit").value = rowData["deadline"];
-    document.getElementById("linkEdit").value = rowData["link"];
 
     openEditForm();
 }
@@ -112,6 +122,18 @@ function editRow() {
 }
 
 /**
+ * Sanitize and encode all HTML in a user-submitted string
+ * https://portswigger.net/web-security/cross-site-scripting/preventing
+ * @param  {String} str  The user-submitted string
+ * @return {String} str  The sanitized string
+ */
+var sanitizeHTML = function (str) {
+    return str.replace(/[^\w. ]/gi, function (c) {
+        return "&#" + c.charCodeAt(0) + ";";
+    });
+};
+
+/**
  * Get the data inside the edit form.
  * @param postfix to add to the 'id' because all ids must be unique
  *  * @example <caption>Example usage of to get edit form data.</caption>
@@ -128,21 +150,34 @@ function getFormData(postfix) {
         status: document.getElementById(`status${postfix}`).value,
         ranking: document.getElementById(`ranking${postfix}`).value,
         deadline: document.getElementById(`deadline${postfix}`).value,
-        link: document.getElementById(`link${postfix}`).value,
     };
+    // attempt to sanitize user input
+    for (var key in formData) {
+        formData[key] = sanitizeHTML(formData[key]);
+    }
+
     return formData;
 }
 /**
- * Deletes the row given a reference to its data.
+ * Sets the row to be deleted.
  * @param item (td) table data
  */
-function deleteButton(item) {
+function deleteForm(item) {
     const row = item.closest("tr");
+    currRow = row;
+    deleteConfirm();
+}
+/**
+ * Deletes the row given a reference to its data.
+ */
+function deleteButton() {
+    const row = currRow;
     // delete from HTML
     document.getElementById("spreadsheet").deleteRow(row.rowIndex);
     // delete from local storage
     delete data[row.id];
     save_localstorage();
+    closeDelete();
 }
 
 /**
@@ -198,11 +233,7 @@ function addEntry(entry, id, rowIndex = 1) {
     var rowCells = initializeRow(table, id, rowIndex);
 
     rowCells.company.innerHTML = entry["company"];
-    if (entry["link"]) {
-        rowCells.position.innerHTML = `<a class="positionLink" href="${entry["link"]}" target="_blank">${entry["position"]} </a>`;
-    } else {
-        rowCells.position.innerHTML = entry["position"];
-    }
+    rowCells.position.innerHTML = entry["position"];
     rowCells.location.innerHTML = entry["location"];
     rowCells.industry.innerHTML = entry["industry"];
     rowCells.status.innerHTML = entry["status"];
@@ -213,16 +244,16 @@ function addEntry(entry, id, rowIndex = 1) {
     } else if (rowCells.status.innerHTML == "Not Started") {
         rowCells.status.setAttribute("class", "not_started");
     }
-    rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" height=15px></img>`;
+    rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" class="center" style="display:block;" width="100%" height="100%"></img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
-    rowCells.editButton.innerHTML = `<button type="button" id="createBtn" onclick="editButton(this)">Edit</button>`;
-    rowCells.deleteButton.innerHTML = `<button type="button" id="createBtn" onclick="deleteButton(this)">Delete</button>`;
+    rowCells.editButton.innerHTML = `<button type="button" class="tableBtn" onclick="editButton(this)"><img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row"></button>`;
+    rowCells.deleteButton.innerHTML = `<button type="button" class="tableBtn" onclick="deleteForm(this)"><img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row"></button>`;
 }
 
 /**
  * Saves form data (from the modal) to local storage.
- * @param id TODO
- * @param formData TODO
+ * @param id of the application (key into localstorage)
+ * @param formData data fields of application
  */
 function save_data(id, formData) {
     data[id.toString()] = formData;
@@ -298,6 +329,18 @@ function sortBy(c) {
             document.getElementById("spreadsheet").rows[ro].cells[
                 co
             ].innerHTML = arrTable[ro][co];
+            // TODO: restore the status class here
+        }
+    }
+    //fix status color bubble
+    for (let ro = 1; ro < rows; ro++) {
+        let chosen = document.getElementById("spreadsheet").rows[ro].cells[4];
+        if (chosen.innerHTML == "Applied") {
+            chosen.className = "applied";
+        } else if (chosen.innerHTML == "In Progress") {
+            chosen.className = "in_progress";
+        } else if (chosen.innerHTML == "Not Started") {
+            chosen.className = "not_started";
         }
     }
     //fix status color bubble
@@ -326,4 +369,5 @@ module.exports = {
     editButton,
     editRow,
     sortBy,
+    deleteForm,
 };
