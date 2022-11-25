@@ -64,10 +64,12 @@ function closeDelete() {
     document.getElementById("delete-modal").style.display = "none";
 }
 /**
- * Makes the form modal visible on the page.
+ * Makes the form modal visible on the page. Resets form fields.
  */
 function openForm() {
     document.getElementById("form-modal").style.display = "block";
+    if (document.getElementById("entry-form"))
+        document.getElementById("entry-form").reset();
 }
 
 /**
