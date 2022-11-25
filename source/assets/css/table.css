@@ -184,6 +184,6 @@ th.sortable:hover::after {
 }
 
 /* Highlight the current hovered row */
-tr:hover > td {
+tr:hover > td:not(.in_progress):not(.applied):not(.not_started) {
     background: lightgray;
 }
