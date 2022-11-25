@@ -1,7 +1,6 @@
 window.addEventListener("DOMContentLoaded", init);
-var data = {};
-var count = 1;
-var currRow;
+// non-persistent state
+const state = require("./state.js");
 
 /**
  * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
@@ -14,15 +13,16 @@ function init() {
         loadedData = JSON.parse(loadedData);
         addEntrys(loadedData);
 
-        data = loadedData;
+        state.data = loadedData;
     }
 
     var counter = window.localStorage.getItem("counter");
     if (!(counter === null)) {
-        count = JSON.parse(counter);
+        state.count = JSON.parse(counter);
     }
     return 0;
 }
+
 /**
  * Makes the delete confirmation modal visible on the page.
  */
@@ -81,11 +81,11 @@ window.addEventListener("click", function (e) {
  * Appends form data (from the modal) to a corresponding entry in the table. Reset form field after submit.
  */
 function addRow() {
-    event.preventDefault();
+    // event.preventDefault();
 
     const formData = getFormData("");
 
-    let rowId = count;
+    let rowId = state.count;
     addEntry(formData, rowId);
     closeForm();
     save_data(rowId, formData);
@@ -100,8 +100,9 @@ function addRow() {
  */
 function editButton(item) {
     const row = item.closest("tr");
-    currRow = row;
-    const rowData = data[row.id];
+    state.currRow = row;
+    console.log(state.data);
+    const rowData = state.data[row.id];
 
     // prefill form with row data
     document.getElementById("companyEdit").value = rowData["company"];
@@ -119,8 +120,8 @@ function editButton(item) {
  *  Edit row from the data in the modal.
  */
 function editRow() {
-    event.preventDefault();
-    const row = currRow;
+    // event.preventDefault();
+    const row = state.currRow;
     const formData = getFormData("Edit");
     addEntry(formData, row.id, row.rowIndex);
     deleteButton(row);
@@ -173,18 +174,18 @@ function getFormData(postfix) {
  */
 function deleteForm(item) {
     const row = item.closest("tr");
-    currRow = row;
+    state.currRow = row;
     deleteConfirm();
 }
 /**
  * Deletes the row given a reference to its data.
  */
 function deleteButton() {
-    const row = currRow;
+    const row = state.currRow;
     // delete from HTML
     document.getElementById("spreadsheet").deleteRow(row.rowIndex);
     // delete from local storage
-    delete data[row.id];
+    delete state.data[row.id];
     save_localstorage();
     closeDelete();
 }
@@ -195,6 +196,7 @@ function deleteButton() {
  */
 function addEntrys(entrys) {
     for (var key in entrys) {
+        //module.exports.addEntry(entrys[key], key); // example dependency injection for testing
         addEntry(entrys[key], key);
     }
 }
@@ -210,7 +212,7 @@ function initializeRow(table, id, rowIndex) {
     var row = table.insertRow(rowIndex);
     var rowCells = {};
     row.id = id;
-    count++;
+    state.count++;
     rowCells.company = row.insertCell(0);
     rowCells.company.setAttribute("class", "company_name");
     rowCells.position = row.insertCell(1);
@@ -266,7 +268,7 @@ function addEntry(entry, id, rowIndex = 1) {
  * @param formData data fields of application
  */
 function save_data(id, formData) {
-    data[id.toString()] = formData;
+    state.data[id.toString()] = formData;
 
     save_localstorage();
 }
@@ -275,98 +277,18 @@ function save_data(id, formData) {
  * Saves local storage.
  */
 function save_localstorage() {
-    window.localStorage.setItem("SpreadSheet", JSON.stringify(data));
-    window.localStorage.setItem("counter", JSON.stringify(count));
+    window.localStorage.setItem("SpreadSheet", JSON.stringify(state.data));
+    window.localStorage.setItem("counter", JSON.stringify(state.count));
 }
-
-/////////////////////////SORT TABLE////////////////////////////////////////////////////////
-
-// determine if the same column is clicked again
 
 /**
- * Sorts the table by the column clicked.
- * @param c TODO
+ * Sample test for mocking internal function calls.
  */
-function sortBy(c) {
-    let rows = document.getElementById("spreadsheet").rows.length - 1; // num of rows
-    let columns = document.getElementById("spreadsheet").rows[0].cells.length; // num of columns
-    let arrTable = [...Array(rows)].map(() => Array(columns)); // create an empty 2d array
-
-    for (let ro = 0; ro < rows; ro++) {
-        // cycle through rows
-        for (let co = 0; co < columns; co++) {
-            // cycle through columns
-            // assign the value in each row-column to a 2d array by row-column
-            arrTable[ro][co] =
-                document.getElementById("spreadsheet").rows[ro].cells[
-                    co
-                ].innerHTML;
-        }
-    }
-
-    let th = arrTable.shift(); // remove the header row from the array, and save it
-
-    // if the same column is clicked then reverse the array
-
-    arrTable.sort((a, b) => {
-        if (a[c] === b[c]) {
-            return 0;
-        } else {
-            return a[c] < b[c] ? -1 : 1;
-        }
-    });
-    if (
-        document.getElementById("spreadsheet").rows[0].cells[c].className ==
-        "sortable asc"
-    ) {
-        arrTable.reverse();
-    }
-
-    arrTable.unshift(th); // put the header back in to the array
-
-    // cycle through rows-columns placing values from the array back into the html table
-    for (let ro = 0; ro < rows; ro++) {
-        for (let co = 0; co < columns; co++) {
-            if (ro === 0 && co === c) {
-                let chosen =
-                    document.getElementById("spreadsheet").rows[ro].cells[co];
-                if (chosen.className == "sortable asc") {
-                    chosen.className = "sortable dsc";
-                } else {
-                    chosen.className = "sortable asc";
-                }
-            }
-            document.getElementById("spreadsheet").rows[ro].cells[
-                co
-            ].innerHTML = arrTable[ro][co];
-            // TODO: restore the status class here
-        }
-    }
-    //fix status color bubble
-    for (let ro = 1; ro < rows; ro++) {
-        let chosen = document.getElementById("spreadsheet").rows[ro].cells[4];
-        if (chosen.innerHTML == "Applied") {
-            chosen.className = "applied";
-        } else if (chosen.innerHTML == "In Progress") {
-            chosen.className = "in_progress";
-        } else if (chosen.innerHTML == "Not Started") {
-            chosen.className = "not_started";
-        }
-    }
-    //fix status color bubble
-    for (let ro = 1; ro < rows; ro++) {
-        let chosen = document.getElementById("spreadsheet").rows[ro].cells[4];
-        if (chosen.innerHTML == "Applied") {
-            chosen.className = "applied";
-        } else if (chosen.innerHTML == "In Progress") {
-            chosen.className = "in_progress";
-        } else if (chosen.innerHTML == "Not Started") {
-            chosen.className = "not_started";
-        }
-    }
+function testme() {
+    let returned_value = module.exports.addEntry();
+    return returned_value;
 }
 
-//////////////////////////END OF SORT TABLE//////////////////////////////////////////
 // To be used in tests
 module.exports = {
     init,
@@ -378,6 +300,12 @@ module.exports = {
     deleteButton,
     editButton,
     editRow,
-    sortBy,
     deleteForm,
+    closeEditForm,
+    openEditForm,
+    closeDelete,
+    deleteConfirm,
+    initializeRow,
+    addEntrys,
+    testme,
 };
