@@ -163,7 +163,7 @@ function getFormData(postfix) {
 /**
  * Clears the form input fields to default values.
  */
- function clearFormData() {
+function clearFormData() {
     document.getElementById("entry-form").reset();
 }
 
