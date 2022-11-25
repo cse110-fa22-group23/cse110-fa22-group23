@@ -113,6 +113,7 @@ function addRow() {
     addEntry(formData, rowId);
     closeForm();
     save_data(rowId, formData);
+    clearFormData();
 }
 
 /**
@@ -186,6 +187,14 @@ function getFormData(postfix) {
 
     return formData;
 }
+
+/**
+ * Clears the form input fields to default values.
+ */
+function clearFormData() {
+    document.getElementById("entry-form").reset();
+}
+
 /**
  * Sets the row to be deleted.
  * @param item (td) table data
@@ -409,7 +418,7 @@ module.exports = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addEntry">addEntry</a></li><li><a href="global.html#addEntrys">addEntrys</a></li><li><a href="global.html#addRow">addRow</a></li><li><a href="global.html#closeDelete">closeDelete</a></li><li><a href="global.html#closeEditForm">closeEditForm</a></li><li><a href="global.html#closeForm">closeForm</a></li><li><a href="global.html#deleteButton">deleteButton</a></li><li><a href="global.html#deleteConfirm">deleteConfirm</a></li><li><a href="global.html#deleteForm">deleteForm</a></li><li><a href="global.html#editButton">editButton</a></li><li><a href="global.html#editRow">editRow</a></li><li><a href="global.html#getFormData">getFormData</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initializeRow">initializeRow</a></li><li><a href="global.html#openEditForm">openEditForm</a></li><li><a href="global.html#openForm">openForm</a></li><li><a href="global.html#registerServiceWorker">registerServiceWorker</a></li><li><a href="global.html#sanitizeHTML">sanitizeHTML</a></li><li><a href="global.html#save_data">save_data</a></li><li><a href="global.html#save_localstorage">save_localstorage</a></li><li><a href="global.html#sortBy">sortBy</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addEntry">addEntry</a></li><li><a href="global.html#addEntrys">addEntrys</a></li><li><a href="global.html#addRow">addRow</a></li><li><a href="global.html#clearFormData">clearFormData</a></li><li><a href="global.html#closeDelete">closeDelete</a></li><li><a href="global.html#closeEditForm">closeEditForm</a></li><li><a href="global.html#closeForm">closeForm</a></li><li><a href="global.html#deleteButton">deleteButton</a></li><li><a href="global.html#deleteConfirm">deleteConfirm</a></li><li><a href="global.html#deleteForm">deleteForm</a></li><li><a href="global.html#editButton">editButton</a></li><li><a href="global.html#editRow">editRow</a></li><li><a href="global.html#getFormData">getFormData</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initializeRow">initializeRow</a></li><li><a href="global.html#openEditForm">openEditForm</a></li><li><a href="global.html#openForm">openForm</a></li><li><a href="global.html#registerServiceWorker">registerServiceWorker</a></li><li><a href="global.html#sanitizeHTML">sanitizeHTML</a></li><li><a href="global.html#save_data">save_data</a></li><li><a href="global.html#save_localstorage">save_localstorage</a></li><li><a href="global.html#sortBy">sortBy</a></li></ul>
 </nav>
 
 <br class="clear">

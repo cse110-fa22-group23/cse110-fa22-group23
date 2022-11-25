@@ -85,6 +85,7 @@ function addRow() {
     addEntry(formData, rowId);
     closeForm();
     save_data(rowId, formData);
+    clearFormData();
 }
 
 /**
@@ -158,6 +159,14 @@ function getFormData(postfix) {
 
     return formData;
 }
+
+/**
+ * Clears the form input fields to default values.
+ */
+ function clearFormData() {
+    document.getElementById("entry-form").reset();
+}
+
 /**
  * Sets the row to be deleted.
  * @param item (td) table data
