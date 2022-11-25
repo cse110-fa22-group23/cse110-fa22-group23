@@ -36,12 +36,10 @@ function closeDelete() {
     document.getElementById("delete-modal").style.display = "none";
 }
 /**
- * Makes the form modal visible on the page. Resets form fields.
+ * Makes the form modal visible on the page.
  */
 function openForm() {
     document.getElementById("form-modal").style.display = "block";
-    if (document.getElementById("entry-form"))
-        document.getElementById("entry-form").reset();
 }
 
 /**
@@ -76,7 +74,7 @@ window.addEventListener("click", function (e) {
 });
 
 /**
- * Appends form data (from the modal) to a corresponding entry in the table.
+ * Appends form data (from the modal) to a corresponding entry in the table. Reset form field after submit.
  */
 function addRow() {
     event.preventDefault();
@@ -87,6 +85,9 @@ function addRow() {
     addEntry(formData, rowId);
     closeForm();
     save_data(rowId, formData);
+
+    const form = document.getElementById("entry-form");
+    if (form) form.reset();
 }
 
 /**
