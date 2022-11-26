@@ -182,9 +182,11 @@ function getFormData(postfix) {
         ranking: document.getElementById(`ranking${postfix}`).value,
         deadline: document.getElementById(`deadline${postfix}`).value,
     };
-    // attempt to sanitize user input
+
+    // attempt to sanitize user input and enforce character limit
     for (var key in formData) {
         formData[key] = sanitizeHTML(formData[key]);
+        formData[key] = formData[key].substring(0, 24);
     }
 
     return formData;
