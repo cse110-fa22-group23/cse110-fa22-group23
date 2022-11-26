@@ -253,7 +253,7 @@ function addEntry(entry, id, rowIndex = 1) {
     rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" class="center" style="display:block;" width="100%" height="100%"></img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
     rowCells.editButton.innerHTML = `<button type="button" class="tableBtn" onclick="editButton(this)"><img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row"></button>`;
-    rowCells.deleteButton.innerHTML = `<button type="button" class="tableBtn" onclick="deleteForm(this)"><img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row"></button>`;
+    rowCells.deleteButton.innerHTML = `<button type="button" class="tableBtn caution" onclick="deleteForm(this)"><img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row"></button>`;
 }
 
 /**

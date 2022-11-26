@@ -1,34 +1,15 @@
-/* Styling for Buttons */
-
-#editBtn {
-    font-family: "Montserrat", Helvetica, sans-serif;
-    background: #76b3fa;
-    border-radius: 100px;
-    padding: 10px 30px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1em;
-    cursor: pointer;
-    float: right;
-    margin: 0 auto;
-}
-
-#editBtn:hover {
-    background-color: #e5e5e5;
-    color: #76b3fa;
-    box-shadow: 0 0 0 1px rgba(80, 80, 80, 0.5);
-}
-
-#editBtn:active {
-    box-shadow: none;
-}
+/* Styling for Homepage Buttons */
 
 #createBtn {
-    font-family: "Montserrat", Helvetica, sans-serif;
-    background: #76b3fa;
+    font-family: "Inter";
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    width: 240px;
+    background: #86a8ee;
     border-radius: 100px;
+    border: none;
     padding: 10px 30px;
-    color: #fff;
     text-decoration: none;
     font-size: 1em;
     cursor: pointer;
@@ -41,18 +22,17 @@
 }
 
 #createBtn:hover {
-    background-color: #e5e5e5;
-    color: #76b3fa;
-    box-shadow: 0 0 0 1px rgba(80, 80, 80, 0.5);
+    background: rgb(109, 152, 238);
 }
 
 #createBtn:active {
-    box-shadow: none;
+    background: rgba(109, 152, 238, 0.6);
 }
 
 .tableBtn {
-    background: #76b3fa;
-    border-radius: 100px;
+    background: #86a8ee;
+    border: none;
+    border-radius: 999px;
     padding: 10px 10px;
     text-decoration: none;
     margin: 5px;
@@ -60,24 +40,21 @@
 }
 
 .tableBtn:hover {
-    background-color: #e5e5e5;
-    color: #76b3fa;
-    box-shadow: 0 0 0 1px rgba(80, 80, 80, 0.5);
+    background: rgb(109, 152, 238);
 }
 
 .tableBtn:active {
-    box-shadow: none;
+    background: rgba(109, 152, 238, 0.6);
 }
 
-#deleteBtn {
-    font-family: "Montserrat", Helvetica, sans-serif;
+.tableBtn.caution {
     background: #e57878;
-    border-radius: 100px;
-    padding: 10px 30px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1em;
-    cursor: pointer;
-    float: right;
-    margin: 0 auto;
+}
+
+.tableBtn.caution:hover {
+    background: rgb(231, 100, 100);
+}
+
+.tableBtn.caution.active {
+    background: rgba(231, 100, 100, 0.6);
 }

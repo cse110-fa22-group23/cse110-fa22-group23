@@ -70,7 +70,7 @@
 body {
     /* dark mode */
     background-color: var(--l-s);
-    font-family: "Roboto", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 #teamHead {
