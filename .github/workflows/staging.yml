@@ -43,6 +43,7 @@ jobs:
         with:
           repository: cse110-fa22-group23/staging
           path: 'staging'
+          token: ${{ secrets.ACTION_PAT }}
         
         # push change, triggering staging github pages action rerun
       - name: trigger staging redeploy
@@ -55,6 +56,7 @@ jobs:
           git add .
           git commit -m $GITHUB_SHA
           git status
+          git push
         env:
           CURR_BRANCH: ${{ steps.branch-deploy.outputs.ref }}
           REPO_KEY: ${{secrets.ACTION_PAT}}
