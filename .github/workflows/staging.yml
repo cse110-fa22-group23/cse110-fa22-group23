@@ -51,6 +51,7 @@ jobs:
           echo ${CURR_BRANCH}
           git config -f .gitmodules submodule.cse110-fa22-group23.branch ${CURR_BRANCH}
           git submodule update --remote
+          echo $GITHUB_SHA > force_pages_deploy.txt
           git diff
           git add .
           git commit -m $GITHUB_SHA
