@@ -32,6 +32,8 @@ jobs:
 
         # clone staging repository
       - name: checkout staging
+        continue-on-error: true # git may return error code if nothing to push
+                                # (prev deployment from this PR)
         if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
         uses: actions/checkout@v2.5.0
         with:
