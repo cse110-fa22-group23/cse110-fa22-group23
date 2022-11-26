@@ -53,6 +53,8 @@ jobs:
           git config -f .gitmodules submodule.cse110-fa22-group23.branch ${CURR_BRANCH}
           git add .
           git commit -m $GITHUB_SHA
-          git push
+          git push https://$USERNAME:$REPO_KEY@github.com/cse110-fa22-group23/staging.git
         env:
           CURR_BRANCH: ${{ steps.branch-deploy.outputs.ref }}
+          REPO_KEY: ${{secrets.ACTION_PAT}}
+          USERNAME: github-actions[bot]
