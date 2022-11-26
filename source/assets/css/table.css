@@ -142,35 +142,40 @@ th.sortable:hover::after {
     border: 1px solid;
     border-collapse: collapse;
 }
+
+.status {
+    color: #303651;
+    border: 1px solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+
 .applied {
-    word-wrap: normal;
-    border-radius: 50%;
+    border-radius: 999px;
     font-weight: bold;
     background: #eef6e9;
     color: #278500;
-    text-align: center;
-    border: 1px solid;
-    border-collapse: collapse;
+    padding: 4px 8px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .in_progress {
-    word-wrap: normal;
-    border-radius: 50%;
+    border-radius: 999px;
     font-weight: bold;
     color: #b94f00;
     background: #fff3e8;
-    text-align: center;
-    border: 1px solid;
-    border-collapse: collapse;
+    padding: 4px 8px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .not_started {
-    word-wrap: normal;
-    border-radius: 50%;
+    border-radius: 999px;
     font-weight: bold;
     color: #d30b53;
     background: #fee5ee;
-    text-align: center;
-    border: 1px solid;
-    border-collapse: collapse;
+    padding: 4px 8px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .center {
     display: block;

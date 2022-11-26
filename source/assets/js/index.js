@@ -243,12 +243,13 @@ function addEntry(entry, id, rowIndex = 1) {
     rowCells.industry.innerHTML = entry["industry"];
     rowCells.status.innerHTML = entry["status"];
     if (rowCells.status.innerHTML == "Applied") {
-        rowCells.status.setAttribute("class", "applied");
+        rowCells.status.innerHTML = `<span class="applied">${entry["status"]}</span>`;
     } else if (rowCells.status.innerHTML == "In Progress") {
-        rowCells.status.setAttribute("class", "in_progress");
+        rowCells.status.innerHTML = `<span class="in_progress">${entry["status"]}</span>`;
     } else if (rowCells.status.innerHTML == "Not Started") {
-        rowCells.status.setAttribute("class", "not_started");
+        rowCells.status.innerHTML = `<span class="not_started">${entry["status"]}</span>`;
     }
+    rowCells.status.setAttribute("class", "status");
     rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" class="center" style="display:block;" width="100%" height="100%"></img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
     rowCells.editButton.innerHTML = `<button type="button" class="tableBtn" onclick="editButton(this)"><img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row"></button>`;
