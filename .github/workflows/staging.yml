@@ -1,0 +1,57 @@
+name: Manual branch staging site deploy
+
+on:
+  issue_comment:
+    types: [created]
+
+# Permissions needed for reacting and adding comments for IssueOps commands
+permissions:
+  pull-requests: write
+  deployments: write
+  contents: write # you might only need 'read' here
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request }} # only run on pull request comments
+
+    steps:
+
+        # The branch-deploy Action
+      - name: branch-deploy
+        id: branch-deploy
+        uses: github/branch-deploy@v3.0.3
+        
+        # If the branch-deploy Action was triggered, checkout our branch
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # pin@v3.0.2
+        with:
+          ref: ${{ steps.branch-deploy.outputs.ref }}
+
+        # If the branch-deploy Action was triggered, run the deployment (i.e. '.deploy')
+        # set ci as the commit author
+      - name: set commit author
+        if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          export CURR_BRANCH=${GITHUB_REF##*/}
+          echo ${CURR_BRANCH}
+
+        # clone staging repository
+      - name: checkout staging
+        if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # pin@v3.0.2
+        with:
+          repository: cse110-fa22-group23/staging
+          path: 'staging'
+        
+        # push change, triggering staging github pages action rerun
+      - name: trigger staging redeploy
+        if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
+        run: |
+          cd staging
+          git config -f .gitmodules submodule.cse110-fa22-group23.branch ${CURR_BRANCH}
+          git add .
+          git commit -m $GITHUB_SHA
+          git push
