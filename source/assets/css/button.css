@@ -6,7 +6,7 @@
     font-weight: 600;
     letter-spacing: 0.1em;
     width: 240px;
-    background: #86a8ee;
+    background: var(--primary-btn);
     border-radius: 100px;
     border: none;
     padding: 10px 30px;
@@ -22,15 +22,15 @@
 }
 
 #createBtn:hover {
-    background: rgb(109, 152, 238);
+    background: var(--primary-btn-hover);
 }
 
 #createBtn:active {
-    background: rgba(109, 152, 238, 0.6);
+    background: var(--primary-btn-active);
 }
 
 .tableBtn {
-    background: #86a8ee;
+    background: var(--primary-btn);
     border: none;
     border-radius: 999px;
     padding: 10px 10px;
@@ -40,21 +40,21 @@
 }
 
 .tableBtn:hover {
-    background: rgb(109, 152, 238);
+    background: var(--primary-btn-hover);
 }
 
 .tableBtn:active {
-    background: rgba(109, 152, 238, 0.6);
+    background: var(--primary-btn-active);
 }
 
 .tableBtn.caution {
-    background: #e57878;
+    background: var(--caution-btn);
 }
 
 .tableBtn.caution:hover {
-    background: rgb(231, 100, 100);
+    background: var(--caution-btn-hover);
 }
 
 .tableBtn.caution.active {
-    background: rgba(231, 100, 100, 0.6);
+    background: var(--caution-btn-active);
 }

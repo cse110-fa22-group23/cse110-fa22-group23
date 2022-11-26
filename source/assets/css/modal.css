@@ -71,7 +71,7 @@
 
 #delete-modal div.form-buttons button {
     border: none;
-    background: #86a8ee;
+    background: var(--primary-btn);
     border-radius: 999px;
     width: 45%;
     height: 30px;
@@ -82,23 +82,23 @@
 }
 
 #delete-modal div.form-buttons button:hover {
-    background: rgb(109, 152, 238);
+    background: var(--primary-btn-hover);
 }
 
 #delete-modal div.form-buttons button:active {
-    background: rgba(109, 152, 238, 0.6);
+    background: var(--primary-btn-active);
 }
 
 #delete-modal div.form-buttons button.caution {
-    background: #e57878;
+    background: var(--caution-btn);
 }
 
 #delete-modal div.form-buttons button.caution:hover {
-    background: rgb(231, 100, 100);
+    background: var(--caution-btn-hover);
 }
 
 #delete-modal div.form-buttons button.caution:active {
-    background: rgba(231, 100, 100, 0.6);
+    background: var(--caution-btn-active);
 }
 
 /* Form content */
@@ -165,7 +165,7 @@
 #entry-form div.form-buttons input,
 #entry-form div.form-buttons button {
     border: none;
-    background: #86a8ee;
+    background: var(--primary-btn);
     border-radius: 999px;
     width: 40%;
     height: 30px;
@@ -177,27 +177,27 @@
 
 #entry-form div.form-buttons input:hover,
 #entry-form div.form-buttons button:hover {
-    background: rgb(109, 152, 238);
+    background: var(--primary-btn-hover);
 }
 
 #entry-form div.form-buttons input:active,
 #entry-form div.form-buttons button:active {
-    background: rgba(109, 152, 238, 0.6);
+    background: var(--primary-btn-active);
 }
 
 #entry-form div.form-buttons input.caution,
 #entry-form div.form-buttons button.caution {
-    background: #e57878;
+    background: var(--caution-btn);
 }
 
 #entry-form div.form-buttons input.caution:hover,
 #entry-form div.form-buttons button.caution:hover {
-    background: rgb(231, 100, 100);
+    background: var(--caution-btn-hover);
 }
 
 #entry-form div.form-buttons input.caution:active,
 #entry-form div.form-buttons button.caution:active {
-    background: rgba(231, 100, 100, 0.6);
+    background: var(--caution-btn-active);
 }
 
 /* Edit form content */
@@ -264,7 +264,7 @@
 #edit-form div.form-buttons input,
 #edit-form div.form-buttons button {
     border: none;
-    background: #86a8ee;
+    background: var(--primary-btn);
     border-radius: 999px;
     width: 40%;
     height: 30px;
@@ -276,25 +276,25 @@
 
 #edit-form div.form-buttons input:hover,
 #edit-form div.form-buttons button:hover {
-    background: rgb(109, 152, 238);
+    background: var(--primary-btn-hover);
 }
 
 #edit-form div.form-buttons input:active,
 #edit-form div.form-buttons button:active {
-    background: rgba(109, 152, 238, 0.6);
+    background: var(--primary-btn-active);
 }
 
 #edit-form div.form-buttons input.caution,
 #edit-form div.form-buttons button.caution {
-    background: #e57878;
+    background: var(--caution-btn);
 }
 
 #edit-form div.form-buttons input.caution:hover,
 #edit-form div.form-buttons button.caution:hover {
-    background: rgb(231, 100, 100);
+    background: var(--caution-btn-hover);
 }
 
 #edit-form div.form-buttons input.caution:active,
 #edit-form div.form-buttons button.caution:active {
-    background: rgba(231, 100, 100, 0.6);
+    background: var(--caution-btn-active);
 }

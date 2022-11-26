@@ -5,6 +5,15 @@
 
 :root {
     /* Color Pallette : Use as var(var_name) */
+    /* General */
+    --primary-btn: #86a8ee;
+    --primary-btn-hover: rgb(109, 152, 238);
+    --primary-btn-active: rgba(109, 152, 238, 0.6);
+
+    --caution-btn: #e57878;
+    --caution-btn-hover: rgb(231, 100, 100);
+    --caution-btn-active: rgba(231, 100, 100, 0.6);
+
     /* Light Mode */
 
     /* basic */
