@@ -101,14 +101,21 @@ th.sortable::after {
 /* table heads in ascending order */
 th.sortable.asc::after {
     content: "\25b2";
+    color: #d30b53;
 }
 /* table heads in descending order */
 th.sortable.desc::after {
     content: "\25bc";
+    color: #d30b53;
 }
 /* table icon when hover */
 th.sortable:hover::after {
     color: #333;
+}
+
+.selected {
+    color: #d30b53;
+    /* background-color: #278500; */
 }
 
 .company_name {
