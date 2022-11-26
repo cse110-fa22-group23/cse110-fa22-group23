@@ -65,3 +65,5 @@ jobs:
         with:
           github_token: ${{ secrets.ACTION_PAT }}
           branch: main
+          directory: 'staging'
+          repository: 'cse110-fa22-group23/staging'
