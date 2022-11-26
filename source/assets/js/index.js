@@ -21,7 +21,7 @@ function init() {
     if (!(counter === null)) {
         count = JSON.parse(counter);
     }
-    counter += 6;
+    counter += 7;
     return 0;
 }
 /**
