@@ -22,18 +22,20 @@ jobs:
       - name: branch-deploy
         id: branch-deploy
         uses: github/branch-deploy@v3.0.3
+        with: # bypass branch approval protection in order to deploy
+          admins: cse110-fa22-group23/staging-deploy-permission, AungKyaw321, baspinwall, Daniel-Xkan, jeffreyL02, jettbui, JonathanYin, nathanueda, y1qu, scottieboyzhang
         
       #   # If the branch-deploy Action was triggered, checkout our branch
       # - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # pin@v3.0.2
       #   with:
       #     ref: ${{ steps.branch-deploy.outputs.ref }}
 
-        # If the branch-deploy Action was triggered, run the deployment (i.e. '.deploy')
-
+        
         # clone staging repository
       - name: checkout staging
         continue-on-error: true # git may return error code if nothing to push
                                 # (prev deployment from this PR)
+        # If the branch-deploy Action was triggered, run the deployment (i.e. '.deploy')
         if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
         uses: actions/checkout@v2.5.0
         with:
@@ -57,5 +59,6 @@ jobs:
           git commit -m $GITHUB_SHA
           git status
           git push
+          echo "DEPLOY_MESSAGE=Deployed to staging!\nhttps://cse110-fa22-group23.github.io/staging/" >> $GITHUB_ENV
         env:
           CURR_BRANCH: ${{ steps.branch-deploy.outputs.ref }}
