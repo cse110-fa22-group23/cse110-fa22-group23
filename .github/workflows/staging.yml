@@ -29,12 +29,6 @@ jobs:
       #     ref: ${{ steps.branch-deploy.outputs.ref }}
 
         # If the branch-deploy Action was triggered, run the deployment (i.e. '.deploy')
-        # set ci as the commit author
-      - name: set commit author
-        if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
-        run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
 
         # clone staging repository
       - name: checkout staging
@@ -49,9 +43,12 @@ jobs:
       - name: trigger staging redeploy
         if: ${{ steps.branch-deploy.outputs.continue == 'true' && steps.branch-deploy.outputs.noop != 'true' }}
         run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
           cd staging
           echo ${CURR_BRANCH}
           git config -f .gitmodules submodule.cse110-fa22-group23.branch ${CURR_BRANCH}
+          git submodule update --remote
           git diff
           git add .
           git commit -m $GITHUB_SHA
@@ -59,13 +56,3 @@ jobs:
           git push
         env:
           CURR_BRANCH: ${{ steps.branch-deploy.outputs.ref }}
-          REPO_KEY: ${{secrets.ACTION_PAT}}
-          USERNAME: github-actions[bot]
-
-      - name: GitHub Push
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.ACTION_PAT }}
-          branch: main
-          directory: 'staging'
-          repository: 'cse110-fa22-group23/staging'
