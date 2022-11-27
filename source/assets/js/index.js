@@ -1,6 +1,28 @@
-window.addEventListener("DOMContentLoaded", init);
+// import * as state from "./js"
 // non-persistent state
-const state = require("./state.js");
+// import state = require("./js");
+import state from "./state.js";
+import { sortBy } from "./sort.js";
+// import { count, currRow, data } from "./state.js"
+
+window.addEventListener("DOMContentLoaded", init);
+
+window.addEventListener("click", function (e) {
+    if (e.target == document.getElementById("form-modal")) {
+        closeForm();
+    }
+
+    if (e.target == document.getElementById("edit-modal")) {
+        closeEditForm();
+    }
+
+    if (e.target == document.getElementById("delete-modal")) {
+        closeDelete();
+    }
+    if (e.target == document.getElementById("createBtn")) {
+        openForm();
+    }
+});
 
 /**
  * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
@@ -12,7 +34,6 @@ function init() {
     if (!(loadedData === null)) {
         loadedData = JSON.parse(loadedData);
         addEntrys(loadedData);
-
         state.data = loadedData;
     }
 
@@ -20,6 +41,49 @@ function init() {
     if (!(counter === null)) {
         state.count = JSON.parse(counter);
     }
+
+    // add listeners
+    let el = document.getElementById("closeEditForm");
+    el.addEventListener("click", closeEditForm);
+    el = document.getElementById("companyName");
+    el.addEventListener("click", () => {
+        sortBy(0);
+    });
+    el = document.getElementById("Position");
+    el.addEventListener("click", () => {
+        sortBy(1);
+    });
+    el = document.getElementById("Location");
+    el.addEventListener("click", () => {
+        sortBy(2);
+    });
+    el = document.getElementById("Industry");
+    el.addEventListener("click", () => {
+        sortBy(3);
+    });
+    el = document.getElementById("Status");
+    el.addEventListener("click", () => {
+        sortBy(4);
+    });
+    el = document.getElementById("Ranking");
+    el.addEventListener("click", () => {
+        sortBy(5);
+    });
+    el = document.getElementById("Deadline");
+    el.addEventListener("click", () => {
+        sortBy(6);
+    });
+
+    el = document.getElementById("addRow");
+    el.addEventListener("click", addRow);
+    el = document.getElementById("closeForm");
+    el.addEventListener("click", closeForm);
+    el = document.getElementById("closeDelete");
+    el.addEventListener("click", closeDelete);
+    el = document.getElementById("deleteButton");
+    el.addEventListener("click", deleteButton);
+    el = document.getElementById("editRow");
+    el.addEventListener("click", editRow);
     return 0;
 }
 
@@ -63,25 +127,11 @@ function closeEditForm() {
     document.getElementById("edit-modal").style.display = "none";
 }
 
-window.addEventListener("click", function (e) {
-    if (e.target == document.getElementById("form-modal")) {
-        closeForm();
-    }
-
-    if (e.target == document.getElementById("edit-modal")) {
-        closeEditForm();
-    }
-
-    if (e.target == document.getElementById("delete-modal")) {
-        closeDelete();
-    }
-});
-
 /**
  * Appends form data (from the modal) to a corresponding entry in the table. Reset form field after submit.
  */
 function addRow() {
-    // event.preventDefault();
+    event.preventDefault();
 
     const formData = getFormData("");
 
@@ -99,9 +149,8 @@ function addRow() {
  * @param item (td) table data
  */
 function editButton(item) {
-    const row = item.closest("tr");
+    const row = item.target.closest("tr");
     state.currRow = row;
-    console.log(state.data);
     const rowData = state.data[row.id];
 
     // prefill form with row data
@@ -135,11 +184,11 @@ function editRow() {
  * @param  {String} str  The user-submitted string
  * @return {String} str  The sanitized string
  */
-var sanitizeHTML = function (str) {
+function sanitizeHTML(str) {
     return str.replace(/[^\w. ]/gi, function (c) {
         return "&#" + c.charCodeAt(0) + ";";
     });
-};
+}
 
 /**
  * Get the data inside the edit form.
@@ -173,7 +222,7 @@ function getFormData(postfix) {
  * @param item (td) table data
  */
 function deleteForm(item) {
-    const row = item.closest("tr");
+    const row = item.target.closest("tr");
     state.currRow = row;
     deleteConfirm();
 }
@@ -212,7 +261,7 @@ function initializeRow(table, id, rowIndex) {
     var row = table.insertRow(rowIndex);
     var rowCells = {};
     row.id = id;
-    state.count++;
+    state.count = state.count + 1;
     rowCells.company = row.insertCell(0);
     rowCells.company.setAttribute("class", "company_name");
     rowCells.position = row.insertCell(1);
@@ -258,8 +307,10 @@ function addEntry(entry, id, rowIndex = 1) {
     rowCells.status.setAttribute("class", "status");
     rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" class="center" style="display:block;" width="100%" height="100%"></img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
-    rowCells.editButton.innerHTML = `<button type="button" class="tableBtn" onclick="editButton(this)"><img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row"></button>`;
-    rowCells.deleteButton.innerHTML = `<button type="button" class="tableBtn caution" onclick="deleteForm(this)"><img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row"></button>`;
+    rowCells.editButton.innerHTML = `<button type="button" class="tableBtn" ><img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row"></button>`;
+    rowCells.editButton.addEventListener("click", editButton);
+    rowCells.deleteButton.innerHTML = `<button type="button" class="tableBtn caution" ><img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row"></button>`;
+    rowCells.deleteButton.addEventListener("click", deleteForm);
 }
 
 /**
@@ -290,7 +341,7 @@ function testme() {
 }
 
 // To be used in tests
-module.exports = {
+export {
     init,
     openForm,
     closeForm,

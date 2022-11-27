@@ -1,8 +1,11 @@
 /* eslint-env jest */
 // sort.test.js
 
-const sort = require("../assets/js/sort.js");
-const functions = require("../assets/js/index.js");
+// const sort = require("../assets/js/sort.js");
+// const functions = require("../assets/js/index.js");
+
+import * as functions from "../assets/js/index.js";
+import sort from "../assets/js/sort.js";
 
 test("Test sort() sorts correct row content", () => {
     for (let col = 0; col < 7; col++) {
