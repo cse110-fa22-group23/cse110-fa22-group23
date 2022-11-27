@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>JSDoc: Source: index.js</title>
@@ -16,20 +15,20 @@
 
 <body>
 
-    <div id="main">
+<div id="main">
 
-        <h1 class="page-title">Source: index.js</h1>
+    <h1 class="page-title">Source: index.js</h1>
 
-
-
-
+    
 
 
-        <section>
-            <article>
-                <pre class="prettyprint source linenums"><code>// non-persistent state
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// non-persistent state
 import state from "./state.js";
-import sortBy from "./sort.js";
+import { sortBy } from "./sort.js";
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -179,7 +178,6 @@ function editButton(item) {
     const row = item.target.closest("tr");
     state.currRow = row;
     const rowData = state.data[row.id];
-
     // prefill form with row data
     document.getElementById("companyEdit").value = rowData["company"];
     document.getElementById("positionEdit").value = rowData["position"];
@@ -198,7 +196,7 @@ function editButton(item) {
 function editRow() {
     // event.preventDefault();
     const row = state.currRow;
-    const formData = module.exports.getFormData("Edit");
+    const formData = getFormData("Edit");
     addEntry(formData, row.id, row.rowIndex);
     deleteButton(row);
     closeEditForm();
@@ -274,7 +272,6 @@ function deleteButton() {
  */
 function addEntrys(entrys) {
     for (var key in entrys) {
-        //module.exports.addEntry(entrys[key], key); // example dependency injection for testing
         addEntry(entrys[key], key);
     }
 }
@@ -364,8 +361,16 @@ function saveLocalStorage() {
  * Sample test for mocking internal function calls.
  */
 function testme() {
+    // example dependency injection
     let returned_value = module.exports.addEntry();
     return returned_value;
+}
+
+/**
+ * Clear localstorage.
+ */
+function clearLocalStorage() {
+    window.localStorage.clear();
 }
 
 // To be used in tests
@@ -389,53 +394,28 @@ export {
     addEntrys,
     saveLocalStorage,
     testme,
+    clearLocalStorage,
 };
 </code></pre>
-            </article>
-        </section>
+        </article>
+    </section>
 
 
 
 
-    </div>
+</div>
 
-    <nav>
-        <h2><a href="index.html">Home</a></h2>
-        <h3>Global</h3>
-        <ul>
-            <li><a href="global.html#addEntry">addEntry</a></li>
-            <li><a href="global.html#addEntrys">addEntrys</a></li>
-            <li><a href="global.html#addRow">addRow</a></li>
-            <li><a href="global.html#closeDelete">closeDelete</a></li>
-            <li><a href="global.html#closeEditForm">closeEditForm</a></li>
-            <li><a href="global.html#closeForm">closeForm</a></li>
-            <li><a href="global.html#deleteButton">deleteButton</a></li>
-            <li><a href="global.html#deleteConfirm">deleteConfirm</a></li>
-            <li><a href="global.html#deleteForm">deleteForm</a></li>
-            <li><a href="global.html#editButton">editButton</a></li>
-            <li><a href="global.html#editRow">editRow</a></li>
-            <li><a href="global.html#getFormData">getFormData</a></li>
-            <li><a href="global.html#init">init</a></li>
-            <li><a href="global.html#initializeRow">initializeRow</a></li>
-            <li><a href="global.html#openEditForm">openEditForm</a></li>
-            <li><a href="global.html#openForm">openForm</a></li>
-            <li><a href="global.html#registerServiceWorker">registerServiceWorker</a></li>
-            <li><a href="global.html#sanitizeHTML">sanitizeHTML</a></li>
-            <li><a href="global.html#saveData">saveData</a></li>
-            <li><a href="global.html#saveLocalStorage">saveLocalStorage</a></li>
-            <li><a href="global.html#sortBy">sortBy</a></li>
-            <li><a href="global.html#testme">testme</a></li>
-        </ul>
-    </nav>
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addEntry">addEntry</a></li><li><a href="global.html#addEntrys">addEntrys</a></li><li><a href="global.html#addRow">addRow</a></li><li><a href="global.html#clearLocalStorage">clearLocalStorage</a></li><li><a href="global.html#closeDelete">closeDelete</a></li><li><a href="global.html#closeEditForm">closeEditForm</a></li><li><a href="global.html#closeForm">closeForm</a></li><li><a href="global.html#deleteButton">deleteButton</a></li><li><a href="global.html#deleteConfirm">deleteConfirm</a></li><li><a href="global.html#deleteForm">deleteForm</a></li><li><a href="global.html#editButton">editButton</a></li><li><a href="global.html#editRow">editRow</a></li><li><a href="global.html#getFormData">getFormData</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initializeRow">initializeRow</a></li><li><a href="global.html#openEditForm">openEditForm</a></li><li><a href="global.html#openForm">openForm</a></li><li><a href="global.html#registerServiceWorker">registerServiceWorker</a></li><li><a href="global.html#sanitizeHTML">sanitizeHTML</a></li><li><a href="global.html#saveData">saveData</a></li><li><a href="global.html#saveLocalStorage">saveLocalStorage</a></li><li><a href="global.html#sortBy">sortBy</a></li><li><a href="global.html#testme">testme</a></li></ul>
+</nav>
 
-    <br class="clear">
+<br class="clear">
 
-    <footer>
-        Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a>
-    </footer>
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a>
+</footer>
 
-    <script> prettyPrint(); </script>
-    <script src="scripts/linenumber.js"> </script>
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
 </body>
-
 </html>

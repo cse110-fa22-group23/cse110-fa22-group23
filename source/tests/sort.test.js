@@ -2,7 +2,7 @@
 // sort.test.js
 
 import * as functions from "../assets/js/index.js";
-import sort from "../assets/js/sort.js";
+import { sortBy } from "../assets/js/sort.js";
 
 test("Test sort() sorts correct row content", () => {
     for (let col = 0; col < 7; col++) {
@@ -66,7 +66,7 @@ function sortByColumn(col) {
 
     // get all items in column
     let data = [];
-    sort.sortBy(col);
+    sortBy(col);
     for (let count = 1; count < 4; count++) {
         data.push(table.rows[count].cells[col].innerHTML);
     }
@@ -75,7 +75,7 @@ function sortByColumn(col) {
 
     //sort by reverse order
     data = [];
-    sort.sortBy(col);
+    sortBy(col);
     for (let count = 1; count < 4; count++) {
         data.push(table.rows[count].cells[col].innerHTML);
     }

@@ -1,6 +1,6 @@
 // non-persistent state
 import state from "./state.js";
-import sortBy from "./sort.js";
+import { sortBy } from "./sort.js";
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -150,7 +150,6 @@ function editButton(item) {
     const row = item.target.closest("tr");
     state.currRow = row;
     const rowData = state.data[row.id];
-
     // prefill form with row data
     document.getElementById("companyEdit").value = rowData["company"];
     document.getElementById("positionEdit").value = rowData["position"];
@@ -169,7 +168,7 @@ function editButton(item) {
 function editRow() {
     // event.preventDefault();
     const row = state.currRow;
-    const formData = module.exports.getFormData("Edit");
+    const formData = getFormData("Edit");
     addEntry(formData, row.id, row.rowIndex);
     deleteButton(row);
     closeEditForm();
@@ -245,7 +244,6 @@ function deleteButton() {
  */
 function addEntrys(entrys) {
     for (var key in entrys) {
-        //module.exports.addEntry(entrys[key], key); // example dependency injection for testing
         addEntry(entrys[key], key);
     }
 }
@@ -335,8 +333,16 @@ function saveLocalStorage() {
  * Sample test for mocking internal function calls.
  */
 function testme() {
+    // example dependency injection
     let returned_value = module.exports.addEntry();
     return returned_value;
+}
+
+/**
+ * Clear localstorage.
+ */
+function clearLocalStorage() {
+    window.localStorage.clear();
 }
 
 // To be used in tests
@@ -360,4 +366,5 @@ export {
     addEntrys,
     saveLocalStorage,
     testme,
+    clearLocalStorage,
 };
