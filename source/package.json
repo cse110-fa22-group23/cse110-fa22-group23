@@ -8,22 +8,35 @@
         "lint:markdown": "remark . --use remark-preset-lint-consistent --frail",
         "test": "jest --testEnvironment='jsdom'",
         "prepare": "cd .. && husky install .config/.husky",
-        "docs": "jsdoc -r ./assets/js -c ../.config/jsdoc.conf.json && git add ./out"
+        "docs": "jsdoc -r ./assets/js -c ../.config/jsdoc.conf.json && git add ./out",
+        "start": "webpack-dev-server --hot --config ./webpack.config.js --mode development",
+        "build": "webpack --mode development",
+        "buildprod": "webpack --mode production"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.20.2",
         "babel-jest": "^29.3.1",
+        "babel-loader": "^9.1.0",
+        "css-loader": "^6.7.2",
+        "error-overlay-webpack-plugin": "^1.1.1",
         "eslint": "^8.26.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",
+        "html-loader": "^4.2.0",
+        "html-webpack-plugin": "^5.5.0",
         "htmlhint": "^1.1.4",
         "husky": "^8.0.2",
         "jest": "^29.2.2",
         "jest-environment-jsdom": "^29.2.2",
         "jsdoc": "^4.0.0",
+        "mini-css-extract-plugin": "^2.7.0",
         "prettier": "^2.7.1",
         "remark-cli": "^11.0.0",
-        "remark-preset-lint-consistent": "^5.1.1"
+        "remark-preset-lint-consistent": "^5.1.1",
+        "style-loader": "^3.3.1",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.0",
+        "webpack-dev-server": "^4.11.1"
     },
     "jest": {
         "transform": {
