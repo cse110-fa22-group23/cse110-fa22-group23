@@ -2,7 +2,7 @@
 // non-persistent state
 // import state = require("./js");
 import state from "./state.js";
-import { sortBy } from "./sort.js";
+import sortBy from "./sort.js";
 // import { count, currRow, data } from "./state.js"
 
 window.addEventListener("DOMContentLoaded", init);
