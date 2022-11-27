@@ -117,7 +117,7 @@
     width: 40%;
 }
 
-#entry-form div input:not([type="submit"]),
+#entry-form div input:not([type="button"]),
 #entry-form div textarea {
     font-family: "Inter";
     font-style: normal;
@@ -131,7 +131,7 @@
     width: auto;
 }
 
-#entry-form div input:not([type="submit"]):focus,
+#entry-form div input:not([type="button"]):focus,
 #entry-form div textarea:focus {
     outline: none;
     font-weight: 600;
@@ -216,7 +216,7 @@
     width: 40%;
 }
 
-#edit-form div input:not([type="submit"]),
+#edit-form div input:not([type="button"]),
 #edit-form div textarea {
     font-family: "Inter";
     font-style: normal;
@@ -230,7 +230,7 @@
     width: auto;
 }
 
-#edit-form div input:not([type="submit"]):focus,
+#edit-form div input:not([type="button"]):focus,
 #edit-form div textarea:focus {
     outline: none;
     font-weight: 600;

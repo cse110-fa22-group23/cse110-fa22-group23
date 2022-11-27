@@ -7,6 +7,11 @@ import state from "../assets/js/state.js";
 afterEach(() => {
     // restore the spy created with spyOn
     jest.restoreAllMocks();
+    // clear state
+    functions.clearLocalStorage();
+    state.data = {};
+    state.count = 1;
+    state.currRow = undefined;
 });
 
 test("Test test function", () => {
@@ -260,29 +265,25 @@ test("Test editButton() sets form fields", () => {
 });
 
 test("Test editRow() changes row data", () => {
-    document.body.innerHTML = `
-    <table id="spreadsheet">
-        <tr id="2">
-        <td class="company_name">asd</td><td class="position_name">sdf</td><td class="location_name">Northeast</td><td class="industry_name">asdf</td><td class="status"><span class="not_started">Not Started</span></td><td class="ranking_value"><img src="./assets/images/stars/4s.PNG" alt="4" class="center" style="display:block;" width="100%" height="100%"></td><td class="deadline_date">2022-11-08</td><td><button type="button" class="tableBtn" onclick="editButton(this)"><img src="./assets/images/icons/edit-pen-icon.webp" alt="edit row" height="15px"></button></td><td><button type="button" class="tableBtn caution" onclick="deleteForm(this)"><img src="./assets/images/icons/trash-icon.webp" alt="delete row" height="15px"></button></td></tr>
-        </tr>
-        <div id="delete-modal" style=""></div>
-        <div id="edit-modal" style=""></div>
-    </tbody></table>
-    `;
-    state.currRow = document.getElementById("2");
+    // read index.html
+    let fs = require("fs");
+    let index = fs.readFileSync("../source/index.html");
+    document.body.innerHTML = index.toString();
 
+    // add dummy row
+    functions.addRow();
+    const row = document.getElementById("1");
+    state.currRow = row;
     const formData = {
-        company: "Group 23",
-        position: "Suusware Developer",
-        location: "Southwest",
-        industry: "UCSD",
+        company: "",
+        position: "",
+        location: "",
+        industry: "",
         status: "In Progress",
-        ranking: "2",
-        deadline: "2022-11-10",
+        ranking: "1",
+        deadline: "",
     };
-    jest.spyOn(functions, "getFormData").mockReturnValue(formData);
     functions.editRow();
-    const row = document.getElementById("2");
 
     // assert row data got changed
     expect(row.cells[0].innerHTML).toBe(formData.company);
@@ -290,11 +291,12 @@ test("Test editRow() changes row data", () => {
     expect(row.cells[2].innerHTML).toBe(formData.location);
     expect(row.cells[3].innerHTML).toBe(formData.industry);
     expect(row.cells[4].innerHTML).toContain("In Progress");
-    expect(row.cells[5].innerHTML).toContain("/assets/images/stars/2s.PNG");
+    expect(row.cells[5].innerHTML).toContain("/assets/images/stars/1s.PNG");
     expect(row.cells[6].innerHTML).toBe(formData.deadline);
 
     const numRows = document.getElementById("spreadsheet").rows.length;
-    expect(numRows).toBe(1);
+    expect(numRows).toBe(3); // same as num rows before editing
+    delete state.data[row.id];
 });
 
 test("Test deleteButton() deletes row", () => {
