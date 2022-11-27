@@ -1,9 +1,6 @@
 /* eslint-env jest */
 // sort.test.js
 
-// const sort = require("../assets/js/sort.js");
-// const functions = require("../assets/js/index.js");
-
 import * as functions from "../assets/js/index.js";
 import sort from "../assets/js/sort.js";
 

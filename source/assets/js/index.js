@@ -1,12 +1,10 @@
-// import * as state from "./js"
 // non-persistent state
-// import state = require("./js");
 import state from "./state.js";
 import sortBy from "./sort.js";
-// import { count, currRow, data } from "./state.js"
 
 window.addEventListener("DOMContentLoaded", init);
 
+// add event listeners
 window.addEventListener("click", function (e) {
     if (e.target == document.getElementById("form-modal")) {
         closeForm();
@@ -131,14 +129,14 @@ function closeEditForm() {
  * Appends form data (from the modal) to a corresponding entry in the table. Reset form field after submit.
  */
 function addRow() {
-    event.preventDefault();
+    // event.preventDefault();
 
     const formData = getFormData("");
 
     let rowId = state.count;
     addEntry(formData, rowId);
     closeForm();
-    save_data(rowId, formData);
+    saveData(rowId, formData);
 
     const form = document.getElementById("entry-form");
     if (form) form.reset();
@@ -171,11 +169,11 @@ function editButton(item) {
 function editRow() {
     // event.preventDefault();
     const row = state.currRow;
-    const formData = getFormData("Edit");
+    const formData = module.exports.getFormData("Edit");
     addEntry(formData, row.id, row.rowIndex);
     deleteButton(row);
     closeEditForm();
-    save_data(row.id, formData);
+    saveData(row.id, formData);
 }
 
 /**
@@ -217,6 +215,7 @@ function getFormData(postfix) {
 
     return formData;
 }
+
 /**
  * Sets the row to be deleted.
  * @param item (td) table data
@@ -226,6 +225,7 @@ function deleteForm(item) {
     state.currRow = row;
     deleteConfirm();
 }
+
 /**
  * Deletes the row given a reference to its data.
  */
@@ -235,7 +235,7 @@ function deleteButton() {
     document.getElementById("spreadsheet").deleteRow(row.rowIndex);
     // delete from local storage
     delete state.data[row.id];
-    save_localstorage();
+    saveLocalStorage();
     closeDelete();
 }
 
@@ -318,16 +318,15 @@ function addEntry(entry, id, rowIndex = 1) {
  * @param id of the application (key into localstorage)
  * @param formData data fields of application
  */
-function save_data(id, formData) {
+function saveData(id, formData) {
     state.data[id.toString()] = formData;
-
-    save_localstorage();
+    saveLocalStorage();
 }
 
 /**
  * Saves local storage.
  */
-function save_localstorage() {
+function saveLocalStorage() {
     window.localStorage.setItem("SpreadSheet", JSON.stringify(state.data));
     window.localStorage.setItem("counter", JSON.stringify(state.count));
 }
@@ -346,10 +345,11 @@ export {
     openForm,
     closeForm,
     addRow,
-    save_data,
+    saveData,
     addEntry,
     deleteButton,
     editButton,
+    getFormData,
     editRow,
     deleteForm,
     closeEditForm,
@@ -358,5 +358,6 @@ export {
     deleteConfirm,
     initializeRow,
     addEntrys,
+    saveLocalStorage,
     testme,
 };

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: sort.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: sort.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Sorts the table by the column clicked.
+ * @param c column index to sort by
+ */
+function sortBy(c) {
+    let rows = document.getElementById("spreadsheet").rows.length - 1; // num of rows
+    let columns = document.getElementById("spreadsheet").rows[0].cells.length; // num of columns
+    let arrTable = [...Array(rows)].map(() => Array(columns)); // create an empty 2d array
+
+    for (let ro = 0; ro &lt; rows; ro++) {
+        // cycle through rows
+        for (let co = 0; co &lt; columns; co++) {
+            // cycle through columns
+            // assign the value in each row-column to a 2d array by row-column
+            arrTable[ro][co] =
+                document.getElementById("spreadsheet").rows[ro].cells[
+                    co
+                ].innerHTML;
+        }
+    }
+
+    let th = arrTable.shift(); // remove the header row from the array, and save it
+
+    // if the same column is clicked then reverse the array
+    arrTable.sort((a, b) => {
+        if (a[c] === b[c]) {
+            return 0;
+        } else {
+            return a[c] &lt; b[c] ? -1 : 1;
+        }
+    });
+    if (
+        document.getElementById("spreadsheet").rows[0].cells[c].className ==
+        "sortable asc"
+    ) {
+        arrTable.reverse();
+    }
+
+    arrTable.unshift(th); // put the header back in to the array
+
+    // cycle through rows-columns placing values from the array back into the html table
+    for (let ro = 0; ro &lt; rows; ro++) {
+        for (let co = 0; co &lt; columns; co++) {
+            if (ro === 0 &amp;&amp; co === c) {
+                let chosen =
+                    document.getElementById("spreadsheet").rows[ro].cells[co];
+                if (chosen.className == "sortable asc") {
+                    chosen.className = "sortable dsc";
+                } else {
+                    chosen.className = "sortable asc";
+                }
+            }
+            document.getElementById("spreadsheet").rows[ro].cells[
+                co
+            ].innerHTML = arrTable[ro][co];
+        }
+    }
+    //fix status color bubble
+    for (let ro = 1; ro &lt; rows; ro++) {
+        let chosen = document.getElementById("spreadsheet").rows[ro].cells[4];
+        if (chosen.innerHTML == "Applied") {
+            chosen.className = "applied";
+        } else if (chosen.innerHTML == "In Progress") {
+            chosen.className = "in_progress";
+        } else if (chosen.innerHTML == "Not Started") {
+            chosen.className = "not_started";
+        }
+    }
+    //fix status color bubble
+    for (let ro = 1; ro &lt; rows; ro++) {
+        let chosen = document.getElementById("spreadsheet").rows[ro].cells[4];
+        if (chosen.innerHTML == "Applied") {
+            chosen.className = "applied";
+        } else if (chosen.innerHTML == "In Progress") {
+            chosen.className = "in_progress";
+        } else if (chosen.innerHTML == "Not Started") {
+            chosen.className = "not_started";
+        }
+    }
+}
+
+export default { sortBy };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addEntry">addEntry</a></li><li><a href="global.html#addEntrys">addEntrys</a></li><li><a href="global.html#addRow">addRow</a></li><li><a href="global.html#closeDelete">closeDelete</a></li><li><a href="global.html#closeEditForm">closeEditForm</a></li><li><a href="global.html#closeForm">closeForm</a></li><li><a href="global.html#deleteButton">deleteButton</a></li><li><a href="global.html#deleteConfirm">deleteConfirm</a></li><li><a href="global.html#deleteForm">deleteForm</a></li><li><a href="global.html#editButton">editButton</a></li><li><a href="global.html#editRow">editRow</a></li><li><a href="global.html#getFormData">getFormData</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initializeRow">initializeRow</a></li><li><a href="global.html#openEditForm">openEditForm</a></li><li><a href="global.html#openForm">openForm</a></li><li><a href="global.html#registerServiceWorker">registerServiceWorker</a></li><li><a href="global.html#sanitizeHTML">sanitizeHTML</a></li><li><a href="global.html#saveData">saveData</a></li><li><a href="global.html#saveLocalStorage">saveLocalStorage</a></li><li><a href="global.html#sortBy">sortBy</a></li><li><a href="global.html#testme">testme</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
