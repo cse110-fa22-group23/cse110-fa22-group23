@@ -80,6 +80,8 @@ function sortBy(c) {
     }
 }
 
-module.exports = {
-    sortBy,
-};
+// module.exports = {
+//     sortBy,
+// };
+
+export default { sortBy };

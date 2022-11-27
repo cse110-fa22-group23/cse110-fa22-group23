@@ -1,8 +1,10 @@
 /* eslint-env jest */
 // render.test.js
 
-const functions = require("../assets/js/index.js");
-const state = require("../assets/js/state.js");
+// const functions = require("../assets/js/index.js");
+import * as functions from "../assets/js/index.js";
+import state from "../assets/js/state.js";
+// const state = require("../assets/js/state.js");
 
 test("Test test function", () => {
     let mocked = jest.spyOn(functions, "addEntry").mockReturnValue("C");
@@ -150,8 +152,10 @@ test("Test editButton()", () => {
     expect(() => {
         // item.closest("tr");
         // functions.set('data', state.data)
-        const input = document.getElementById("2");
-        console.log(input);
+        const input = { target: document.getElementById("2") };
+        // TODO: right now this test is failing because it is trying to get the data from the html but we haven't put the form fields in the html
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         functions.editButton(input);
     }).not.toThrow();
 });
