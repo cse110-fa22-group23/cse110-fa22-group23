@@ -48,44 +48,59 @@
     }
 }
 
-#delete-modal {
-    display: none;
-    text-align: center;
-    /*margin: 5% auto 15% auto;*/
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 20%; /* Full width */
-    height: 16%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background: #f6f6f6;
-    vertical-align: top;
-    z-index: 1; /* Bring modal in front of other elements */
+/* Delete modal */
+#delete-modal .modal-content {
+    width: 20%;
 }
+
 #delete-modal h1 {
     color: brown;
     line-height: 30px;
     letter-spacing: 0.1em;
 }
+
 #delete-modal p {
     color: brown;
 }
-#delete-modal button {
+
+#delete-modal div.form-buttons {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+#delete-modal div.form-buttons button {
     border: none;
     background: #86a8ee;
     border-radius: 999px;
-    width: 40%;
+    width: 45%;
     height: 30px;
     font-family: "Inter";
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 0.1em;
 }
-#delete-modal div.form-buttons input.caution,
+
+#delete-modal div.form-buttons button:hover {
+    background: rgb(109, 152, 238);
+}
+
+#delete-modal div.form-buttons button:active {
+    background: rgba(109, 152, 238, 0.6);
+}
+
 #delete-modal div.form-buttons button.caution {
     background: #e57878;
 }
+
+#delete-modal div.form-buttons button.caution:hover {
+    background: rgb(231, 100, 100);
+}
+
+#delete-modal div.form-buttons button.caution:active {
+    background: rgba(231, 100, 100, 0.6);
+}
+
 /* Form content */
 #entry-form div {
     margin-bottom: 30px;
