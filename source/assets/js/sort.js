@@ -1,6 +1,6 @@
 /**
  * Sorts the table by the column clicked.
- * @param c TODO
+ * @param c column index to sort by
  */
 function sortBy(c) {
     let rows = document.getElementById("spreadsheet").rows.length - 1; // num of rows
@@ -53,7 +53,6 @@ function sortBy(c) {
             document.getElementById("spreadsheet").rows[ro].cells[
                 co
             ].innerHTML = arrTable[ro][co];
-            // TODO: restore the status class here
         }
     }
     //fix status color bubble
@@ -79,9 +78,5 @@ function sortBy(c) {
         }
     }
 }
-
-// module.exports = {
-//     sortBy,
-// };
 
 export default { sortBy };

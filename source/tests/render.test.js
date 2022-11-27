@@ -1,35 +1,19 @@
 /* eslint-env jest */
 // render.test.js
 
-// const functions = require("../assets/js/index.js");
 import * as functions from "../assets/js/index.js";
 import state from "../assets/js/state.js";
-// const state = require("../assets/js/state.js");
+
+afterEach(() => {
+    // restore the spy created with spyOn
+    jest.restoreAllMocks();
+});
 
 test("Test test function", () => {
     let mocked = jest.spyOn(functions, "addEntry").mockReturnValue("C");
     // const mockCallback = jest.fn((x) => x);
     expect(functions.testme()).toBe("C");
     expect(mocked.mock.calls.length).toBe(1);
-    mocked.mockRestore();
-});
-
-test("Test openForm()", () => {
-    document.body.innerHTML = `
-        <div id="form-modal"></div>
-    `;
-    functions.openForm();
-    const myEntryEl = document.getElementById("form-modal");
-    expect(myEntryEl.style.display).toBe("block");
-});
-
-test("Test closeForm()", () => {
-    document.body.innerHTML = `
-        <div id="form-modal"></div>
-    `;
-    functions.closeForm();
-    const myEntryEl = document.getElementById("form-modal");
-    expect(myEntryEl.style.display).toBe("none");
 });
 
 test("Test deleteConfirm()", () => {
@@ -47,6 +31,24 @@ test("Test closeDelete()", () => {
     `;
     functions.closeDelete();
     const myEntryEl = document.getElementById("delete-modal");
+    expect(myEntryEl.style.display).toBe("none");
+});
+
+test("Test openForm()", () => {
+    document.body.innerHTML = `
+        <div id="form-modal"></div>
+    `;
+    functions.openForm();
+    const myEntryEl = document.getElementById("form-modal");
+    expect(myEntryEl.style.display).toBe("block");
+});
+
+test("Test closeForm()", () => {
+    document.body.innerHTML = `
+        <div id="form-modal"></div>
+    `;
+    functions.closeForm();
+    const myEntryEl = document.getElementById("form-modal");
     expect(myEntryEl.style.display).toBe("none");
 });
 
@@ -129,43 +131,259 @@ test("Test addEntrys() for no errors thrown", () => {
     }).not.toThrow();
 });
 
-test("Test editButton()", () => {
+test("Test editButton() sets form fields", () => {
     document.body.innerHTML = `
     <table id="spreadsheet">
         <tr id="2">
         <td class="company_name">asd</td><td class="position_name">sdf</td><td class="location_name">Northeast</td><td class="industry_name">asdf</td><td class="status"><span class="not_started">Not Started</span></td><td class="ranking_value"><img src="./assets/images/stars/4s.PNG" alt="4" class="center" style="display:block;" width="100%" height="100%"></td><td class="deadline_date">2022-11-08</td><td><button type="button" class="tableBtn" onclick="editButton(this)"><img src="./assets/images/icons/edit-pen-icon.webp" alt="edit row" height="15px"></button></td><td><button type="button" class="tableBtn caution" onclick="deleteForm(this)"><img src="./assets/images/icons/trash-icon.webp" alt="delete row" height="15px"></button></td></tr><tr id="inputTable">
         </tr>
     </tbody></table>
+
+    <!-- Edit Modal -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <form id="edit-form">
+                    <div>
+                        <label for="company">Enter Company Name:</label>
+                        <input
+                            type="text"
+                            placeholder="Company Name"
+                            name="company"
+                            id="companyEdit"
+                            required
+                            maxlength="24"
+                            title="Company (24 characters max.)"
+                        />
+                    </div>
+                    <div>
+                        <label for="position">Enter Position Title:</label>
+                        <input
+                            type="text"
+                            placeholder="Position Name"
+                            name="position"
+                            id="positionEdit"
+                            required
+                            maxlength="24"
+                            title="Position (24 characters max.)"
+                        />
+                    </div>
+                    <div>
+                        <label for="location">Enter Location:</label>
+                        <select name="location" id="locationEdit">
+                            <option value="">Choose location</option>
+                            <option value="Remote">Remote</option>
+                            <option value="Northeast">Northeast</option>
+                            <option value="Southwest">Southwest</option>
+                            <option value="West">West</option>
+                            <option value="Southeast">Southeast</option>
+                            <option value="Midwest">Midwest</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="industry">Enter Industry:</label>
+                        <input
+                            type="text"
+                            placeholder="Industry Name"
+                            name="industry"
+                            id="industryEdit"
+                            required
+                            maxlength="24"
+                            title="Industry (24 characters max.)"
+                        />
+                    </div>
+                    <div>
+                        <label for="status">Enter Status:</label>
+                        <select name="status" id="statusEdit">
+                            <option value="In Progress">In Progress</option>
+                            <option value="Applied">Applied</option>
+                            <option value="Not Started">Not Started Yet</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="ranking">Choose Ranking:</label>
+                        <select name="ranking" id="rankingEdit">
+                            <option value="1">1 star</option>
+                            <option value="2">2 stars</option>
+                            <option value="3">3 stars</option>
+                            <option value="4">4 stars</option>
+                            <option value="5">5 stars</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="deadline">Enter Deadline:</label>
+                        <input
+                            type="date"
+                            id="deadlineEdit"
+                            name="deadline"
+                            min="2022-01-01"
+                            max="2023-12-31"
+                        />
+                    </div>
+                    <br />
+                    <div class="form-buttons">
+                        <button class="caution" id="closeEditForm">
+                            Cancel Edit
+                        </button>
+                        <input type="submit" value="Edit Entry" id="editRow" />
+                    </div>
+                </form>
+            </div>
+        </div>
     `;
     state.data = {
         2: {
-            company: "asd",
+            company: "Group 23",
+            position: "Suusware Developer",
+            location: "Southwest",
+            industry: "UCSD",
+            status: "In Progress",
+            ranking: "1",
+            deadline: "2022-11-10",
+        },
+    };
+
+    expect(() => {
+        const input = { target: document.getElementById("2") };
+        functions.editButton(input);
+        // assert it sets the form fields
+        const expected = {
+            company: "Group 23",
+            position: "Suusware Developer",
+            location: "Southwest",
+            industry: "UCSD",
+            status: "In Progress",
+            ranking: "1",
+            deadline: "2022&#45;11&#45;10",
+        };
+        expect(functions.getFormData("Edit")).toEqual(expected);
+    }).not.toThrow();
+});
+
+test("Test editRow() changes row data", () => {
+    document.body.innerHTML = `
+    <table id="spreadsheet">
+        <tr id="2">
+        <td class="company_name">asd</td><td class="position_name">sdf</td><td class="location_name">Northeast</td><td class="industry_name">asdf</td><td class="status"><span class="not_started">Not Started</span></td><td class="ranking_value"><img src="./assets/images/stars/4s.PNG" alt="4" class="center" style="display:block;" width="100%" height="100%"></td><td class="deadline_date">2022-11-08</td><td><button type="button" class="tableBtn" onclick="editButton(this)"><img src="./assets/images/icons/edit-pen-icon.webp" alt="edit row" height="15px"></button></td><td><button type="button" class="tableBtn caution" onclick="deleteForm(this)"><img src="./assets/images/icons/trash-icon.webp" alt="delete row" height="15px"></button></td></tr>
+        </tr>
+        <div id="delete-modal" style=""></div>
+        <div id="edit-modal" style=""></div>
+    </tbody></table>
+    `;
+    state.currRow = document.getElementById("2");
+
+    const formData = {
+        company: "Group 23",
+        position: "Suusware Developer",
+        location: "Southwest",
+        industry: "UCSD",
+        status: "In Progress",
+        ranking: "2",
+        deadline: "2022-11-10",
+    };
+    jest.spyOn(functions, "getFormData").mockReturnValue(formData);
+    functions.editRow();
+    const row = document.getElementById("2");
+
+    // assert row data got changed
+    expect(row.cells[0].innerHTML).toBe(formData.company);
+    expect(row.cells[1].innerHTML).toBe(formData.position);
+    expect(row.cells[2].innerHTML).toBe(formData.location);
+    expect(row.cells[3].innerHTML).toBe(formData.industry);
+    expect(row.cells[4].innerHTML).toContain("In Progress");
+    expect(row.cells[5].innerHTML).toContain("/assets/images/stars/2s.PNG");
+    expect(row.cells[6].innerHTML).toBe(formData.deadline);
+
+    const numRows = document.getElementById("spreadsheet").rows.length;
+    expect(numRows).toBe(1);
+});
+
+test("Test deleteButton() deletes row", () => {
+    document.body.innerHTML = `
+    <table id="spreadsheet">
+        <tr id="2">
+        <td class="company_name">asd</td><td class="position_name">sdf</td><td class="location_name">Northeast</td><td class="industry_name">asdf</td><td class="status"><span class="not_started">Not Started</span></td><td class="ranking_value"><img src="./assets/images/stars/4s.PNG" alt="4" class="center" style="display:block;" width="100%" height="100%"></td><td class="deadline_date">2022-11-08</td><td><button type="button" class="tableBtn" onclick="editButton(this)"><img src="./assets/images/icons/edit-pen-icon.webp" alt="edit row" height="15px"></button></td><td><button type="button" class="tableBtn caution" onclick="deleteForm(this)"><img src="./assets/images/icons/trash-icon.webp" alt="delete row" height="15px"></button></td></tr>
+        <tr id="3"></tr>
+        <div id="delete-modal" style=""></div>
+        <div id="edit-modal" style=""></div>
+    </tbody></table>
+    `;
+    state.currRow = document.getElementById("2");
+
+    functions.deleteButton();
+    const row = document.getElementById("2");
+    // assert row deleted
+    expect(row).toBe(null);
+
+    const numRows = document.getElementById("spreadsheet").rows.length;
+    expect(numRows).toBe(1);
+});
+
+test("Test deleteForm() opens modal", () => {
+    document.body.innerHTML = `
+    <table id="spreadsheet">
+        <tr id="2">
+        <td class="company_name">asd</td><td class="position_name">sdf</td><td class="location_name">Northeast</td><td class="industry_name">asdf</td><td class="status"><span class="not_started">Not Started</span></td><td class="ranking_value"><img src="./assets/images/stars/4s.PNG" alt="4" class="center" style="display:block;" width="100%" height="100%"></td><td class="deadline_date">2022-11-08</td><td><button type="button" class="tableBtn" onclick="editButton(this)"><img src="./assets/images/icons/edit-pen-icon.webp" alt="edit row" height="15px"></button></td><td><button type="button" class="tableBtn caution" onclick="deleteForm(this)"><img src="./assets/images/icons/trash-icon.webp" alt="delete row" height="15px"></button></td></tr>
+        <tr id="3"></tr>
+        <div id="delete-modal" style=""></div>
+        <div id="edit-modal" style=""></div>
+    </tbody></table>
+    `;
+    const item = { target: document.getElementById("2") };
+    functions.deleteForm(item);
+    expect(document.getElementById("delete-modal").style.display).toBe("block");
+});
+
+test("Test getFormData() gets fields", () => {
+    // read index.html
+    let fs = require("fs");
+    let index = fs.readFileSync("../source/index.html");
+    document.body.innerHTML = index.toString();
+
+    expect(() => {
+        const output = functions.getFormData("Edit");
+
+        const expected = {
+            company: "",
             position: "",
             location: "",
             industry: "",
             status: "In Progress",
             ranking: "1",
             deadline: "",
-        },
-    };
-    // console.log(state.data);
-    expect(() => {
-        // item.closest("tr");
-        // functions.set('data', state.data)
-        const input = { target: document.getElementById("2") };
-        // TODO: right now this test is failing because it is trying to get the data from the html but we haven't put the form fields in the html
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        functions.editButton(input);
+        };
+        expect(output).toEqual(expected);
     }).not.toThrow();
 });
 
-// test("Test editRow() correct row content", () => {
-//     //functions.editRow();
-//     //expect(functions.editRow).toHaveReturned();
-//     //expect(functions.editRow).toThrow();
+test("Test saveData() saves data", () => {
+    const id = 12345;
+    const formData = {
+        company: "Group 23",
+        position: "Suusware Developer",
+        location: "Southwest",
+        industry: "UCSD",
+        status: "In Progress",
+        ranking: "2",
+        deadline: "2022-11-10",
+    };
+    functions.saveData(id, formData);
+    expect(state.data).toEqual({ 12345: formData });
+});
 
-//     expect(() => {
-//         functions.editRow();
-//     }).not.toThrow();
-// });
+test("Test saveLocalStorage() saves data", () => {
+    state.count = 12345;
+    state.data = {
+        company: "Group 23",
+        position: "Suusware Developer",
+        location: "Southwest",
+        industry: "UCSD",
+        status: "In Progress",
+        ranking: "2",
+        deadline: "2022-11-10",
+    };
+    functions.saveLocalStorage();
+    const savedCount = JSON.parse(window.localStorage.getItem("counter"));
+    const savedData = JSON.parse(window.localStorage.getItem("SpreadSheet"));
+    expect(savedData).toEqual(state.data);
+    expect(savedCount).toEqual(state.count);
+});

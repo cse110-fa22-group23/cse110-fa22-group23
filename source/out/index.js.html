@@ -27,10 +27,29 @@
 
         <section>
             <article>
-                <pre class="prettyprint source linenums"><code>window.addEventListener("DOMContentLoaded", init);
-var data = {};
-var count = 1;
-var currRow;
+                <pre class="prettyprint source linenums"><code>// non-persistent state
+import state from "./state.js";
+import sortBy from "./sort.js";
+
+window.addEventListener("DOMContentLoaded", init);
+
+// add event listeners
+window.addEventListener("click", function (e) {
+    if (e.target == document.getElementById("form-modal")) {
+        closeForm();
+    }
+
+    if (e.target == document.getElementById("edit-modal")) {
+        closeEditForm();
+    }
+
+    if (e.target == document.getElementById("delete-modal")) {
+        closeDelete();
+    }
+    if (e.target == document.getElementById("createBtn")) {
+        openForm();
+    }
+});
 
 /**
  * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
@@ -42,16 +61,59 @@ function init() {
     if (!(loadedData === null)) {
         loadedData = JSON.parse(loadedData);
         addEntrys(loadedData);
-
-        data = loadedData;
+        state.data = loadedData;
     }
 
     var counter = window.localStorage.getItem("counter");
     if (!(counter === null)) {
-        count = JSON.parse(counter);
+        state.count = JSON.parse(counter);
     }
+
+    // add listeners
+    let el = document.getElementById("closeEditForm");
+    el.addEventListener("click", closeEditForm);
+    el = document.getElementById("companyName");
+    el.addEventListener("click", () => {
+        sortBy(0);
+    });
+    el = document.getElementById("Position");
+    el.addEventListener("click", () => {
+        sortBy(1);
+    });
+    el = document.getElementById("Location");
+    el.addEventListener("click", () => {
+        sortBy(2);
+    });
+    el = document.getElementById("Industry");
+    el.addEventListener("click", () => {
+        sortBy(3);
+    });
+    el = document.getElementById("Status");
+    el.addEventListener("click", () => {
+        sortBy(4);
+    });
+    el = document.getElementById("Ranking");
+    el.addEventListener("click", () => {
+        sortBy(5);
+    });
+    el = document.getElementById("Deadline");
+    el.addEventListener("click", () => {
+        sortBy(6);
+    });
+
+    el = document.getElementById("addRow");
+    el.addEventListener("click", addRow);
+    el = document.getElementById("closeForm");
+    el.addEventListener("click", closeForm);
+    el = document.getElementById("closeDelete");
+    el.addEventListener("click", closeDelete);
+    el = document.getElementById("deleteButton");
+    el.addEventListener("click", deleteButton);
+    el = document.getElementById("editRow");
+    el.addEventListener("click", editRow);
     return 0;
 }
+
 /**
  * Makes the delete confirmation modal visible on the page.
  */
@@ -92,32 +154,18 @@ function closeEditForm() {
     document.getElementById("edit-modal").style.display = "none";
 }
 
-window.addEventListener("click", function (e) {
-    if (e.target == document.getElementById("form-modal")) {
-        closeForm();
-    }
-
-    if (e.target == document.getElementById("edit-modal")) {
-        closeEditForm();
-    }
-
-    if (e.target == document.getElementById("delete-modal")) {
-        closeDelete();
-    }
-});
-
 /**
  * Appends form data (from the modal) to a corresponding entry in the table. Reset form field after submit.
  */
 function addRow() {
-    event.preventDefault();
+    // event.preventDefault();
 
     const formData = getFormData("");
 
-    let rowId = count;
+    let rowId = state.count;
     addEntry(formData, rowId);
     closeForm();
-    save_data(rowId, formData);
+    saveData(rowId, formData);
 
     const form = document.getElementById("entry-form");
     if (form) form.reset();
@@ -128,9 +176,9 @@ function addRow() {
  * @param item (td) table data
  */
 function editButton(item) {
-    const row = item.closest("tr");
-    currRow = row;
-    const rowData = data[row.id];
+    const row = item.target.closest("tr");
+    state.currRow = row;
+    const rowData = state.data[row.id];
 
     // prefill form with row data
     document.getElementById("companyEdit").value = rowData["company"];
@@ -148,13 +196,13 @@ function editButton(item) {
  *  Edit row from the data in the modal.
  */
 function editRow() {
-    event.preventDefault();
-    const row = currRow;
-    const formData = getFormData("Edit");
+    // event.preventDefault();
+    const row = state.currRow;
+    const formData = module.exports.getFormData("Edit");
     addEntry(formData, row.id, row.rowIndex);
     deleteButton(row);
     closeEditForm();
-    save_data(row.id, formData);
+    saveData(row.id, formData);
 }
 
 /**
@@ -163,11 +211,11 @@ function editRow() {
  * @param  {String} str  The user-submitted string
  * @return {String} str  The sanitized string
  */
-var sanitizeHTML = function (str) {
+function sanitizeHTML(str) {
     return str.replace(/[^\w. ]/gi, function (c) {
         return "&amp;#" + c.charCodeAt(0) + ";";
     });
-};
+}
 
 /**
  * Get the data inside the edit form.
@@ -196,25 +244,27 @@ function getFormData(postfix) {
 
     return formData;
 }
+
 /**
  * Sets the row to be deleted.
  * @param item (td) table data
  */
 function deleteForm(item) {
-    const row = item.closest("tr");
-    currRow = row;
+    const row = item.target.closest("tr");
+    state.currRow = row;
     deleteConfirm();
 }
+
 /**
  * Deletes the row given a reference to its data.
  */
 function deleteButton() {
-    const row = currRow;
+    const row = state.currRow;
     // delete from HTML
     document.getElementById("spreadsheet").deleteRow(row.rowIndex);
     // delete from local storage
-    delete data[row.id];
-    save_localstorage();
+    delete state.data[row.id];
+    saveLocalStorage();
     closeDelete();
 }
 
@@ -224,6 +274,7 @@ function deleteButton() {
  */
 function addEntrys(entrys) {
     for (var key in entrys) {
+        //module.exports.addEntry(entrys[key], key); // example dependency injection for testing
         addEntry(entrys[key], key);
     }
 }
@@ -239,7 +290,7 @@ function initializeRow(table, id, rowIndex) {
     var row = table.insertRow(rowIndex);
     var rowCells = {};
     row.id = id;
-    count++;
+    state.count = state.count + 1;
     rowCells.company = row.insertCell(0);
     rowCells.company.setAttribute("class", "company_name");
     rowCells.position = row.insertCell(1);
@@ -285,8 +336,10 @@ function addEntry(entry, id, rowIndex = 1) {
     rowCells.status.setAttribute("class", "status");
     rowCells.ranking.innerHTML = `&lt;img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" class="center" style="display:block;" width="100%" height="100%">&lt;/img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
-    rowCells.editButton.innerHTML = `&lt;button type="button" class="tableBtn" onclick="editButton(this)">&lt;img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row">&lt;/button>`;
-    rowCells.deleteButton.innerHTML = `&lt;button type="button" class="tableBtn caution" onclick="deleteForm(this)">&lt;img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row">&lt;/button>`;
+    rowCells.editButton.innerHTML = `&lt;button type="button" class="tableBtn" >&lt;img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row">&lt;/button>`;
+    rowCells.editButton.addEventListener("click", editButton);
+    rowCells.deleteButton.innerHTML = `&lt;button type="button" class="tableBtn caution" >&lt;img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row">&lt;/button>`;
+    rowCells.deleteButton.addEventListener("click", deleteForm);
 }
 
 /**
@@ -294,125 +347,48 @@ function addEntry(entry, id, rowIndex = 1) {
  * @param id of the application (key into localstorage)
  * @param formData data fields of application
  */
-function save_data(id, formData) {
-    data[id.toString()] = formData;
-
-    save_localstorage();
+function saveData(id, formData) {
+    state.data[id.toString()] = formData;
+    saveLocalStorage();
 }
 
 /**
  * Saves local storage.
  */
-function save_localstorage() {
-    window.localStorage.setItem("SpreadSheet", JSON.stringify(data));
-    window.localStorage.setItem("counter", JSON.stringify(count));
+function saveLocalStorage() {
+    window.localStorage.setItem("SpreadSheet", JSON.stringify(state.data));
+    window.localStorage.setItem("counter", JSON.stringify(state.count));
 }
-
-/////////////////////////SORT TABLE////////////////////////////////////////////////////////
-
-// determine if the same column is clicked again
 
 /**
- * Sorts the table by the column clicked.
- * @param c TODO
+ * Sample test for mocking internal function calls.
  */
-function sortBy(c) {
-    let rows = document.getElementById("spreadsheet").rows.length - 1; // num of rows
-    let columns = document.getElementById("spreadsheet").rows[0].cells.length; // num of columns
-    let arrTable = [...Array(rows)].map(() => Array(columns)); // create an empty 2d array
-
-    for (let ro = 0; ro &lt; rows; ro++) {
-        // cycle through rows
-        for (let co = 0; co &lt; columns; co++) {
-            // cycle through columns
-            // assign the value in each row-column to a 2d array by row-column
-            arrTable[ro][co] =
-                document.getElementById("spreadsheet").rows[ro].cells[
-                    co
-                ].innerHTML;
-        }
-    }
-
-    let th = arrTable.shift(); // remove the header row from the array, and save it
-
-    // if the same column is clicked then reverse the array
-
-    arrTable.sort((a, b) => {
-        if (a[c] === b[c]) {
-            return 0;
-        } else {
-            return a[c] &lt; b[c] ? -1 : 1;
-        }
-    });
-    if (
-        document.getElementById("spreadsheet").rows[0].cells[c].className ==
-        "sortable asc"
-    ) {
-        arrTable.reverse();
-    }
-
-    arrTable.unshift(th); // put the header back in to the array
-
-    // cycle through rows-columns placing values from the array back into the html table
-    for (let ro = 0; ro &lt; rows; ro++) {
-        for (let co = 0; co &lt; columns; co++) {
-            if (ro === 0 &amp;&amp; co === c) {
-                let chosen =
-                    document.getElementById("spreadsheet").rows[ro].cells[co];
-                if (chosen.className == "sortable asc") {
-                    chosen.className = "sortable dsc";
-                } else {
-                    chosen.className = "sortable asc";
-                }
-            }
-            document.getElementById("spreadsheet").rows[ro].cells[
-                co
-            ].innerHTML = arrTable[ro][co];
-            // TODO: restore the status class here
-        }
-    }
-    //fix status color bubble
-    for (let ro = 1; ro &lt; rows; ro++) {
-        let chosen = document.getElementById("spreadsheet").rows[ro].cells[4];
-        if (chosen.innerHTML == "Applied") {
-            chosen.className = "applied";
-        } else if (chosen.innerHTML == "In Progress") {
-            chosen.className = "in_progress";
-        } else if (chosen.innerHTML == "Not Started") {
-            chosen.className = "not_started";
-        }
-    }
-    //fix status color bubble
-    for (let ro = 1; ro &lt; rows; ro++) {
-        let chosen = document.getElementById("spreadsheet").rows[ro].cells[4];
-        if (chosen.innerHTML == "Applied") {
-            chosen.className = "applied";
-        } else if (chosen.innerHTML == "In Progress") {
-            chosen.className = "in_progress";
-        } else if (chosen.innerHTML == "Not Started") {
-            chosen.className = "not_started";
-        }
-    }
+function testme() {
+    let returned_value = module.exports.addEntry();
+    return returned_value;
 }
 
-//////////////////////////END OF SORT TABLE//////////////////////////////////////////
 // To be used in tests
-module.exports = {
+export {
     init,
     openForm,
     closeForm,
     addRow,
-    save_data,
+    saveData,
     addEntry,
     deleteButton,
     editButton,
+    getFormData,
     editRow,
-    sortBy,
     deleteForm,
     closeEditForm,
     openEditForm,
     closeDelete,
     deleteConfirm,
+    initializeRow,
+    addEntrys,
+    saveLocalStorage,
+    testme,
 };
 </code></pre>
             </article>
@@ -445,9 +421,10 @@ module.exports = {
             <li><a href="global.html#openForm">openForm</a></li>
             <li><a href="global.html#registerServiceWorker">registerServiceWorker</a></li>
             <li><a href="global.html#sanitizeHTML">sanitizeHTML</a></li>
-            <li><a href="global.html#save_data">save_data</a></li>
-            <li><a href="global.html#save_localstorage">save_localstorage</a></li>
+            <li><a href="global.html#saveData">saveData</a></li>
+            <li><a href="global.html#saveLocalStorage">saveLocalStorage</a></li>
             <li><a href="global.html#sortBy">sortBy</a></li>
+            <li><a href="global.html#testme">testme</a></li>
         </ul>
     </nav>
 
