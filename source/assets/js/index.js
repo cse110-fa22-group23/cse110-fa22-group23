@@ -168,7 +168,7 @@ function editButton(item) {
 function editRow() {
     // event.preventDefault();
     const row = state.currRow;
-    const formData = getFormData("Edit");
+    const formData = f.getFormData("Edit");
     addEntry(formData, row.id, row.rowIndex);
     deleteButton(row);
     closeEditForm();
@@ -334,7 +334,7 @@ function saveLocalStorage() {
  */
 function testme() {
     // example dependency injection
-    let returned_value = module.exports.addEntry();
+    let returned_value = f.addEntry();
     return returned_value;
 }
 
@@ -346,7 +346,7 @@ function clearLocalStorage() {
 }
 
 // To be used in tests
-export {
+const f = {
     init,
     openForm,
     closeForm,
@@ -368,3 +368,5 @@ export {
     testme,
     clearLocalStorage,
 };
+
+export default f;
