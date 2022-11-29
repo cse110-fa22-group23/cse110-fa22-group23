@@ -1,7 +1,7 @@
 /* eslint-env jest */
 // sort.test.js
 
-import * as functions from "../assets/js/index.js";
+import functions from "../assets/js/index.js";
 import { sortBy } from "../assets/js/sort.js";
 
 test("Test sort() sorts correct row content", () => {
