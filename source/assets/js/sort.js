@@ -3,7 +3,7 @@
  * @param c column index to sort by
  */
 function sortBy(c) {
-    let rows = document.getElementById("spreadsheet").rows.length - 1; // num of rows
+    let rows = document.getElementById("spreadsheet").rows.length; // num of rows
     let columns = document.getElementById("spreadsheet").rows[0].cells.length; // num of columns
     let arrTable = [...Array(rows)].map(() => Array(columns)); // create an empty 2d array
 

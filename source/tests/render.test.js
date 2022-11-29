@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 /* eslint-env jest */
 // render.test.js
 
@@ -230,7 +233,7 @@ test("Test editRow() changes row data", () => {
     expect(row.cells[6].innerHTML).toBe(formData.deadline);
 
     const numRows = document.getElementById("spreadsheet").rows.length;
-    expect(numRows).toBe(3); // same as num rows before editing
+    expect(numRows).toBe(2); // same as num rows before editing
 });
 
 test("Test deleteButton() deletes row", () => {
