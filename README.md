@@ -37,7 +37,9 @@ npm run docs       # run doc generation on js files
 
 ## Documentation
 
-### [Website](https://cse110-fa22-group23.github.io/cse110-fa22-group23/source/out/index.html)
+### [Website](https://cse110-fa22-group23.github.io/cse110-fa22-group23/)
+
+### [Docs](https://cse110-fa22-group23.github.io/cse110-fa22-group23/out/)
 
 ### [Contribution Guidelines](docs/CONTRIBUTING.md)
 
