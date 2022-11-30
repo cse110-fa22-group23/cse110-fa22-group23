@@ -11,7 +11,7 @@ const appShellFiles = [
     "/cse110-fa22-group23/assets/images/stars/2-star.svg",
     "/cse110-fa22-group23/assets/images/stars/3-star.svg",
     "/cse110-fa22-group23/assets/images/stars/4-star.svg",
-    "/cse110-fa22-group23/assets/images/stars/5-star.svg"
+    "/cse110-fa22-group23/assets/images/stars/5-star.svg",
 ];
 
 self.addEventListener("install", (e) => {
