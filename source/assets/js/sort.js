@@ -27,17 +27,17 @@ function sortBy(c) {
                 one from current row and one from the next: */
             x = rows[i].cells[c];
             y = rows[i + 1].cells[c];
-            console.log(x);
-            console.log(y);
+            // console.log(x);
+            // console.log(y);
             // Check if the two rows should switch place:
             if (dir == "asc") {
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                if (x != null && y != null && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     // If so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
                 }
             } else if (dir == "desc") {
-                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                if (x != null && y != null && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                     // If so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
@@ -65,9 +65,8 @@ function sortBy(c) {
     selectedHeaders.forEach((header) => {
         header.classList.remove("selected");
     });
-    document
-        .getElementById("spreadsheet")
-        .rows[0].cells[c].classList.add("selected");
+    console.log(table);
+    table.rows[0].cells[c].classList.add("selected");
 }
 
 export { sortBy };
