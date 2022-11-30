@@ -31,13 +31,21 @@ function sortBy(c) {
             // console.log(y);
             // Check if the two rows should switch place:
             if (dir == "asc") {
-                if (x != null && y != null && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                if (
+                    x != null &&
+                    y != null &&
+                    x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()
+                ) {
                     // If so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
                 }
             } else if (dir == "desc") {
-                if (x != null && y != null && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                if (
+                    x != null &&
+                    y != null &&
+                    x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()
+                ) {
                     // If so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
