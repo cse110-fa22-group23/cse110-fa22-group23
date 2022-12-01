@@ -6,33 +6,31 @@ function sortBy(c) {
     var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("spreadsheet");
     switching = true;
-    /* Make a loop that will continue until
-    no switching has been done: */
+
     var dir = "asc";
     var switchcount = 0;
 
+    // loop until no more switching has been done
     while (switching) {
-        // Start by saying: no switching is done:
+        // default to no switching
         switching = false;
         rows = table.rows;
-        /* Loop through all table rows (except the
-            first, which contains table headers): */
+        // loop through all table rows, except for header
         for (i = 1; i < rows.length - 1; i++) {
             // Start by saying there should be no switching:
             shouldSwitch = false;
-            /* Get the two elements you want to compare,
-                one from current row and one from the next: */
+            // get consecutive elements for compare
             x = rows[i].cells[c];
             y = rows[i + 1].cells[c];
 
-            // Check if the two rows should switch place:
+            // check if rows should be switched
             if (dir == "asc") {
                 if (
                     x != null &&
                     y != null &&
                     x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()
                 ) {
-                    // If so, mark as a switch and break the loop:
+                    // if out of order, break from loop
                     shouldSwitch = true;
                     break;
                 }
@@ -42,30 +40,26 @@ function sortBy(c) {
                     y != null &&
                     x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()
                 ) {
-                    // If so, mark as a switch and break the loop:
+                    // if out of order, break from loop
                     shouldSwitch = true;
                     break;
                 }
             }
         }
         if (shouldSwitch) {
-            /* If a switch has been marked, make the switch
-                        and mark that a switch has been done: */
+            // if a switch has been marked, continue switching
             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
             switching = true;
-
-            // Each time a switch is done, increase this count by 1:
             switchcount++;
         } else {
-            /* If no switching has been done AND the direction is "asc",
-                        set the direction to "desc" and run the while loop again. */
+            // if no switching and direction is "asc", set direction to "desc" and loop again
             if (switchcount == 0 && dir == "asc") {
                 dir = "desc";
                 switching = true;
             }
         }
     }
-    // remove selected, asc, and desc statuses from other cols
+    // remove "selected", "asc", and "desc" statuses from other cols
     const selectedHeaders = document.querySelectorAll(".selected");
 
     selectedHeaders.forEach((header) => {
@@ -77,6 +71,7 @@ function sortBy(c) {
     // add selected status to current col
     table.rows[0].cells[c].classList.add("selected");
 
+    // change table header arrow based on sort
     if (dir == "asc") {
         table.rows[0].cells[c].classList.add("asc");
     } else {
