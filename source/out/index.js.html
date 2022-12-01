@@ -333,9 +333,9 @@ function addEntry(entry, id, rowIndex = 1) {
     rowCells.status.setAttribute("class", "status");
     rowCells.ranking.innerHTML = `&lt;img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" class="center" style="display:block;" width="100%" height="100%">&lt;/img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
-    rowCells.editButton.innerHTML = `&lt;button type="button" class="tableBtn" >&lt;img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row">&lt;/button>`;
+    rowCells.editButton.innerHTML = `&lt;button type="button" class="tableBtn editBtn" >&lt;img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row">&lt;/button>`;
     rowCells.editButton.addEventListener("click", editButton);
-    rowCells.deleteButton.innerHTML = `&lt;button type="button" class="tableBtn caution" >&lt;img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row">&lt;/button>`;
+    rowCells.deleteButton.innerHTML = `&lt;button type="button" class="tableBtn deleteBtn caution" >&lt;img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row">&lt;/button>`;
     rowCells.deleteButton.addEventListener("click", deleteForm);
 }
 
