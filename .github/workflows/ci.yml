@@ -51,7 +51,8 @@ jobs:
       - name: Install packages
         working-directory: ./source
         run: |
-          npm i
+          sed '/jest-puppeteer/d' ./package.json > tempfile && mv -f tempfile "package.json"
+          npm install --no-save
 
       - name: Run javascript tests (jest)
         working-directory: ./source
