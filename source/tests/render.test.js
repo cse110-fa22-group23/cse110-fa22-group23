@@ -139,8 +139,12 @@ test("Test addEntry() correct row content", () => {
         var row = table.rows[count];
         expect(row.cells[0].innerHTML).toBe("test company");
         expect(row.cells[1].innerHTML).toBe("test position");
-        expect(row.cells[2].innerHTML).toBe("test location");
-        expect(row.cells[3].innerHTML).toBe("test industry");
+        expect(row.cells[2].innerHTML).toContain(
+            "test location"
+        ); /*due to change in label*/
+        expect(row.cells[3].innerHTML).toContain(
+            "test industry"
+        ); /*due to change in label*/
         expect(row.cells[4].innerHTML).toContain("In Progress");
         expect(row.cells[5].innerHTML).toContain(
             "/assets/images/stars/1 stars.PNG"
@@ -223,8 +227,12 @@ test("Test editRow() changes row data", () => {
     row = document.getElementById("1");
     expect(row.cells[0].innerHTML).toBe(formData.company);
     expect(row.cells[1].innerHTML).toBe(formData.position);
-    expect(row.cells[2].innerHTML).toBe(formData.location);
-    expect(row.cells[3].innerHTML).toBe(formData.industry);
+    expect(row.cells[2].innerHTML).toContain(
+        formData.location
+    ); /*change due to change of label*/
+    expect(row.cells[3].innerHTML).toContain(
+        formData.industry
+    ); /*change due to change of label*/
     expect(row.cells[4].innerHTML).toContain("In Progress");
     expect(row.cells[5].innerHTML).toContain("/assets/images/stars/2s.PNG");
     expect(row.cells[6].innerHTML).toBe(formData.deadline);

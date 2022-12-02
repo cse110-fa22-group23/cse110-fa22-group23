@@ -320,8 +320,8 @@ function addEntry(entry, id, rowIndex = 1) {
 
     rowCells.company.innerHTML = entry["company"];
     rowCells.position.innerHTML = entry["position"];
-    rowCells.location.innerHTML = entry["location"];
-    rowCells.industry.innerHTML = entry["industry"];
+    rowCells.location.innerHTML = `&lt;span class="location_name_label">${entry["location"]}&lt;/span>`;
+    rowCells.industry.innerHTML = `&lt;span class="industry_name_label">${entry["industry"]}&lt;/span>`;
     rowCells.status.innerHTML = entry["status"];
     if (rowCells.status.innerHTML == "Applied") {
         rowCells.status.innerHTML = `&lt;span class="applied">${entry["status"]}&lt;/span>`;
@@ -331,7 +331,7 @@ function addEntry(entry, id, rowIndex = 1) {
         rowCells.status.innerHTML = `&lt;span class="not_started">${entry["status"]}&lt;/span>`;
     }
     rowCells.status.setAttribute("class", "status");
-    rowCells.ranking.innerHTML = `&lt;img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" class="center" style="display:block;" width="100%" height="100%">&lt;/img>`;
+    rowCells.ranking.innerHTML = `&lt;img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" style="display:block;" width="60%" height="60%">&lt;/img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
     rowCells.editButton.innerHTML = `&lt;button type="button" class="tableBtn" >&lt;img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row">&lt;/button>`;
     rowCells.editButton.addEventListener("click", editButton);
