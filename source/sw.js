@@ -1,20 +1,17 @@
 const cacheName = "jobtracker-v1";
 const appShellFiles = [
-    "/",
-    "/index.html",
-    "/source/",
-    "/source/index.html",
-    "/source/assets/css/button.css",
-    "/source/assets/css/index.css",
-    "/source/assets/css/modal.css",
-    "/source/assets/css/table.css",
-    "/source/assets/js/index.js",
-    "/source/assets/images/stars/0-star.svg",
-    "/source/assets/images/stars/1-star.svg",
-    "/source/assets/images/stars/2-star.svg",
-    "/source/assets/images/stars/3-star.svg",
-    "/source/assets/images/stars/4-star.svg",
-    "/source/assets/images/stars/5-star.svg",
+    "/cse110-fa22-group23/index.html",
+    "/cse110-fa22-group23/assets/css/button.css",
+    "/cse110-fa22-group23/assets/css/index.css",
+    "/cse110-fa22-group23/assets/css/modal.css",
+    "/cse110-fa22-group23/assets/css/table.css",
+    "/cse110-fa22-group23/assets/js/index.js",
+    "/cse110-fa22-group23/assets/images/stars/0-star.svg",
+    "/cse110-fa22-group23/assets/images/stars/1-star.svg",
+    "/cse110-fa22-group23/assets/images/stars/2-star.svg",
+    "/cse110-fa22-group23/assets/images/stars/3-star.svg",
+    "/cse110-fa22-group23/assets/images/stars/4-star.svg",
+    "/cse110-fa22-group23/assets/images/stars/5-star.svg",
 ];
 
 self.addEventListener("install", (e) => {
