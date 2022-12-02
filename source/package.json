@@ -6,7 +6,9 @@
         "lint:check": "eslint .",
         "lint:html": "htmlhint '**/*.html' --ignore='**/out/**'",
         "lint:markdown": "remark . --use remark-preset-lint-consistent --frail",
-        "test": "jest --testEnvironment='jsdom'",
+        "test": "jest",
+        "test-github-action": "jest --testPathIgnorePatterns e2e.test.js",
+        "e2e": "jest ./tests/e2e.test.js",
         "prepare": "cd .. && husky install .config/.husky",
         "docs": "jsdoc -r ./assets/js -c ../.config/jsdoc.conf.json && git add ./out",
         "start": "webpack-dev-server --hot --config ./webpack.config.js --mode development",
@@ -42,6 +44,7 @@
         "globals": {
             "window": {}
         },
+        "verbose": true,
         "transform": {
             "^.+\\.[t|j]sx?$": "babel-jest"
         },
