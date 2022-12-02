@@ -39,6 +39,9 @@
         "webpack-dev-server": "^4.11.1"
     },
     "jest": {
+        "globals": {
+            "window": {}
+          },
         "transform": {
             "^.+\\.[t|j]sx?$": "babel-jest"
         },
