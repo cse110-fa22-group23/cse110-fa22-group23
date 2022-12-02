@@ -305,9 +305,9 @@ function addEntry(entry, id, rowIndex = 1) {
     rowCells.status.setAttribute("class", "status");
     rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" style="display:block;" width="60%" height="60%"></img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
-    rowCells.editButton.innerHTML = `<button type="button" class="tableBtn" ><img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row"></button>`;
+    rowCells.editButton.innerHTML = `<button type="button" class="tableBtn" ><img src="./assets/images/icons/edit-pen-icon.webp" height=15px padding=0px alt="edit row"></button>`;
     rowCells.editButton.addEventListener("click", editButton);
-    rowCells.deleteButton.innerHTML = `<button type="button" class="tableBtn caution" ><img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row"></button>`;
+    rowCells.deleteButton.innerHTML = `<button type="button" class="tableBtn caution" ><img src="./assets/images/icons/trash-icon.webp" height=15px padding=0px alt="delete row"></button>`;
     rowCells.deleteButton.addEventListener("click", deleteForm);
 }
 

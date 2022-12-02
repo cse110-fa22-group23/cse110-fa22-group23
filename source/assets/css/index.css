@@ -83,12 +83,14 @@ body {
 }
 
 #teamHead {
-    /* font-family: "Sofia", sans-serif;
-    color: var(--l-tx);
+
+    width: 400px;
+    height: auto;
     text-align: center;
-    margin-top: 0; */
-    width: 300px;  
-    height: auto;  
-    text-align: center;  
-    padding: 15px;  
+    padding: 15px;
+}
+#logo{
+    width: 60%;
+    margin: auto;
+    display: block;
 }
