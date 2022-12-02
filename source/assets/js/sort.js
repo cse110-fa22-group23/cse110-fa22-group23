@@ -23,27 +23,25 @@ function sortBy(c) {
             x = rows[i].cells[c];
             y = rows[i + 1].cells[c];
 
+            if (x == null || y == null) {
+                continue;
+            }
+
             // check if rows should be switched
-            if (dir == "asc") {
-                if (
-                    x != null &&
-                    y != null &&
-                    x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()
-                ) {
-                    // if out of order, break from loop
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if (dir == "desc") {
-                if (
-                    x != null &&
-                    y != null &&
-                    x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()
-                ) {
-                    // if out of order, break from loop
-                    shouldSwitch = true;
-                    break;
-                }
+            if (
+                dir == "asc" &&
+                x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()
+            ) {
+                // if out of order, break from loop
+                shouldSwitch = true;
+                break;
+            } else if (
+                dir == "desc" &&
+                x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()
+            ) {
+                // if out of order, break from loop
+                shouldSwitch = true;
+                break;
             }
         }
         if (shouldSwitch) {
