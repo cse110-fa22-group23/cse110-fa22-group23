@@ -44,10 +44,14 @@
         "webpack-dev-server": "^4.11.1"
     },
     "jest": {
+        "globals": {
+            "window": {}
+        },
         "preset": "jest-puppeteer",
         "verbose": true,
         "transform": {
             "^.+\\.[t|j]sx?$": "babel-jest"
-        }
+        },
+        "testEnvironment": "jsdom"
     }
 }

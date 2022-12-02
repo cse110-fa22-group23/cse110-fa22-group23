@@ -294,8 +294,8 @@ function addEntry(entry, id, rowIndex = 1) {
 
     rowCells.company.innerHTML = entry["company"];
     rowCells.position.innerHTML = entry["position"];
-    rowCells.location.innerHTML = entry["location"];
-    rowCells.industry.innerHTML = entry["industry"];
+    rowCells.location.innerHTML = `<span class="location_name_label">${entry["location"]}</span>`;
+    rowCells.industry.innerHTML = `<span class="industry_name_label">${entry["industry"]}</span>`;
     rowCells.status.innerHTML = entry["status"];
     if (rowCells.status.innerHTML == "Applied") {
         rowCells.status.innerHTML = `<span class="applied">${entry["status"]}</span>`;
@@ -305,11 +305,11 @@ function addEntry(entry, id, rowIndex = 1) {
         rowCells.status.innerHTML = `<span class="not_started">${entry["status"]}</span>`;
     }
     rowCells.status.setAttribute("class", "status");
-    rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" class="center" style="display:block;" width="100%" height="100%"></img>`;
+    rowCells.ranking.innerHTML = `<img src="./assets/images/stars/${entry["ranking"]}s.PNG" alt="${entry["ranking"]} stars" style="display:block;" width="60%" height="60%"></img>`;
     rowCells.deadline.innerHTML = entry["deadline"];
-    rowCells.editButton.innerHTML = `<button type="button" class="tableBtn editBtn" ><img src="./assets/images/icons/edit-pen-icon.webp" height=15px alt="edit row"></button>`;
+    rowCells.editButton.innerHTML = `<button type="button" class="tableBtn" ><img src="./assets/images/icons/edit-pen-icon.webp" height=15px padding=0px alt="edit row"></button>`;
     rowCells.editButton.addEventListener("click", editButton);
-    rowCells.deleteButton.innerHTML = `<button type="button" class="tableBtn deleteBtn caution" ><img src="./assets/images/icons/trash-icon.webp" height=15px alt="delete row"></button>`;
+    rowCells.deleteButton.innerHTML = `<button type="button" class="tableBtn caution" ><img src="./assets/images/icons/trash-icon.webp" height=15px padding=0px alt="delete row"></button>`;
     rowCells.deleteButton.addEventListener("click", deleteForm);
 }
 
