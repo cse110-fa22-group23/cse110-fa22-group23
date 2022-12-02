@@ -47,7 +47,6 @@
         "globals": {
             "window": {}
         },
-
         "preset": "jest-puppeteer",
         "verbose": true,
         "transform": {
