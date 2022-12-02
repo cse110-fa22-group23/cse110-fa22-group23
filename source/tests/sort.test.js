@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 /* eslint-env jest */
 // sort.test.js
 
@@ -38,7 +41,6 @@ function sortByColumn(col) {
                 </th>
             </tr>
             <!-- javascript render here -->
-            <tr id="inputTable"></tr>
         </tbody></table>
     `;
 

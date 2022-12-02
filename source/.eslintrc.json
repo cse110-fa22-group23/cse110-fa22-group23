@@ -18,5 +18,10 @@
                 "endOfLine": "auto"
             }
         ]
+    },
+    // Puppeteer globals
+    "globals": {
+        "page": true,
+        "browser": true
     }
 }
