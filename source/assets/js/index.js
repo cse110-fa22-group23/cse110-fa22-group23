@@ -4,23 +4,56 @@ import { sortBy } from "./sort.js";
 
 window.addEventListener("DOMContentLoaded", init);
 
-// add event listeners
-window.addEventListener("click", function (e) {
-    if (e.target == document.getElementById("form-modal")) {
-        closeForm();
-    }
+function addPageListeners() {
+    document.getElementById("createBtn").addEventListener("click", openForm);
+}
 
-    if (e.target == document.getElementById("edit-modal")) {
-        closeEditForm();
-    }
+function addModalListeners() {
+    /* Create Modal */
+    document.getElementById("addRow").addEventListener("click", addRow);
+    document.getElementById("closeForm").addEventListener("click", closeForm);
+    document.getElementById("form-modal").addEventListener("click", closeForm);
 
-    if (e.target == document.getElementById("delete-modal")) {
-        closeDelete();
-    }
-    if (e.target == document.getElementById("createBtn")) {
-        openForm();
-    }
-});
+    /* Edit Modal */
+    document.getElementById("editRow").addEventListener("click", editRow);
+    document
+        .getElementById("closeEditForm")
+        .addEventListener("click", closeEditForm);
+    document
+        .getElementById("edit-modal")
+        .addEventListener("click", closeEditForm);
+
+    /* Delete Modal */
+    document
+        .getElementById("deleteButton")
+        .addEventListener("click", deleteButton);
+    document
+        .getElementById("closeDelete")
+        .addEventListener("click", closeDelete);
+    document
+        .getElementById("delete-modal")
+        .addEventListener("click", closeDelete);
+}
+
+function addSortBtnListeners() {
+    const cols = [
+        "companyName",
+        "Position",
+        "Location",
+        "Industry",
+        "Status",
+        "Ranking",
+        "Deadline",
+    ];
+
+    // add listeners to columns
+    cols.forEach((col, idx) => {
+        const docRef = document.getElementById(col);
+        docRef.addEventListener("click", function () {
+            sortBy(idx);
+        });
+    });
+}
 
 /**
  * Callback function to run when DOM is loaded. Loads and renders data from localStorage.
@@ -40,48 +73,10 @@ function init() {
         state.count = JSON.parse(counter);
     }
 
-    // add listeners
-    let el = document.getElementById("closeEditForm");
-    el.addEventListener("click", closeEditForm);
-    el = document.getElementById("companyName");
-    el.addEventListener("click", () => {
-        sortBy(0);
-    });
-    el = document.getElementById("Position");
-    el.addEventListener("click", () => {
-        sortBy(1);
-    });
-    el = document.getElementById("Location");
-    el.addEventListener("click", () => {
-        sortBy(2);
-    });
-    el = document.getElementById("Industry");
-    el.addEventListener("click", () => {
-        sortBy(3);
-    });
-    el = document.getElementById("Status");
-    el.addEventListener("click", () => {
-        sortBy(4);
-    });
-    el = document.getElementById("Ranking");
-    el.addEventListener("click", () => {
-        sortBy(5);
-    });
-    el = document.getElementById("Deadline");
-    el.addEventListener("click", () => {
-        sortBy(6);
-    });
+    addPageListeners();
+    addModalListeners();
+    addSortBtnListeners();
 
-    el = document.getElementById("addRow");
-    el.addEventListener("click", addRow);
-    el = document.getElementById("closeForm");
-    el.addEventListener("click", closeForm);
-    el = document.getElementById("closeDelete");
-    el.addEventListener("click", closeDelete);
-    el = document.getElementById("deleteButton");
-    el.addEventListener("click", deleteButton);
-    el = document.getElementById("editRow");
-    el.addEventListener("click", editRow);
     return 0;
 }
 
