@@ -87,7 +87,7 @@ describe("Basic user flow for Website", () => {
             });
             expect(numRows).toBe(i + 2); // rows from prev tests
         }
-    }, 5000);
+    }, 10000);
 
     it("reload", async () => {
         await page.reload();
@@ -250,6 +250,7 @@ describe("Basic user flow for Website", () => {
 
         for (let i = 1; i <= editButtons.length; i++) {
             await editButtons[i - 1].click();
+            const editButton = await page.$("#editRow");
 
             // type into edit form
             await page.type("#companyEdit", " " + String(i));
@@ -260,7 +261,6 @@ describe("Basic user flow for Website", () => {
             await page.select("#rankingEdit", String(i));
             await page.type("#deadlineEdit", "01012022");
 
-            const editButton = await page.$("#editRow");
             // wait for localstorage
             await page.waitForTimeout(200);
             await editButton.click();
@@ -279,5 +279,115 @@ describe("Basic user flow for Website", () => {
             return rows.length;
         });
         expect(numRows).toBe(3);
+    }, 5000);
+
+    it("Submit edit no changes is same as before", async () => {
+        const editButtons = await page.$$('button[class*="editBtn"]');
+
+        for (let i = 1; i <= editButtons.length; i++) {
+            await editButtons[i - 1].click();
+            const editSubmit = await page.$("#editRow");
+            // wait for localstorage
+            await page.waitForTimeout(200);
+            await editSubmit.click();
+        }
+        let table = await page.evaluate(() =>
+            localStorage.getItem("SpreadSheet")
+        );
+        table = JSON.parse(table);
+        // check data actually changed in table and state and local storage
+        let expected = JSON.parse(
+            '{"13": {"company": "Epic cool company 1", "position": "Epic cool position 1", "location": "Southwest", "industry": "Epic cool industry 1", "status": "In Progress", "ranking": "1", "deadline": "2022&#45;01&#45;01"}, "12": {"company": "Epic cool company 2", "position": "Epic cool position 2", "location": "Southwest", "industry": "Epic cool industry 2", "status": "In Progress", "ranking": "2", "deadline": "2022&#45;01&#45;01"}}'
+        );
+        expect(table).toStrictEqual(expected);
+    }, 1000);
+
+    it("Sorting Test for all columns", async () => {
+        async function getRowIds() {
+            let rows = await page.$$("tr");
+            let rowIds = [];
+            for (let i = 1; i < rows.length; i++) {
+                const idAttr = await page.evaluate((el) => el.id, rows[i]);
+                rowIds.push(idAttr);
+            }
+            return rowIds;
+        }
+
+        const sortButtons = await page.$$('th[class*="sortable"]');
+        const increasing = ["13", "12"];
+        const decreasing = ["12", "13"];
+
+        //check company name column sort
+        // first click is increasing
+        await sortButtons[0].click();
+        expect(await getRowIds()).toStrictEqual(decreasing);
+        // second click is decreasing
+        await sortButtons[0].click();
+        expect(await getRowIds()).toStrictEqual(increasing);
+        // third click is increasing
+        await sortButtons[0].click();
+        expect(await getRowIds()).toStrictEqual(decreasing);
+
+        //check position name column sort
+        // first click is increasing
+        await sortButtons[1].click();
+        expect(await getRowIds()).toStrictEqual(increasing);
+        // second click is decreasing
+        await sortButtons[1].click();
+        expect(await getRowIds()).toStrictEqual(decreasing);
+        // third click is increasing
+        await sortButtons[1].click();
+        expect(await getRowIds()).toStrictEqual(increasing);
+
+        const editButtons = await page.$$('button[class*="editBtn"]');
+
+        await editButtons[0].click();
+
+        // type into edit form
+        await page.type("#companyEdit", " " + "Edit");
+        await page.type("#positionEdit", " " + "Ed");
+        await page.select("#locationEdit", "Southwest");
+        await page.select("#statusEdit", "In Progress");
+        await page.select("#rankingEdit", String(4));
+        await page.type("#deadlineEdit", "01012022");
+
+        const editButton = await page.$("#editRow");
+        // wait for localstorage
+        await page.waitForTimeout(200);
+        await editButton.click();
+        // num rows and localstorage contents do not change
+        let table = await page.evaluate(() =>
+            localStorage.getItem("SpreadSheet")
+        );
+        table = JSON.parse(table);
+        let expected = JSON.parse(
+            '{"13": {"company": "Epic cool company 1 Edit", "position": "Epic cool position 1 Ed", "location": "Southwest", "industry": "Epic cool industry 1", "status": "In Progress", "ranking": "4", "deadline": "2022&#45;01&#45;01"}, "12": {"company": "Epic cool company 2", "position": "Epic cool position 2", "location": "Southwest", "industry": "Epic cool industry 2", "status": "In Progress", "ranking": "2", "deadline": "2022&#45;01&#45;01"}}'
+        );
+        expect(table).toStrictEqual(expected);
+        const numRows = await page.$$eval("tr", (rows) => {
+            return rows.length;
+        });
+        expect(numRows).toBe(3);
+    }, 5000);
+
+    it("Delete row after sorting", async () => {
+        const deleteButtons = await page.$$('button[class*="deleteBtn"]');
+        await deleteButtons[0].click();
+        const confirmDelete = await page.$("#deleteButton");
+        await confirmDelete.click();
+
+        // num rows and localstorage contents do not change
+        let table = await page.evaluate(() =>
+            localStorage.getItem("SpreadSheet")
+        );
+        table = JSON.parse(table);
+        let expected = JSON.parse(
+            '{"12": {"company": "Epic cool company 2", "position": "Epic cool position 2", "location": "Southwest", "industry": "Epic cool industry 2", "status": "In Progress", "ranking": "2", "deadline": "2022&#45;01&#45;01"}}'
+        );
+        expect(table).toStrictEqual(expected);
+        const numRows = await page.$$eval("tr", (rows) => {
+            return rows.length;
+        });
+        expect(numRows).toBe(2);
     }, 5000);
 });

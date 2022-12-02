@@ -157,7 +157,9 @@ function editButton(item) {
     document.getElementById("industryEdit").value = rowData["industry"];
     document.getElementById("statusEdit").value = rowData["status"];
     document.getElementById("rankingEdit").value = rowData["ranking"];
-    document.getElementById("deadlineEdit").value = rowData["deadline"];
+    document.getElementById("deadlineEdit").value = rowData[
+        "deadline"
+    ].replaceAll("&#45;", "-");
 
     openEditForm();
 }
