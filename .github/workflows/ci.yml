@@ -57,4 +57,4 @@ jobs:
       - name: Run javascript tests (jest)
         working-directory: ./source
         run: |
-          npm run test
+          npm run test-github-action
