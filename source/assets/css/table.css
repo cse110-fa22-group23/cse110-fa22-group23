@@ -23,6 +23,7 @@
     width: 15%;
     /* border: 1px solid; */
     border-collapse: collapse;
+    padding-left: 10px;
 }
 #Position {
     text-align: left;
@@ -133,6 +134,7 @@ th.selected::after {
     font-size: 16px;
     line-height: 50px;
     letter-spacing: 0.005em;
+    padding-left: 10px;
 }
 .position_name {
     color: #303651;
