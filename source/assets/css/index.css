@@ -83,13 +83,12 @@ body {
 }
 
 #teamHead {
-
     width: 400px;
     height: auto;
     text-align: center;
     padding: 15px;
 }
-#logo{
+#logo {
     width: 60%;
     margin: auto;
     display: block;
