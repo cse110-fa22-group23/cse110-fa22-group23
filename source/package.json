@@ -41,7 +41,7 @@
     "jest": {
         "globals": {
             "window": {}
-          },
+        },
         "transform": {
             "^.+\\.[t|j]sx?$": "babel-jest"
         },
