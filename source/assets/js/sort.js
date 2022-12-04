@@ -71,7 +71,7 @@ function sortBy(c) {
     // add selected status to current col
     table.rows[0].cells[c].classList.add("selected");
 
-    // change table header arrow based on sort
+    // change table header arrow based on sort ---- test comment ----
     if (dir == "asc") {
         table.rows[0].cells[c].classList.add("asc");
     } else {
