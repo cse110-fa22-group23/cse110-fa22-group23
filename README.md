@@ -15,6 +15,10 @@
 
 Go to the [Application Page](https://cse110-fa22-group23.github.io/cse110-fa22-group23/).
 
+Team 23 Final Videos:
+- [Public Video](https://youtu.be/UXybgLMQYxY)
+- [Private Video](https://youtu.be/oL-uGDx_Ods)
+
 ### For Development
 
 Before contributing, view our [Contribution Guidelines](docs/CONTRIBUTING.md).
