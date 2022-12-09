@@ -8,19 +8,27 @@ function addPageListeners() {
     document.getElementById("createBtn").addEventListener("click", openForm);
 }
 
-function addModalListeners() {
+function addModalCloseListeners() {
+    document.getElementById("form-modal").addEventListener("click", (e) => {
+        if (e.target.id === "form-modal") closeForm();
+    });
+    document.getElementById("edit-modal").addEventListener("click", (e) => {
+        if (e.target.id === "edit-modal") closeEditForm();
+    });
+    document.getElementById("delete-modal").addEventListener("click", (e) => {
+        if (e.target.id === "delete-modal") closeDelete();
+    });
+}
+
+function addModalButtonListeners() {
     /* Create Modal */
     document.getElementById("addRow").addEventListener("click", addRow);
     document.getElementById("closeForm").addEventListener("click", closeForm);
-    document.getElementById("form-modal").addEventListener("click", closeForm);
 
     /* Edit Modal */
     document.getElementById("editRow").addEventListener("click", editRow);
     document
         .getElementById("closeEditForm")
-        .addEventListener("click", closeEditForm);
-    document
-        .getElementById("edit-modal")
         .addEventListener("click", closeEditForm);
 
     /* Delete Modal */
@@ -29,9 +37,6 @@ function addModalListeners() {
         .addEventListener("click", deleteButton);
     document
         .getElementById("closeDelete")
-        .addEventListener("click", closeDelete);
-    document
-        .getElementById("delete-modal")
         .addEventListener("click", closeDelete);
 }
 
@@ -74,7 +79,8 @@ function init() {
     }
 
     addPageListeners();
-    addModalListeners();
+    addModalCloseListeners();
+    addModalButtonListeners();
     addSortBtnListeners();
 
     return 0;
