@@ -4,16 +4,16 @@
     "name": "AmoungSus Job Tracker",
     "icons": [
         {
-            "src": "/source/assets/images/branding/favicon.ico",
-            "type": "image/x-icon",
-            "sizes": "866x867"
+            "src": "/cse110-fa22-group23/assets/images/branding/logo.png",
+            "type": "image/png",
+            "sizes": "866x866"
         }
     ],
-    "id": "/?source=pwa",
-    "start_url": "/?source=pwa",
-    "background_color": "#3367D6",
+    "id": "/cse110-fa22-group23/",
+    "start_url": "/cse110-fa22-group23/",
+    "background_color": "#86A8EE",
     "display": "standalone",
-    "scope": "/",
-    "theme_color": "#3367D6",
+    "scope": "/cse110-fa22-group23/",
+    "theme_color": "#86A8EE",
     "description": "Job tracking webapp."
 }
