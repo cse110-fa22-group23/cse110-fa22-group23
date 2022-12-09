@@ -51,6 +51,7 @@
 
 ### CI/CD with GitHub Actions
 - Automatic CI/CD with [GitHub Actions](https://docs.github.com/en/pages) runs linting, formatting, and unit test checks for developmental branches
+- Branch deployment of PRs to our staging site
 - Deployment with [GitHub Pages](https://docs.github.com/en/pages)
 
 ### [Video Demonstration](phase1.mp4)
@@ -60,5 +61,4 @@
 ### Deployment
 
 - Developing and maintaining a more robust backend may require a more suitable deployment platform
-- Providing hosted instances for developmental branches/pull requests provides a better quality experience for contribution
 - Services fulfilling such needs include Heroku, AWS, Netlify, etc.
