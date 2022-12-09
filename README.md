@@ -9,9 +9,9 @@
 [![Lighthouse SEO Badge](source/lighthouse/lighthouse_seo.svg)](source/lighthouse/lighthouse_report.pdf)
 [![Screenshot of site homepage](admin/site_screenshot.png)](https://cse110-fa22-group23.github.io/cse110-fa22-group23/)
 
- ## Project Description
+## Project Description
 
-[AmoungSus Job Tracker](https://cse110-fa22-group23.github.io/cse110-fa22-group23/) lets you track job applications throughout your job search process. Our site works completly offline using service workers and localstorage and requires no backend server. We prioritized clean UI/UX, and you can modify and sort your data without ever sharing your data with anyone. Our project is privacy preserving and FOSS - We never track or store any customer interaction.
+[AmoungSus Job Tracker](https://cse110-fa22-group23.github.io/cse110-fa22-group23/) lets you track job applications throughout your job search process. Our site works completely offline using service workers and localstorage and requires no backend server or prod dependencies. We prioritized clean UI/UX, and you can modify and sort your data without ever sharing your data with anyone. Our project is privacy preserving and FOSS - We never track or store any customer interaction.
 
 *Project status: Unmaintained*
 
@@ -32,7 +32,7 @@ git clone https://github.com/cse110-fa22-group23/cse110-fa22-group23.git
 cd './cse110-fa22-group23'
 ```
 
-**Go to application souce and install packages:**
+**Go to application source and install packages:**
 
 ```bash
 cd './source'

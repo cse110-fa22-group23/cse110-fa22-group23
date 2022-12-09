@@ -27,9 +27,8 @@ For adding and deleting rows we can just use `table.insertRow(0);` and add the c
 
 # Final storage schema results
 
-## The result of our decision:
+## Result of our decision
 
-Having set up a schema helped a lot in making sure everyone had an idea of how our data looks like in local storage. We did run into the issue that it became hard to manage the data in localstorage as an array after we started to implement sorting. 
+Having set up a schema helped a lot in making sure everyone had an idea of how our data looks like in local storage. We did run into the issue that it became hard to manage the data in localstorage as an array after we started to implement sorting.
 
 We ended up changing this exact schema to instead be a dict so that we could index into items by an incrementing data id. This worked a lot better since we could just use the unique id to index in and not have to worry about the exact datastructure implementation. In this way, we could take advantage of all the JavaScript functionalities such as serialization for free.
-z

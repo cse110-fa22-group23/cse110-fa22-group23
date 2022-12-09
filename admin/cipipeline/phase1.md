@@ -32,7 +32,7 @@
 
 ### Code Climate (Quality)
 
-- Automated external tool that provides code review and maintanability checks for written code
+- Automated external tool that provides code review and maintainability checks for written code
 - Uses [Code Climate - Quality](https://codeclimate.com/quality)
 
 ### Doc Generation
