@@ -1,5 +1,6 @@
-# Team 23 - Project Repository
+# [![AmoungSus Job Tracker](source/assets/images/branding/Logo_horizontal.PNG)](https://cse110-fa22-group23.github.io/cse110-fa22-group23/)
 
+[![Screenshot of site homepage](admin/site_screenshot.png)](https://cse110-fa22-group23.github.io/cse110-fa22-group23/)
 [![build-deployment](https://github.com/cse110-fa22-group23/cse110-fa22-group23/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/cse110-fa22-group23/cse110-fa22-group23/actions/workflows/pages/pages-build-deployment)
 [![issues](https://img.shields.io/github/issues/cse110-fa22-group23/cse110-fa22-group23)](https://github.com/cse110-fa22-group23/cse110-fa22-group23/issues)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6e47e201498803a0483d/maintainability)](https://codeclimate.com/github/cse110-fa22-group23/cse110-fa22-group23/maintainability)
@@ -7,7 +8,7 @@
 [![Lighthouse Accessibility Badge](source/lighthouse/lighthouse_accessibility.svg)](source/lighthouse/lighthouse_report.pdf)
 [![Lighthouse Best Practices Badge](source/lighthouse/lighthouse_best-practices.svg)](source/lighthouse/lighthouse_report.pdf)
 [![Lighthouse SEO Badge](source/lighthouse/lighthouse_seo.svg)](source/lighthouse/lighthouse_report.pdf)
-[![Screenshot of site homepage](admin/site_screenshot.png)](https://cse110-fa22-group23.github.io/cse110-fa22-group23/)
+
 
 ## Project Description
 
