@@ -36,6 +36,7 @@
 - Uses [Code Climate - Quality](https://codeclimate.com/quality)
 
 ### Doc Generation
+
 - Tool to compile annotated source code into readable documentation for contributors
 - Support Javascript within project
 - Uses [JSDoc ver. 4.0.0^](https://github.com/jsdoc/jsdoc) 
@@ -45,11 +46,13 @@
   ```
 
 ### Pre-Commit Hooks
+
 - Tool to compile annotated source code into readable documentation for contributors
 - Support Javascript within project
 - Uses [Husky ver. 8.0.2^](https://typicode.github.io/husky/#/) 
 
 ### CI/CD with GitHub Actions
+
 - Automatic CI/CD with [GitHub Actions](https://docs.github.com/en/pages) runs linting, formatting, and unit test checks for developmental branches
 - Branch deployment of PRs to our staging site
 - Deployment with [GitHub Pages](https://docs.github.com/en/pages)
