@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "short_name": "AmoungSus",
+    "name": "AmoungSus Job Tracker",
+    "icons": [
+        {
+            "src": "/cse110-fa22-group23/assets/images/branding/logo.png",
+            "type": "image/png",
+            "sizes": "866x866"
+        }
+    ],
+    "id": "/cse110-fa22-group23/",
+    "start_url": "/cse110-fa22-group23/",
+    "background_color": "#86A8EE",
+    "display": "standalone",
+    "scope": "/cse110-fa22-group23/",
+    "theme_color": "#86A8EE",
+    "description": "Job tracking webapp."
+}

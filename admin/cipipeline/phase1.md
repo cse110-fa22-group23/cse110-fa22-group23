@@ -32,10 +32,11 @@
 
 ### Code Climate (Quality)
 
-- Automated external tool that provides code review and maintanability checks for written code
+- Automated external tool that provides code review and maintainability checks for written code
 - Uses [Code Climate - Quality](https://codeclimate.com/quality)
 
 ### Doc Generation
+
 - Tool to compile annotated source code into readable documentation for contributors
 - Support Javascript within project
 - Uses [JSDoc ver. 4.0.0^](https://github.com/jsdoc/jsdoc) 
@@ -45,12 +46,15 @@
   ```
 
 ### Pre-Commit Hooks
+
 - Tool to compile annotated source code into readable documentation for contributors
 - Support Javascript within project
 - Uses [Husky ver. 8.0.2^](https://typicode.github.io/husky/#/) 
 
 ### CI/CD with GitHub Actions
+
 - Automatic CI/CD with [GitHub Actions](https://docs.github.com/en/pages) runs linting, formatting, and unit test checks for developmental branches
+- Branch deployment of PRs to our staging site
 - Deployment with [GitHub Pages](https://docs.github.com/en/pages)
 
 ### [Video Demonstration](phase1.mp4)
@@ -60,5 +64,4 @@
 ### Deployment
 
 - Developing and maintaining a more robust backend may require a more suitable deployment platform
-- Providing hosted instances for developmental branches/pull requests provides a better quality experience for contribution
 - Services fulfilling such needs include Heroku, AWS, Netlify, etc.
