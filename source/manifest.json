@@ -1,0 +1,19 @@
+{
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+    "short_name": "AmoungSus",
+    "name": "AmoungSus Job Tracker",
+    "icons": [
+        {
+            "src": "/source/assets/images/branding/favicon.ico",
+            "type": "image/x-icon",
+            "sizes": "866x867"
+        }
+    ],
+    "id": "/?source=pwa",
+    "start_url": "/?source=pwa",
+    "background_color": "#3367D6",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#3367D6",
+    "description": "Job tracking webapp."
+}
